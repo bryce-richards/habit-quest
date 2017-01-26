@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-// Requiring our models for syncing
+// Requiring our models for syncing; commenting out until we have sequelize models
 // var db = require("./models");
 
 // Sets up the Express app to handle data parsing
@@ -19,6 +19,8 @@ app.use(express.static("./public"));
 
 // Routes =============================================================
 require("./routes/html-routes.js")(app);
+
+// comment out user routes file until we have routes
 // require("./routes/user-api-routes.js")(app);
 
 // Syncing our sequelize models and then starting our express app
@@ -28,6 +30,8 @@ require("./routes/html-routes.js")(app);
 //   });
 // });
 
+
+// starting the app without sequelize
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 });
