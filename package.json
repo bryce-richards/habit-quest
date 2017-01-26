@@ -1,0 +1,26 @@
+{
+  "name": "habit-quest",
+  "version": "0.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trungvngo/habit-quest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trungvngo/habit-quest/issues"
+  },
+  "homepage": "https://github.com/trungvngo/habit-quest#readme",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "express": "^4.14.0",
+    "mysql": "^2.13.0",
+    "sequelize": "^3.30.0"
+  }
+}
