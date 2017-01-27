@@ -1,6 +1,7 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const hbs = require('hbs');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -13,6 +14,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+// Handlebars setup
+var hbs = require('express-hbs');
+
+// Use `.hbs` for extensions and find partials in `views/partials`.
+app.engine('hbs', hbs.express4({
+  partialsDir: __dirname + '/views/partials'
+}));
+app.set('view engine', 'hbs');
+app.set('views', __dirname + '/views');
 
 // Static directory
 app.use(express.static("./public"));
