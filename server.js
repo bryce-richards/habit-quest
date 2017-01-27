@@ -6,7 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 // Requiring our models for syncing; commenting out until we have sequelize models
-// var db = require("./models");
+var db = require("./models");
 
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
@@ -24,14 +24,14 @@ require("./routes/html-routes.js")(app);
 // require("./routes/user-api-routes.js")(app);
 
 // Syncing our sequelize models and then starting our express app
-// db.sequelize.sync().then(function() {
-//   app.listen(PORT, function() {
-//     console.log("App listening on PORT " + PORT);
-//   });
-// });
-
-
-// starting the app without sequelize
-app.listen(PORT, function() {
-  console.log("App listening on PORT " + PORT);
+db.sequelize.sync().then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
 });
+
+
+// // starting the app without sequelize
+// app.listen(PORT, function() {
+//   console.log("App listening on PORT " + PORT);
+// });
