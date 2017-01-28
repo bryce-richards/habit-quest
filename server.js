@@ -13,9 +13,9 @@ const PORT = process.env.PORT || 8080;
 var db = require("./models");
 
 passport.use(new Strategy(
-  function(username, password, cb) {
+  function(email, password, cb) {
 
-    db.Users.findOne({where: {username: username}})
+    db.User.findOne({where: {email: email}})
     .then((user) => {
       // handle case where there is no existing user with the username
       if(!user) {
@@ -40,7 +40,7 @@ passport.serializeUser(function(user, cb) {
 });
 
 passport.deserializeUser(function(id, cb) {
-  db.Users.findById(id)
+  db.User.findById(id)
   .then((user) => {
     cb(null, user);
   })
@@ -73,7 +73,7 @@ app.use(passport.session());
 require("./routes/html-routes.js")(app);
 
 // comment out user routes file until we have routes
-// require("./routes/user-api-routes.js")(app);
+require("./routes/user-api-routes.js")(app);
 
 // Syncing our sequelize models and then starting our express app
 db.sequelize.sync().then(function() {
