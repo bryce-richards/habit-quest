@@ -19,9 +19,14 @@
   "homepage": "https://github.com/trungvngo/habit-quest#readme",
   "dependencies": {
     "body-parser": "^1.16.0",
+    "connect-ensure-login": "^0.1.1",
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.0",
+    "morgan": "^1.7.0",
     "mysql": "^2.13.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "sequelize": "^3.30.0"
   }
 }

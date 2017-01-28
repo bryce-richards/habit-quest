@@ -5,4 +5,8 @@ module.exports = function(app) {
     // res.sendFile(path.join(__dirname + "/../public/index.html"));
     res.render('index');
   });
+
+  app.get("/login", function(req, res) {
+    res.render('login');
+  });
 }
