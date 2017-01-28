@@ -28,6 +28,14 @@ module.exports = function (sequelize, Datatypes) {
     image: {
         type: Datatypes.STRING
     }
- });
+ }, {
+      // We're saying that we want our Task to be part of many
+      classMethods: {
+        associate: function(models) {
+          // Challenges should be able to existm without User
+          Challenge.hasMany(models.Task);
+      }
+  }
+});
  return Challenge;
 };
