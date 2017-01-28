@@ -1,7 +1,7 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
-const hbs = require('hbs');
+const exphbs = require("express-handlebars");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -14,15 +14,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
-// Handlebars setup
-var hbs = require('express-hbs');
 
-// Use `.hbs` for extensions and find partials in `views/partials`.
-app.engine('hbs', hbs.express4({
-  partialsDir: __dirname + '/views/partials'
-}));
-app.set('view engine', 'hbs');
-app.set('views', __dirname + '/views');
+// Set Handlebars as the default templating engine.
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 // Static directory
 app.use(express.static("./public"));
@@ -39,9 +34,3 @@ db.sequelize.sync().then(function() {
     console.log("App listening on PORT " + PORT);
   });
 });
-
-
-// // starting the app without sequelize
-// app.listen(PORT, function() {
-//   console.log("App listening on PORT " + PORT);
-// });
