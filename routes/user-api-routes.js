@@ -2,11 +2,12 @@ const passport = require('passport');
 
 module.exports = function(app) {
 
-  app.post('/login',
-    passport.authenticate('local', { failureRedirect: '/something-else' }),
+  app.post('/signin',
+    passport.authenticate('local', { failureRedirect: '/signin' }),
     function(req, res) {
 
       res.redirect('/profile');
+
     });
 
 }
