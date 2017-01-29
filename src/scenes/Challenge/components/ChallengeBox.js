@@ -6,7 +6,7 @@ class ChallengeBox extends Component {
         jQuery.ajax({
             method: "GET",
             url: "/api/user/challenge/:user_id",
-            success: (challenge) => {
+            success: () => {
                 this.setState({ comments })
             }
         });

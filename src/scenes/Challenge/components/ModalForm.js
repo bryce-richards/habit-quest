@@ -4,6 +4,10 @@ const validate = require("validate");
 
 class ModalForm extends Component {
 
+    render() {
+
+
+    }
     constructor() {
         super();
         this.state = {
@@ -14,19 +18,21 @@ class ModalForm extends Component {
 
     }
 
-    _handleSubmit(event) {
-        event.preventDefault();
-
+    _handleSubmit(e) {
+        e.preventDefault();
         if (!this._title.value || !this._description.value || !this._purpose.value) {
 
         }
     }
 
     _submitForm(challenge) {
-        jQuery.post("/api/user/challenge/:user_id", { challenge })
-            .success(newChallenge => {
-                this.setState({challenge: this.state.challenge});
-            });
+        jQuery.post({
+            method: "POST",
+            url: "/api/user/challenge/:user_id",
+            success: () => {
+                this.setState({ comments })
+            }
+        });
     }
 }
 
