@@ -16,7 +16,16 @@ class ChallengeBox extends Component {
         this._fetchChallenge();
     }
 
-    render();
+    render() {
+
+
+
+
+
+
+    }
+
+
 
     componentDidMount() {
         this._timer = setInterval(
