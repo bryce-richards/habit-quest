@@ -3,138 +3,74 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>React App</title>
 
     <script src="https://use.fontawesome.com/c09fe9cceb.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <title>React App</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
-<button type="button" data-toggle="modal" data-target="#challengeModal">NEW CHALLENGE</button>
 
-<!--CHALLENGE CREATION MODAL-->
-    <div class="modal fade" id="challengeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <!--NAVBAR-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
 
-            <!--MODAL CONTENT-->
-            <div class="modal-content">
+                <!--TODO: ADD USERNAME HERE-->
+                <a class="navbar-brand" href="#">Bryce Richards</a>
+            </div>
 
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h5 class="modal-title" >CREATE A NEW CHALLENGE</h5>
-                </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Dashboard</a></li>
 
-                <!--MODAL BODY-->
-                <div class="modal-body">
-                    <form>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cogs" aria-hidden="true"></i><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <p class="navbar-text">Habit Quest</p>
+                            <li><a href="#">Settings</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Sign Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <!--END OF NAVBAR-->
 
-                        <!--CHALLENGE TITLE, DESCRIPTION, PURPOSE INPUT-->
-                        <fieldset id="challengeHeader">
+    <!--CHALLENGE DATA-->
+    <div class="jumbotron">
+        <h1>Live Healthy</h1>
+        <p>By cutting out processed foods, cooking more, and exercising, I can lead a healthier lifestyle</p>
+        <p>This will lead to a more fulfilling life and give me more energy</p>
+        <p><a class="btn btn-primary btn-lg" id="newChallenge" href="#" role="button"data-toggle="modal"
+              data-target="#challengeModal">Add a Task</a></p>
+    </div>
+    <!--END OF CHALLENGE DATA-->
 
-                            <!--CHALLENGE TITLE-->
-                            <div class="form-group">
-                                <label>Challenge Title</label>
-                                <input type="text" class="form-control" id="challengeTitle">
-                                <small class="form-text text-muted">i.e. "Live Healthy", "Explore the Outdoors", "Write a Story"</small>
-                            </div>
+    <!--TASK DATA AND VISION BOARD DIVS-->
+    <div class="row">
 
-                            <!--CHALLENGE DESCRIPTION-->
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Challenge Description</label>
-                                <textarea class="form-control" id="challengeDescription"></textarea>
-                                <small class="form-text text-muted">Write a little bit about what you hope to
-                                    accomplish.</small>
-                            </div>
+        <!--TASKS DATA-->
+        <div class="col-lg-6">
 
-                            <!--CHALLENGE PURPOSE-->
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Challenge Description</label>
-                                <input type="text" class="form-control" id="challengePurpose">
-                                <small class="form-text text-muted">Write a little bit about what you hope to
-                                    accomplish.</small>
-                            </div>
-                        </fieldset>
-                        <!--END OF CHALLENGE DATA-->
+            <!--WEEK 1-->
+            <div class="well">
 
-                        <!--WEEK 1 DATA-->
-                        <fieldset id="week1" class="hidden">
-                            <div class="form-group">
-                                <label for="exampleSelect1">Tasks For The Week</label>
-                                <select class="form-control" id="week1Tasts">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                </select>
-                                <small class="form-text text-muted">Select up to three.</small>
-                            </div>
-
-                            <!--TASK 1-->
-                            <fieldset>
-                                <div class="form-group">
-                                    <label for="exampleTextarea">Task 1</label>
-                                    <input class="form-control" id="week1Task1">
-                                    <small class="form-text text-muted">i.e. "No processed sugar", "Ten pushups every
-                                        morning", "Write 100 Words a Day"</small>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleSelect1">Days of The Week</label>
-                                    <select class="form-control" id="week1Task1Days">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                    </select>
-                                    <small class="form-text text-muted">Select How Many Days You Want To
-                                        Complete This Task This Week</small>
-                                </div>
-                            </fieldset>
-
-                            <!--TODO: ADD LOGIC FOR WEEK1TASKS TO DISPLAY CORRECT AMOUNT OF WEEK DIVS-->
-
-                            <!--TASK 2-->
-                            <fieldset>
-                                <div class="form-group">
-                                    <label for="exampleTextarea">Task 2</label>
-                                    <input class="form-control" id="week1Task2">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleSelect1">Days of The Week</label>
-                                    <select class="form-control" id="week2Task1Days">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                    </select>
-                                </div>
-                            </fieldset>
-
-                            <!--TASK 3-->
-                            <fieldset>
-                                <div class="form-group">
-                                    <label for="exampleTextarea">Task 3</label>
-                                    <input class="form-control" id="week1Task3">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleSelect1">Days of The Week</label>
-                                    <select class="form-control" id="week1Task3Days">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                    </select>
-                                </div>
-                            </fieldset>
-                        </fieldset>
-                        <!--END OF WEEK 1 DATA-->
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary disabled">Back</button>
-                    <button type="button" class="btn btn-success">Next</button>
-                </div>
             </div>
         </div>
     </div>

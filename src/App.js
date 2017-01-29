@@ -2,19 +2,15 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Header from './Header';
+import ModalForm from "./scenes/NewChallenge/components/ModalForm"
+import ChallengeHeader from "./scenes/UserChallenge/components/ChallengeHeader/ChallengeHeader"
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React, Bryce</h2>
-        </div>
-        <p className="App-intro">
-            <Header title="Trung"/>
-        </p>
-      </div>
+        // <Header/>
+        <ChallengeHeader/>,
+        <ModalForm/>
     );
   }
 }
