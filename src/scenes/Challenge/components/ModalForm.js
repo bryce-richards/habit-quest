@@ -50,6 +50,13 @@ class ModalForm extends Component {
 
         }
     }
+
+    _submitForm(challenge) {
+        jQuery.post("/api/user/challenge/:user_id", { challenge })
+            .success(newChallenge => {
+                this.setState({challenge: this.state.challenge});
+            });
+    }
 }
 
 
