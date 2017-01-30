@@ -1,30 +1,24 @@
-module.exports = function (sequelize, Datatypes) {
+module.exports = function (sequelize, DataTypes) {
 	var Task = sequelize.define("Task", {
+		taskName: {
+			type: DataTypes.STRING
+		},
 		countComplete: {
-			type: Datatypes.INTEGER
+			type: DataTypes.INTEGER
 		},
 		targetComplete: {
-			type: Datatypes.INTEGER
+			type: DataTypes.INTEGER
 		},
 		taskDate: {
-			type: Datatypes.DATE
+			type: DataTypes.DATEONLY
 		},
 		taskEnd: {
-			type: Datatypes.DATE
+			type: DataTypes.DATEONLY
 		}
-	},
-	{
-      // We're saying that we want our Task to be part of many
-      classMethods: {
-      	associate: function(models) {
-          // Challenges should be able to existm without User
-          Task.belongsToMany(models.User);
-      }
-  }
-}, {
+	}, {
 	classMethods: {
 		associate: function(models) {
-			Task.belongsTo(models.Challenges);
+			Task.belongsTo(models.Challenge);
 		}
 	}
 });

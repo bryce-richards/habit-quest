@@ -1,13 +1,10 @@
 // Challenge table model
-module.exports = function (sequelize, Datatypes) {
+module.exports = function (sequelize, DataTypes) {
  var Challenge = sequelize.define("Challenge", {
  	// Giving the Challenge model a name of type STRING
     challenge: {
     	type: DataTypes.STRING,
     	allowNull: false
-    },
-    userId: {
-        // Grab id from the Users table
     },
     title: {
     	type: DataTypes.STRING,
@@ -22,18 +19,19 @@ module.exports = function (sequelize, Datatypes) {
         allowNull: false
     },
     private: {
-        type: Datatypes.BOOLEAN,
+        type: DataTypes.BOOLEAN,
         defaultValue: true
     },
-    image: {
-        type: Datatypes.STRING
+    challengeImageUrl: {
+        type: DataTypes.STRING
     }
  }, {
       // We're saying that we want our Task to be part of many
       classMethods: {
         associate: function(models) {
-          // Challenges should be able to existm without User
+          // Challenges should be able to exist without User
           Challenge.hasMany(models.Task);
+          Challenge.belongsTo(models.User);
       }
   }
 });
