@@ -7,14 +7,19 @@
 
     <script src="https://use.fontawesome.com/c09fe9cceb.js"></script>
 
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-</head>
-<body>
 
-    <!--NAVBAR-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.css">
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -47,33 +52,39 @@
                         </ul>
                     </li>
                 </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
+            </div>
+        </div>
     </nav>
     <!--END OF NAVBAR-->
 
-    <!--CHALLENGE DATA-->
-    <div class="jumbotron">
-        <h1>Live Healthy</h1>
-        <p>By cutting out processed foods, cooking more, and exercising, I can lead a healthier lifestyle</p>
-        <p>This will lead to a more fulfilling life and give me more energy</p>
-        <p><a class="btn btn-primary btn-lg" id="newChallenge" href="#" role="button"data-toggle="modal"
-              data-target="#challengeModal">Add a Task</a></p>
-    </div>
-    <!--END OF CHALLENGE DATA-->
-
-    <!--TASK DATA AND VISION BOARD DIVS-->
-    <div class="row">
-
-        <!--TASKS DATA-->
-        <div class="col-lg-6">
-
-            <!--WEEK 1-->
-            <div class="well">
-
+    <main>
+        <div class="main-carousel">
+            <div class="carousel-cell active">
+                <img class="d-block img-fluid" src="images/hike.jpg" alt="Hike More"/>
+            </div>
+            <div class="carousel-cell">
+                <img class="d-block img-fluid" src="images/write.jpg" alt="Write More"/>
+            </div>
+            <div class="carousel-cell">
+                <img class="d-block img-fluid" src="images/travel.jpeg" alt="Travel More"/>
+            </div>
+            <div class="carousel-cell">
+                <img class="d-block img-fluid" src="images/explore.jpg" alt="Explore More"/>
+            </div>
+            <div class="carousel-cell">
+                <img class="d-block img-fluid" src="images/health.jpg" alt="East Healthier"/>
+            </div>
+            <div class="carousel-cell">
+                <img class="d-block img-fluid" src="images/outdoors.jpg" alt="Get Outdoors"/>
+            </div>
+            <div class="carousel-cell">
+                <img class="d-block img-fluid" src="images/cooking.jpeg" alt="Cook More"/>
+            </div>
+            <div class="carousel-cell">
+                <img class="d-block img-fluid" src="images/inspired.jpg" alt="Be Inspired"/>
             </div>
         </div>
-    </div>
+    </main>
 
 <script
         src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -83,11 +94,9 @@
         src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
         integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
         crossorigin="anonymous"></script>
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script>
-    $("#challengeModal").on("shown.bs.modal", function () {
-        $("#challengeTitle").focus()
-    });
-</script>
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.js"></script>
+
 </body>
 </html>

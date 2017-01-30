@@ -1,6 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 
-class Header extends Component {
+class Header extends React.Component {
     render() {
         return (
             <nav className="navbar navbar-inverse navbar-fixed-top">
