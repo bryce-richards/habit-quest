@@ -27483,13 +27483,17 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 32);
 	
+	var _axios = __webpack_require__(/*! axios */ 237);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
 	var _challengeList = __webpack_require__(/*! ./challenge-list.jsx */ 236);
 	
 	var _challengeList2 = _interopRequireDefault(_challengeList);
 	
-	var _axios = __webpack_require__(/*! axios */ 237);
+	var _greeting = __webpack_require__(/*! ./greeting.jsx */ 265);
 	
-	var _axios2 = _interopRequireDefault(_axios);
+	var _greeting2 = _interopRequireDefault(_greeting);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -27508,6 +27512,7 @@
 	    var _this = _possibleConstructorReturn(this, (Profile.__proto__ || Object.getPrototypeOf(Profile)).call(this, props));
 	
 	    _this.state = {
+	      user: [],
 	      challenges: []
 	    };
 	    return _this;
@@ -27516,6 +27521,7 @@
 	  _createClass(Profile, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
+	      this.fetchUser();
 	      this.fetchChallenges();
 	    }
 	  }, {
@@ -27533,11 +27539,28 @@
 	      });
 	    }
 	  }, {
+	    key: 'fetchUser',
+	    value: function fetchUser(data) {
+	      var that = this;
+	
+	      _axios2.default.get('/api/user').then(function (res) {
+	        var user = res.data.data;
+	        that.setState({
+	          user: user
+	        });
+	      }).catch(function (e) {
+	        return e;
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement(_challengeList2.default, {
-	        challenges: this.state.challenges
-	      });
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_greeting2.default, { user: this.state.user }),
+	        _react2.default.createElement(_challengeList2.default, { challenges: this.state.challenges })
+	      );
 	    }
 	  }]);
 	
@@ -29260,6 +29283,39 @@
 	};
 	
 	exports.default = ChallengeListItem;
+
+/***/ },
+/* 265 */
+/*!************************************************!*\
+  !*** ./src/client/app/components/greeting.jsx ***!
+  \************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Greeting = function Greeting(_ref) {
+	  var user = _ref.user;
+	
+	  return _react2.default.createElement(
+	    'p',
+	    null,
+	    'Hello, ',
+	    user.firstName,
+	    '!'
+	  );
+	};
+	
+	exports.default = Greeting;
 
 /***/ }
 /******/ ]);
