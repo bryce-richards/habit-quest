@@ -23,7 +23,7 @@ render(
     <Route path="/" component={App}>
       <Route path="signin" component={Signin}/>
       <Route path="signup" component={SignupForm}/>
-      <Route path="profile" component={Profile}/> // route that should require auth
+      <Route path="profile" component={Profile }/> // route that should require auth
     </Route>
   </Router>,
   document.getElementById('app')
