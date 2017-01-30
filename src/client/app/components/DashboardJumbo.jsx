@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-class ChallengeHeader extends Component {
+class DashboardJumbo extends Component {
     render() {
         return (
             <div className="jumbotron">
@@ -12,4 +12,4 @@ class ChallengeHeader extends Component {
     }
 }
 
-export default ChallengeHeader;
+export default DashboardJumbo;

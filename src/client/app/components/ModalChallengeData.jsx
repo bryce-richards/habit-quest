@@ -1,6 +1,4 @@
-import React, { Component, PropTypes } from 'react';
-
-const validate = require("validate");
+import React, { Component } from 'react';
 
 class ModalChallengeData extends Component {
     render() {
@@ -33,5 +31,6 @@ class ModalChallengeData extends Component {
         )
     }
 
-
 }
+
+export default ModalChallengeData;
