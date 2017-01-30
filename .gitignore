@@ -36,4 +36,14 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
-src/scenes/Modal
+config
+models
+routes
+views
+.babelrc
+server.js
+webpack.config.js
+yarn.lock
+notes.txt
+package.json
+
