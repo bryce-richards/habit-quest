@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {render} from 'react-dom';
-import ChallengeList from './challenge-list.jsx';
 import axios from 'axios';
+
+import ChallengeList from './challenge-list.jsx';
+import Greeting from './greeting.jsx';
 
 
 class Profile extends Component {
@@ -9,11 +11,13 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      user: [],
       challenges: []
     };
   }
 
   componentWillMount(){
+    this.fetchUser();
     this.fetchChallenges();
   }
 
@@ -31,11 +35,26 @@ class Profile extends Component {
 
   }
 
+  fetchUser(data) {
+    var that = this;
+
+    axios.get('/api/user').then((res) => {
+      var user = res.data.data;
+      that.setState({
+        user: user
+      });
+    }).catch((e) => {
+      return e
+    });
+  }
+
   render() {
     return (
-      <ChallengeList
-        challenges={this.state.challenges}
-      />
+      <div>
+        <Greeting user={this.state.user} />
+        <ChallengeList challenges={this.state.challenges} />
+      </div>
+
     )
   }
 }
