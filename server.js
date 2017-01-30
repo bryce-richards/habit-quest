@@ -77,14 +77,17 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes =============================================================
-// setup for react router
+
+// API routes first
+require("./routes/user-api-routes.js")(app);
+require("./routes/challenge-api-routes.js")(app);
+
+// React Router setup
 app.get('*', function (request, response){
   response.sendFile(path.resolve(__dirname, './src/client/public', 'index.html'))
 });
-// require("./routes/html-routes.js")(app);
 
-// comment out user routes file until we have routes
-require("./routes/user-api-routes.js")(app);
+
 
 
 // Syncing our sequelize models and then starting our express app
