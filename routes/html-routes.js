@@ -9,7 +9,12 @@ module.exports = function(app) {
     res.render('login');
   });
 
-  app.get("/profile", (req, res) => {
-    res.render('authenticated');
+  // authenticated route
+  app.get('/profile',
+  require('connect-ensure-login').ensureLoggedIn(),
+  function(req, res){
+    console.log(req.user);
+    res.render('authenticated', { user: req.user });
   });
+
 }
