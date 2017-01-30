@@ -6,6 +6,14 @@ class SignupForm extends Component {
     return (
       <form action="/signup" method="post">
       	<div>
+        	<label>First Name:</label>
+        	<input type="text" name="firstName"/><br/>
+      	</div>
+      	<div>
+        	<label>Last Name:</label>
+        	<input type="text" name="lastName"/><br/>
+      	</div>
+      	<div>
         	<label>Email:</label>
         	<input type="text" name="email"/><br/>
       	</div>
