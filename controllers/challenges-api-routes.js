@@ -2,13 +2,20 @@ var express = require("express");
 var db = require("../models");
 var router = express.Router();
 
-router.get("'/api/user/challenge", function (req, res) {
-		db.User.findAll({}).then(function(dbUser) {
-			res.render("index", dbUser);
-		});
-	});
 
-router.post('/api/user/challenge/:user_id', function(req, res) {
+
+router.get("/api/challenges/:user_id", function(req,res) {
+	db.Challenge.findAll({
+		where: {
+			UserId: req.params.user_id
+		}
+	}).then(function(userChallenges) {
+		console.log(userChallenges);
+		res.json(userChallenges);
+	});
+});
+
+router.post('/api/challenges/:user_id', function(req, res) {
 	db.Challenge.create({
 		challenge: req.body.challenge,
 		title: req.body.title,
@@ -21,5 +28,18 @@ router.post('/api/user/challenge/:user_id', function(req, res) {
 		res.json(challengeCreate);
 	});
 });
+
+router.delete("api/challenges/:users_id", function(req,res) {
+	db.User.destroy({
+		where: {
+			id: req.body.users_id
+		}
+	}).then(function(deleteAUser) {
+		res.json(deleteUser);
+	});
+});
+
+
+
 
 module.exports = router;
