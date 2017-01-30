@@ -46,4 +46,4 @@ webpack.config.js
 yarn.lock
 notes.txt
 package.json
-
+src/client/public/bundle.js

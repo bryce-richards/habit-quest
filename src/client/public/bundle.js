@@ -27735,8 +27735,8 @@
 	                            _react2.default.createElement("span", { className: "icon-bar" })
 	                        ),
 	                        _react2.default.createElement(
-	                            "a",
-	                            { className: "navbar-brand", href: "#" },
+	                            "p",
+	                            { className: "navbar-brand" },
 	                            "Bryce Richards"
 	                        )
 	                    ),
