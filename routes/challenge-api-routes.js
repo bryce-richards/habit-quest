@@ -1,3 +1,5 @@
+/*jshint esversion: 6*/
+
 var db = require('../models');
 
 module.exports = function(app) {
@@ -18,11 +20,11 @@ module.exports = function(app) {
   });
 
   // route to fetch challenge by id
-  app.get('/api/challenge/:id', (req, res) => {
+  app.get('/api/challenge/:user_id', (req, res) => {
 
-    db.Challenge.findOne({
+    db.Challenge.findAll({
       where: {
-        id: 1
+        UserId: req.params.user_id
       }
     }).then((data) => {
       res.json({
@@ -39,10 +41,16 @@ module.exports = function(app) {
   });
 
   // route to create challenge
-  app.post('/api/challenge', (req, res) => {
+  app.post('/api/challenge/:user_id', (req, res) => {
 
     db.Challenge.create({
-      title: req.body.title
+      challenge: req.body.challenge,
+      title: req.body.title,
+      description: req.body.description,
+      purpose: req.body.purpose,
+      private: req.body.private,
+      challengeImageUrl: req.body.challengeImageUrl,
+      UserId: req.params.user_id
     }).then((data) => {
       res.json({
         success: true,
@@ -57,4 +65,24 @@ module.exports = function(app) {
 
   });
 
-}
+  app.post("/api/challenge/:user_id", (req, res) => {
+    db.User.destroy({
+      where: {
+        id: req.body.users_id
+      }
+    }).then((data) => {
+          res.json({
+            success: true,
+            data: data
+          });
+        }).catch((e) => {
+          res.json({
+            success: false,
+            error: e
+          });
+        });
+      });
+
+};
+
+

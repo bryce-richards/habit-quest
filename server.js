@@ -1,4 +1,4 @@
-
+/*jshint esversion:6*/
 const express = require("express");
 const bodyParser = require("body-parser");
 const exphbs = require("express-handlebars");
@@ -22,18 +22,18 @@ passport.use(new Strategy({
     .then((user) => {
       // handle case where there is no existing user with the username
       if(!user) {
-        return cb(null, false)
+        return cb(null, false);
       }
       // handle case where password is incorrect
       if(user.password != password) {
-        return cb(null, false)
+        return cb(null, false);
       }
       // success case for correct password
-      return cb(null, user)
+      return cb(null, user);
     })
     .catch((e) => {
       // database error
-      return cb(e)
+      return cb(e);
     });
 
   }));
@@ -86,7 +86,7 @@ require("./routes/challenge-api-routes.js")(app);
 
 // React Router setup
 app.get('*', function (request, response){
-  response.sendFile(path.resolve(__dirname, './src/client/public', 'index.html'))
+  response.sendFile(path.resolve(__dirname, './src/client/public', 'index.html'));
 });
 
 
