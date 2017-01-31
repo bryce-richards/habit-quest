@@ -5,7 +5,6 @@ var whitelist = {
 }
 
 module.exports = function(req, res, next) {
-  
   if(whitelist[req.url]) {
     console.log("whitelist url: ", req.url);
     return next();

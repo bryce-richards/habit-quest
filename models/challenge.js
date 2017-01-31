@@ -2,13 +2,9 @@
 module.exports = function (sequelize, DataTypes) {
  var Challenge = sequelize.define("Challenge", {
  	// Giving the Challenge model a name of type STRING
-    challenge: {
-    	type: DataTypes.STRING,
-    	allowNull: false
-    },
     title: {
     	type: DataTypes.STRING,
-        allowNull: false
+    	allowNull: false
     },
     description: {
         type: DataTypes.TEXT,
@@ -22,7 +18,7 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.BOOLEAN,
         defaultValue: true
     },
-    challengeImageUrl: {
+    imageUrl: {
         type: DataTypes.STRING
     }
  }, {
@@ -37,4 +33,3 @@ module.exports = function (sequelize, DataTypes) {
 });
  return Challenge;
 };
-

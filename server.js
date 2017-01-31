@@ -83,6 +83,7 @@ app.use(authMiddleware);
 // API routes first
 require("./routes/user-api-routes.js")(app);
 require("./routes/challenge-api-routes.js")(app);
+require("./routes/task-api-routes.js")(app);
 
 // React Router setup
 app.get('*', function (request, response){

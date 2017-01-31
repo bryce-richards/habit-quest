@@ -44,12 +44,11 @@ module.exports = function(app) {
   app.post('/api/challenge/:user_id', (req, res) => {
 
     db.Challenge.create({
-      challenge: req.body.challenge,
       title: req.body.title,
       description: req.body.description,
       purpose: req.body.purpose,
       private: req.body.private,
-      challengeImageUrl: req.body.challengeImageUrl,
+      imageUrl: req.body.challengeImageUrl,
       UserId: req.params.user_id
     }).then((data) => {
       res.json({
@@ -84,5 +83,3 @@ module.exports = function(app) {
       });
 
 };
-
-
