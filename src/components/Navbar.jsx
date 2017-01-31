@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Header extends React.Component {
+class Navbar extends React.Component {
     render() {
         return (
             <nav className="navbar navbar-inverse navbar-fixed-top">
@@ -13,7 +13,7 @@ class Header extends React.Component {
                             <span className="icon-bar"></span>
                         </button>
 
-                        <p className="navbar-brand">Bryce Richards</p>
+                        <p className="navbar-brand">{this.props.username}</p>
                     </div>
 
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -38,4 +38,4 @@ class Header extends React.Component {
     }
 }
 
-export default Header;
+export default Navbar;
