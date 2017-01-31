@@ -8,7 +8,8 @@ class ModalForm extends React.Component {
         super(props);
 
         this.state = {
-            currentForm: 0
+            currentForm: 0,
+            newChallenge: {}
         }
     }
     // formValues IS EQUAL TO THE PASSED IN INFORMATION ON THE CHILD'S onSubmit FUNCTION
@@ -16,7 +17,8 @@ class ModalForm extends React.Component {
     onChallengeDataSubmit(formValues) {
         console.log("Form Submitted", formValues);
         console.log(arguments);
-        this.setState({currentForm: this.state.currentForm + 1})
+        this.setState({newChallenge: {/* Add to current new Challenge Object*/}});
+        this.setState({currentForm: this.state.currentForm + 1});
     }
 
     render() {
@@ -37,12 +39,25 @@ class ModalForm extends React.Component {
 
                         <div className="modal-body">
                             {
-                                this.state.currentForm === 0 ?
-                                    <ChallengeDataInput onSubmit={this.onChallengeDataSubmit} />
-                                    :
-                                    'no other page'
-                            }
+                                switch(this.state.currentForm) {
+                                    case 1:
+                                        <ChallengeDataInput onSubmit={this.onChallengeDataSubmit} />
+                                        break;
+                                    case 2:
+                                        <WeekDataInput onSubmit={this.onChallengeWeek1Submit} />
+                                        break;
+                                    case 3:
+                                        <weekDataInput onSubmit={this.onChallengeWeek2Submit} />
+                                        break;
+                                    case 4:
+                                        <weekDataInput onSubmit={this.onChallengeWeek3Submit} />
+                                        break;
+                                    case 5:
+                                    <weekDataInput onSubmit={this.onChallengeWeek4Submit} />
+                                    break;
+                                }
 
+                            }
 
                         </div>
 

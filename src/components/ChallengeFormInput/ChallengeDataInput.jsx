@@ -7,16 +7,22 @@ class ChallengeData extends React.Component {
         super(props);
 
         this.onFormSubmit = this.onFormSubmit.bind(this);
+        this.getStatus = this.getStatus.bind(this);
         this.onBlurTitle = this.onBlurTitle.bind(this);
         this.onBlurDescription = this.onBlurDescription(this);
         this.onBlurPurpose = this.onBlurPurpose(this);
 
         this.state = {
             errors: [],
-            completed: false,
-            titleStatus: "has-default",
-            descriptionStatus: "has-default",
-            purposeStatus: "has-default"
+            backButtonDisabled: true,
+            nextButtonClass: "btn-default",
+            nextButtonDisabled: true,
+            titleClass: "has-default",
+            titleStatus: false,
+            descriptionClass: "has-default",
+            descriptionStatus: false,
+            purposeClass: "has-default",
+            purposeStatus: false
         }
     }
 
@@ -27,20 +33,92 @@ class ChallengeData extends React.Component {
             challengePurpose: this.refs.challengePurpose.value
         });
     }
+    
+    getStatus() {
+        (this.state.titleStatus && this.state.descriptionStatus && this.state.purposeStatus) ?
+            this.setState(
+                {
+                    nextButtonClass: "btn-success"
+                }, {
+                    nextButtonDisabled: false
+                })
+
+            :
+
+            this.setState(
+                {
+                    nextButtonClass: "btn-default"
+                }, {
+                    nextButtonDisabled: true
+                });
+    }
 
     onBlurTitle() {
         // VALIDATE TITLE ENTRY
         // if title is good to go, make status green
         // if title is not good to go, make status red
-        this.refs.challengeTitle.value ? this.setState("has-success") : this.setState({titleStatus: "has-danger"})
+        this.refs.challengeTitle.value ? 
+            this.setClass(
+                {
+                    titleClass: "has-success"
+                }, {
+                    titleStatus: true
+                })
+            
+            :
+            
+            this.setState(
+                {
+                    titleClass: "has-danger"
+                }, {
+                    titleStatus: false
+        });
+            this.getStatus();
     }
 
     onBlurDescription() {
+        // VALIDATE TITLE ENTRY
+        // if title is good to go, make status green
+        // if title is not good to go, make status red
+        this.refs.challengeDescription.value ? this.setClass(
+                {
+                    descriptionClass: "has-success"
+                }, {
+                    descriptionStatus: true
+                })
 
+            :
+
+            this.setState(
+                {
+                    descriptionClass: "has-danger"
+                }, {
+                    descriptionStatus: false
+        });
+        this.getStatus();
     }
 
     onBlurPurpose() {
+        // VALIDATE TITLE ENTRY
+        // if title is good to go, make status green
+        // if title is not good to go, make status red
+        this.refs.challengePurpose.value ?
+            this.setClass(
+                {
+                    purposeClass: "has-success"
+                }, {
+                    purposeStatus: true
+                })
 
+            :
+
+            this.setState(
+                {
+                    purposeClass: "has-danger"
+                }, {
+                    purposeStatus: false
+        });
+        this.getStatus();
     }
 
     render() {
@@ -54,7 +132,7 @@ class ChallengeData extends React.Component {
                         <input ref="challengeTitle"
                                onBlur={this.onBlurTitle}
                                type="text"
-                               className="form-control"
+                               className={this.state.titleClass `form-control`}
                         />
                         <small className="form-text text-muted">
                             i.e. "Live Healthy", "Explore the Outdoors",
@@ -68,7 +146,7 @@ class ChallengeData extends React.Component {
                         </label>
                         <textarea ref="challengeDescription"
                                   onBlur={this.onBlurDescription}
-                                  className={this.state.titleStatus} "form-control">
+                                  className={this.state.descriptionClass `form-control`}>
                         </textarea>
                         <small className="form-text text-muted">
                             Write a little bit about what you hope to
@@ -83,7 +161,7 @@ class ChallengeData extends React.Component {
                         <input ref="challengePurpose"
                                onBlur={this.onBlurPurpose}
                                type="text"
-                               className={this.state.descriptionStatus}"form-control"
+                               className={this.state.purposeClass `form-control`}
                         />
                         <small className="form-text text-muted">
                             Write a little bit about what you hope to
@@ -98,8 +176,8 @@ class ChallengeData extends React.Component {
                     </button>
                     <button onClick={this.onFormSubmit}
                             type="button"
-                            disabled={!this.state.completed}
-                            className={this.state.purposeStatus} "btn btn-success">
+                            disabled={this.state.nextButtonDisabled}
+                            className={this.state.nextButtonClass `btn`}>
                         Next
                     </button>
                 </div>
