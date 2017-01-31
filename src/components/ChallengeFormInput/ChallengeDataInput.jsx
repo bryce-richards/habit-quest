@@ -1,7 +1,7 @@
 import React, {PropTypes} from "react";
 
 
-class ChallengeData extends React.Component {
+class ChallengeDataInput extends React.Component {
 
     constructor(props) {
         super(props);
@@ -186,8 +186,8 @@ class ChallengeData extends React.Component {
     }
 }
 
-ChallengeData.propTypes = {
+ChallengeDataInput.propTypes = {
     onSubmit: PropTypes.func
 };
 
-export default ChallengeData;
+export default ChallengeDataInput;
