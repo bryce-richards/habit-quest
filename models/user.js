@@ -2,18 +2,29 @@
 module.exports = function (sequelize, DataTypes) {
 	var User = sequelize.define("User", {
  	// Giving the User model a name of type STRING
+  firstName: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  lastName: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
  	userName: {
  		type: DataTypes.STRING,
- 		allowNull: false,
+ 		allowNull: false
  	},
  	password: {
- 		type: DataTypes.STRING
+ 		type: DataTypes.STRING,
+    allowNull: false
  	},
  	email: {
- 		type: DataTypes.STRING
+ 		type: DataTypes.STRING,
+    allowNull: false
  	},
- 	avatar: {
-    	type: DataTypes.STRING
+ 	imageUrl: {
+    type: DataTypes.STRING,
+    allowNull: false
     }
 },{
       // We're saying that we want our User to have Challenges
@@ -21,7 +32,7 @@ module.exports = function (sequelize, DataTypes) {
       	associate: function(models) {
 
           User.hasMany(models.Challenge);
-          
+
       }
   }
 });

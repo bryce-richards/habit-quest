@@ -3,9 +3,9 @@ var db = require("../models");
 var router = express.Router();
 
 	router.get("/api/users", function (req, res) {
-		db.User.findAll({}).then(function(allUsers) {
-			console.log(allUsers);
-			res.json(allUsers);
+		db.User.findAll({}).then(function(results) {
+			console.log(  );
+			res.json(results);
 		});
 	});
 
