@@ -4,23 +4,26 @@ module.exports = function (sequelize, DataTypes) {
 			type: DataTypes.STRING
 		},
 		countComplete: {
-			type: DataTypes.INTEGER
+			type: DataTypes.INTEGER,
+			defaultValue: 0,
 		},
 		targetComplete: {
 			type: DataTypes.INTEGER
 		},
 		taskDate: {
-			type: DataTypes.DATEONLY
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: DataTypes.NOW
 		},
 		taskEnd: {
 			type: DataTypes.DATEONLY
 		}
 	}, {
-	classMethods: {
-		associate: function(models) {
-			Task.belongsTo(models.Challenge);
+		classMethods: {
+			associate: function(models) {
+				Task.belongsTo(models.Challenge);
+			}
 		}
-	}
-});
+	});
 	return Task;
 };
