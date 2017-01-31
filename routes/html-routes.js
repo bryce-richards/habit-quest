@@ -1,3 +1,5 @@
+/*jshint esversion: 6*/
+
 const path = require('path');
 
 module.exports = function(app) {
@@ -17,4 +19,4 @@ module.exports = function(app) {
     res.render('authenticated', { user: req.user });
   });
 
-}
+};
