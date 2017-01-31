@@ -5,7 +5,7 @@ const exphbs = require("express-handlebars");
 const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
 const path = require('path');
-
+const authMiddleware = require('./middleware/auth.js');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -63,19 +63,21 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
-
+// Static directory
+app.use(express.static(__dirname + '/src/client/public'));
 app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+
+
+
 
 // Set Handlebars as the default templating engine.
 // app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 // app.set("view engine", "handlebars");
 
-// Static directory
-app.use(express.static(__dirname + '/src/client/public'));
 
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(authMiddleware);
 // Routes =============================================================
 
 // API routes first

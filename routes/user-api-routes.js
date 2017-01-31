@@ -27,7 +27,8 @@ module.exports = function(app) {
   app.post('/signin',
     passport.authenticate('local', { failureRedirect: '/signin' }),
     function(req, res) {
-
+      req.session.user = req.user;
+      // res.json({user: req.user});
       res.redirect('/profile');
 
     });

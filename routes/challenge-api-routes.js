@@ -3,7 +3,6 @@ var db = require('../models');
 module.exports = function(app) {
   // route to fetch all challenges
   app.get('/api/challenge', (req, res) => {
-
     db.Challenge.findAll().then((data) => {
       res.json({
         success: true,
