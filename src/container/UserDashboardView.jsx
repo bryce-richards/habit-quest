@@ -20,8 +20,7 @@ class UserDashboardView extends React.Component {
                 password: "",
                 email: "",
                 imageUrl: ""
-            },
-            challengeIds: []
+            }
         }
     }
 

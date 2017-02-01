@@ -62,8 +62,4 @@ class ModalForm extends React.Component {
     }
 }
 
-ModalForm.propTypes = {
-    showModal: PropTypes.bool
-};
-
 export default ModalForm;
