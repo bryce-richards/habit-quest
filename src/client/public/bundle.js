@@ -27540,11 +27540,12 @@
 	    }
 	  }, {
 	    key: 'fetchUser',
-	    value: function fetchUser(data) {
+	    value: function fetchUser() {
 	      var that = this;
 	
 	      _axios2.default.get('/api/user').then(function (res) {
 	        var user = res.data.data;
+	        console.log(user);
 	        that.setState({
 	          user: user
 	        });

@@ -35,11 +35,12 @@ class Profile extends Component {
 
   }
 
-  fetchUser(data) {
+  fetchUser() {
     var that = this;
 
     axios.get('/api/user').then((res) => {
       var user = res.data.data;
+      console.log(user);
       that.setState({
         user: user
       });

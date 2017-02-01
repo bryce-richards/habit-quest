@@ -5,12 +5,12 @@ const db = require("../models");
 module.exports = function(app) {
 
   // route to fetch challenge by id
-  app.get('/api/user/:user_id', (req, res) => {
-
+  app.get('/api/user', (req, res) => {
+  var id = req.user.id
   db.User.findOne({
     where: {
-      id:req.params.user_id
-    }
+      id: id
+      }
     }).then((data) => {
       res.json({
         success: true,
@@ -45,9 +45,7 @@ module.exports = function(app) {
     passport.authenticate('local', { failureRedirect: '/signin' }),
     function(req, res) {
       req.session.user = req.user;
-      // res.json({user: req.user});
-      res.redirect('/profile');
-
+      res.redirect('/profile/');
     });
 
   app.post('/signup', (req, res) => {
