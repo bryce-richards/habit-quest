@@ -23,7 +23,7 @@ class Header extends React.Component {
                 <h1>Live Healthy</h1>
                 <p>By cutting out processed foods, cooking more, and exercising, I can lead a healthier lifestyle</p>
                 <p>This will lead to a more fulfilling life and give me more energy</p>
-                <p><Button onClick={this.openModal()} className="btn btn-primary btn-lg" id="newChallenge">Add a Task</Button></p>
+                <p><Button onClick={this.openModal} className="btn btn-primary btn-lg" id="newChallenge">Add a Task</Button></p>
                 < />
                 <ModalForm showModal={this.state.showModal}/>
             </div>
