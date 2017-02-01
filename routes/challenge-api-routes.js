@@ -4,27 +4,28 @@ var db = require('../models');
 
 module.exports = function(app) {
   // route to fetch all challenges
+  // app.get('/api/challenge', (req, res) => {
+  //   db.Challenge.findAll().then((data) => {
+  //     res.json({
+  //       success: true,
+  //       data: data
+  //     });
+  //   }).catch((e) => {
+  //     res.json({
+  //       success: false,
+  //       error: e
+  //     });
+  //   });
+  //
+  // });
+
+  // route to fetch challenge by user id
   app.get('/api/challenge', (req, res) => {
-    db.Challenge.findAll().then((data) => {
-      res.json({
-        success: true,
-        data: data
-      });
-    }).catch((e) => {
-      res.json({
-        success: false,
-        error: e
-      });
-    });
-
-  });
-
-  // route to fetch challenge by id
-  app.get('/api/challenge/:user_id', (req, res) => {
+    var id = req.user.id;
 
     db.Challenge.findAll({
       where: {
-        UserId: req.params.user_id
+        UserId: id
       }
     }).then((data) => {
       res.json({
