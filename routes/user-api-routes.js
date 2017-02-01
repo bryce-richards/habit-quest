@@ -60,7 +60,7 @@ module.exports = function(app) {
       password: user.password,
       imageUrl: user.imageUrl
     }).then((data) => {
-      res.json(data);
+      res.redirect('/signin');
     }).catch((e) => {
       res.json({
         error: e
