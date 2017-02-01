@@ -1,6 +1,8 @@
 /*jshint esversion: 6*/
 const passport = require('passport');
 const db = require("../models");
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 module.exports = function(app) {
 
@@ -48,24 +50,32 @@ module.exports = function(app) {
       res.redirect('/profile/');
     });
 
+  // route to create a new user
   app.post('/signup', (req, res) => {
 
     var user = req.body;
 
-    db.User.create({
-      firstName: user.firstName,
-      lastName: user.lastName,
-      userName: user.userName,
-      email: user.email,
-      password: user.password,
-      imageUrl: user.imageUrl
-    }).then((data) => {
-      res.redirect('/signin');
-    }).catch((e) => {
-      res.json({
-        error: e
-      });
+    bcrypt.hash(user.password, saltRounds, function(err, hash) {
+
+        var encryptedPassword = hash;
+
+        db.User.create({
+          firstName: user.firstName,
+          lastName: user.lastName,
+          userName: user.userName,
+          email: user.email,
+          password: hash,
+          imageUrl: user.imageUrl
+        }).then((data) => {
+          res.redirect('/signin');
+        }).catch((e) => {
+          res.json({
+            error: e
+          });
+        });
+
     });
+
 
   });
 

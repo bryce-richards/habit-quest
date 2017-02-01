@@ -6,6 +6,7 @@ const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
 const path = require('path');
 const authMiddleware = require('./middleware/auth.js');
+const bcrypt = require('bcrypt');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -24,12 +25,18 @@ passport.use(new Strategy({
       if(!user) {
         return cb(null, false);
       }
-      // handle case where password is incorrect
-      if(user.password != password) {
-        return cb(null, false);
-      }
-      // success case for correct password
-      return cb(null, user);
+      user.comparePassword(password, function(err, isMatch) {
+        if(err) {return cb(err);}
+        if(!isMatch) { return cb (null, false);}
+
+        return cb(null, user);
+        // handle case where password is incorrect
+        // if(user.password != password) {
+        //   return cb(null, false);
+        // }
+        // success case for correct password
+        // return cb(null, user);
+      });
     })
     .catch((e) => {
       // database error
@@ -39,14 +46,10 @@ passport.use(new Strategy({
   }));
 
 passport.serializeUser(function(user, cb) {
-  // console.dir(user);
-  console.log(user.id);
-  console.log('serializeUser');
   cb(null, user.id);
 });
 
 passport.deserializeUser(function(id, cb) {
-  console.log('deserializeUser');
   db.User.findById(id)
   .then((user) => {
     cb(null, user);
