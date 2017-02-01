@@ -1,4 +1,5 @@
 import React, {PropTypes} from "react";
+import {Button} from "react-bootstrap";
 
 
 class ChallengeDataInput extends React.Component {
@@ -170,16 +171,14 @@ class ChallengeDataInput extends React.Component {
                     </div>
                 </fieldset>
                 <div className="modal-footer">
-                    <button type="button"
-                            className="btn btn-primary disabled">
+                    <Button className="btn btn-primary disabled">
                         Back
-                    </button>
-                    <button onClick={this.onFormSubmit}
-                            type="button"
+                    </Button>
+                    <Button onClick={this.onFormSubmit}
                             disabled={this.state.nextButtonDisabled}
                             className={this.state.nextButtonClass `btn`}>
                         Next
-                    </button>
+                    </Button>
                 </div>
             </form>
         );

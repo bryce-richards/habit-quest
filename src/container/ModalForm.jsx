@@ -8,18 +8,24 @@ class ModalForm extends React.Component {
     constructor(props) {
         super(props);
 
+        this.onChallengeDataSubmit = this.onChallengeDataSubmit.bind(this);
+        this.getModalFormComponent = this.getModalFormComponent.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+        
         this.state = {
+            modalOpen: this.props.modalOpen,
             currentForm: 1,
             newChallenge: {}
         }
     }
-    // formValues IS EQUAL TO THE PASSED IN INFORMATION ON THE CHILD'S onSubmit FUNCTION
 
-
+    // formValues IS EQUAL TO THE PASSED IN INFORMATION ON THE CHILD'S onFormSubmit FUNCTION
     onChallengeDataSubmit(formValues) {
-        console.log("Form Submitted", formValues);
-        console.log(arguments);
-        this.setState({newChallenge: {/* Add to current new Challenge Object*/}});
+        let updatedChallenge = {};
+        updatedChallenge.title = formValues.challengeTitle;
+        updatedChallenge.description = formValues.challengeDescription;
+        updatedChallenge.purpse = formValues.challengePurpse;
+        this.setState({newChallenge: updatedChallenge});
         this.setState({currentForm: this.state.currentForm + 1});
     }
 
@@ -34,24 +40,33 @@ class ModalForm extends React.Component {
 
     }
 
+    closeModal() {
+        this.setState({ modalOpen: false });
+        this.props.onClose(false);
+    }
+
     render() {
         return (
-            <Modal className="fade" show={this.props.showModal} id="challengeModal" tabIndex="-1" role="dialog"
+            <Modal className="fade" show={this.state.modalOpen} tabIndex="-1" role="dialog"
                  aria-labelledby="exampleModalLongTitle"
                  aria-hidden="true">
                 <Modal.Dialog role="document">
 
-                    <Modal.Content className="modal-content">
+                    <Modal.Content>
 
-                        <Modal.Header className="modal-header">
-                            <Button className="close" data-dismiss="modal" aria-label="Close">
+                        <Modal.Header>
+
+                            {/* WHEN USER CLICKS TO CLOSE, CALL PROP FUNCTION onClose */}
+                            <Button onClick={this.closeModal}>
                                 <span aria-hidden="true">&times;</span>
                             </Button>
-                            <h5 className="modal-title">New Challenge</h5>
+
+                            {/* MODAL HEADER TEXT*/}
+                            <h5 className="modal-title">New 4 Week Challenge</h5>
                         </Modal.Header>
 
                         <Modal.Body>
-                            {this.getModalFormComponent()}
+                            {this.getModalFormComponent}
                         </Modal.Body>
 
                     </Modal.Content>
@@ -60,6 +75,11 @@ class ModalForm extends React.Component {
         );
 
     }
+}
+
+ModalForm.propTypes = {
+    modalOpen: PropTypes.bool,
+    onClose: PropTypes.func
 }
 
 export default ModalForm;

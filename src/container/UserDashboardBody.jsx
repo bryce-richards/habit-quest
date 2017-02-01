@@ -8,17 +8,27 @@ class UserDashboardBody extends React.Component {
         super(props);
 
         this.state = {
-            newChallenge: false
+            modalOpen: false
         }
     }
 
+    createChallenge() {
+        this.setState({openModal: true});
+    }
 
+    onCloseModal(state) {
+        this.setState({openModal: state});
+    }
 
     render() {
         return (
             <div>
-                <NewChallengeButton onClick={this.setState/>
-                <UserDashboardChallenges />
+                <NewChallengeButton onSubmit={this.createChallenge} />
+                <Modal 
+                    modalOpen={this.state.modalOpen} 
+                    onClose={this.onCloseModal} 
+                />
+                <UserDashboardChallenges /> 
             </div>
         );
     }
