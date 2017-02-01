@@ -27433,6 +27433,17 @@
 	          _react2.default.createElement(
 	            'label',
 	            null,
+	            'Username:'
+	          ),
+	          _react2.default.createElement('input', { type: 'text', name: 'userName' }),
+	          _react2.default.createElement('br', null)
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'label',
+	            null,
 	            'Email:'
 	          ),
 	          _react2.default.createElement('input', { type: 'text', name: 'email' }),
@@ -27447,6 +27458,16 @@
 	            'Password:'
 	          ),
 	          _react2.default.createElement('input', { type: 'password', name: 'password' })
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'label',
+	            null,
+	            'Image Link:'
+	          ),
+	          _react2.default.createElement('input', { type: 'text', name: 'imageUrl' })
 	        ),
 	        _react2.default.createElement(
 	          'div',

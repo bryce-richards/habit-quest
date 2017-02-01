@@ -13,6 +13,10 @@ class SignupForm extends Component {
         	<label>Last Name:</label>
         	<input type="text" name="lastName"/><br/>
       	</div>
+        <div>
+          <label>Username:</label>
+          <input type="text" name="userName"/><br/>
+        </div>
       	<div>
         	<label>Email:</label>
         	<input type="text" name="email"/><br/>
@@ -20,6 +24,10 @@ class SignupForm extends Component {
       	<div>
         	<label>Password:</label>
         	<input type="password" name="password"/>
+      	</div>
+      	<div>
+        	<label>Image Link:</label>
+        	<input type="text" name="imageUrl"/>
       	</div>
       	<div>
         	<input type="submit" value="Submit"/>
