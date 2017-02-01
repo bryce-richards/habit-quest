@@ -1,5 +1,5 @@
 import React, {PropTypes} from "react";
-
+var validate = require("validate");
 
 class TaskDataInput extends React.Component {
 
@@ -12,30 +12,16 @@ class TaskDataInput extends React.Component {
 
         this.state = {
             currentWeek: 1,
-            week1Tasks: 1,
-            week2Tasks: 2,
-            week3Tasks: 3,
-            week4Tasks: 4
+            numTasks: 1,
+            task: {
+                week: 1,
+                task: "",
+                taskDays: 1
+            }
         }
     }
 
-    onBlurNumTasks() {
-        switch(this.state.currentWeek) {
-            case 1:
-                this.setState({week1Tasks: this.refs.numTasks});
-                break;
-            case 2:
-                this.setState({week2Tasks: this.refs.numTasks});
-                break;
-            case 3:
-                this.setState({week3Tasks: this.refs.numTasks});
-                break;
-            case 4:
-                this.setState({week4Tasks: this.refs.numTasks});
-                break;
-        }
-
-    }
+    /* SET THE NUMBER OF TASKS WHEN A NEW VALUE IS SELECTED */
 
     render() {
 
@@ -47,93 +33,34 @@ class TaskDataInput extends React.Component {
                         <label>
                             Week {this.state.currentWeek}
                         </label>
-                        <select ref="numTasks"
-                                onBlur={this.onBlurNumTasks}
-                                className="form-control">
+                    </div>
+                </fieldset>
+                <div className="form-group">
+                    <div>
+                        <input 
+                            className="form-control" 
+                            ref={"taskTitle"}
+                            onBlur={this.onBlurTitle} 
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>
+                            Days of The Week
+                        </label>
+                        <select 
+                            onBlur={this.addDays}
+                            className="form-control" 
+                            ref={"numDays"}>
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
                         </select>
                         <small className="form-text text-muted">
-                            Select up to three.
+                            Select How Many Days You Want To
+                            Complete This Task This Week
                         </small>
                     </div>
-
-                    <div className="form-group">
-                        <div>
-                            <label>
-                                Week 1
-                            </label>
-                            <input className="form-control" id="week1Task1"/>
-                            <small className="form-text text-muted">i.e. "No processed sugar", "Ten pushups
-                                every
-                                morning", "Write 100 Words a Day"
-                            </small>
-                        </div>
-                        <div className="form-group">
-                            <label>
-                                Days of The Week
-                            </label>
-                            <select className="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                            </select>
-                            <small className="form-text text-muted">
-                                Select How Many Days You Want To
-                                Complete This Task This Week
-                            </small>
-                        </div>
-                    </div>
-
-                    <div className="form-group hidden">
-                        <div>
-                            <label>
-                                Week 2
-                            </label>
-                            <input className="form-control" />
-                        </div>
-                        <div className="form-group">
-                            <label>
-                                Days of The Week
-                            </label>
-                            <select className="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                            </select>
-                            <small className="form-text text-muted">
-                                Select How Many Days You Want To
-                                Complete This Task This Week
-                            </small>
-                        </div>
-                    </div>
-
-                    <div className="form-group hidden">
-                        <div>
-                            <label>
-                                Week 3
-                            </label>
-                            <input className="form-control" />
-                            <small className="form-text text-muted">
-                            </small>
-                        </div>
-                        <div className="form-group">
-                            <label>
-                                Days of The Week
-                            </label>
-                            <select className="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                            </select>
-                            <small className="form-text text-muted">
-                                Select How Many Days You Want To
-                                Complete This Task This Week
-                            </small>
-                        </div>
-                    </div>
-                </fieldset>
+                </div>
                 <div className="modal-footer">
                     <button type="button"
                             className={this.state.backButtonDisabled `btn btn-primary`}>

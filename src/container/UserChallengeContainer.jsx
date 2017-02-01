@@ -1,5 +1,6 @@
 import React from "react";
 
+{/*CONTAINS DATA FOR INDIVIDUAL CHALLENGE*/}
 
 class UserChallengeContainer extends React.Component {
 
@@ -12,11 +13,14 @@ class UserChallengeContainer extends React.Component {
 
 
     render() {
-        return;
+        return (
+            
+        );
     }
 }
 
 UserChallengeContainer.propTypes = {
     challenge: PropTypes.object
 }
+
 export default UserChallengeContainer;
