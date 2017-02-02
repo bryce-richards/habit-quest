@@ -8,11 +8,13 @@ class TaskDataInput extends React.Component {
         super(props);
 
         this.onFormSubmit = this.onFormSubmit.bind(this);
-        this.getStatus = this.getStatus.bind(this);
-        this.onBlurNumTasks = this.onBlurNumTasks.bind(this);
 
         this.state = {
-            currentWeek: 1
+            currentWeek: 1,
+            titleValue: "",
+            numDaysValue: 1,
+            titleValid: false,
+            numDaysValid: true
         }
     }
 
@@ -70,9 +72,6 @@ class TaskDataInput extends React.Component {
                     </div>
                 </div>
                 <div className="modal-footer">
-                    <Button className={this.state.backButtonDisabled `btn btn-primary`}>
-                        Back
-                    </Button>
                     <Button onClick={this.onFormSubmit}
                             disabled={this.state.nextButtonDisabled}
                             className={this.state.nextButtonClass `btn`}>

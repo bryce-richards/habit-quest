@@ -29288,7 +29288,7 @@
 	
 	var _UserDashboardHeader2 = _interopRequireDefault(_UserDashboardHeader);
 	
-	var _UserDashboardBody = __webpack_require__(/*! ./UserDashboardBody.jsx */ 526);
+	var _UserDashboardBody = __webpack_require__(/*! ./UserDashboardBody.jsx */ 520);
 	
 	var _UserDashboardBody2 = _interopRequireDefault(_UserDashboardBody);
 	
@@ -29302,6 +29302,8 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
+	var axios = __webpack_require__(/*! axios */ 236);
+	
 	var UserDashboardView = function (_React$Component) {
 	    _inherits(UserDashboardView, _React$Component);
 	
@@ -29311,20 +29313,36 @@
 	        var _this = _possibleConstructorReturn(this, (UserDashboardView.__proto__ || Object.getPrototypeOf(UserDashboardView)).call(this, props));
 	
 	        _this.state = {
-	            newChallenge: false,
-	            userData: {},
-	            challenges: [],
-	            tasks: []
+	            user: []
 	        };
 	        return _this;
 	    }
 	
-	    // getChallenges() {
-	    //     /* AJAX request */
-	    //     request.get(/*URL*/);
-	    // }
-	
 	    _createClass(UserDashboardView, [{
+	        key: "componentWillMount",
+	        value: function componentWillMount() {
+	            this.getUser();
+	        }
+	
+	        // GET USER DATA
+	
+	    }, {
+	        key: "getUser",
+	        value: function getUser() {
+	
+	            var that = this;
+	
+	            axios.get('/api/user').then(function (res) {
+	                var user = res.data.data;
+	                console.log(user);
+	                that.setState({
+	                    user: user
+	                });
+	            }).catch(function (e) {
+	                return e;
+	            });
+	        }
+	    }, {
 	        key: "render",
 	        value: function render() {
 	            return _react2.default.createElement(
@@ -29425,7 +29443,7 @@
 	}(_react2.default.Component);
 	
 	SignedInNavbar.propTypes = {
-	    user: _react.PropTypes.object
+	    user: _react.PropTypes.array
 	};
 	
 	exports.default = SignedInNavbar;
@@ -49022,7 +49040,7 @@
 	
 	var _ChallengeDataInput2 = _interopRequireDefault(_ChallengeDataInput);
 	
-	var _TaskDataInput = __webpack_require__(/*! ../components/ChallengeFormInput/TaskDataInput.jsx */ 525);
+	var _TaskDataInput = __webpack_require__(/*! ../components/ChallengeFormInput/TaskDataInput.jsx */ 519);
 	
 	var _TaskDataInput2 = _interopRequireDefault(_TaskDataInput);
 	
@@ -49196,7 +49214,10 @@
 	        _this.state = {
 	            titleValue: "",
 	            descriptionValue: "",
-	            purposeValue: ""
+	            purposeValue: "",
+	            titleValid: false,
+	            descriptionValid: false,
+	            purposeValid: false
 	        };
 	        return _this;
 	    }
@@ -49214,9 +49235,9 @@
 	        key: "getTitleValidationState",
 	        value: function getTitleValidationState() {
 	            var length = this.state.titleValue.length;
-	            if (length > 10) {
+	            if (length > 6) {
 	                return "success";
-	            } else if (length > 5) {
+	            } else if (length > 3) {
 	                return "warning";
 	            } else if (length > 0) {
 	                return "error";
@@ -49250,16 +49271,31 @@
 	        key: "handleTitleChange",
 	        value: function handleTitleChange(e) {
 	            this.setState({ titleValue: e.target.value });
+	            if (e.target.value.length >= 6) {
+	                this.setState({ titleValid: true });
+	            } else {
+	                this.setState({ titleValid: false });
+	            }
 	        }
 	    }, {
 	        key: "handleDescriptionChange",
 	        value: function handleDescriptionChange(e) {
 	            this.setState({ descriptionValue: e.target.value });
+	            if (e.target.value.length >= 10) {
+	                this.setState({ descriptionValid: true });
+	            } else {
+	                this.setState({ descriptionValid: false });
+	            }
 	        }
 	    }, {
 	        key: "handlePurposeChange",
 	        value: function handlePurposeChange(e) {
 	            this.setState({ purposeValue: e.target.value });
+	            if (e.target.value.length >= 10) {
+	                this.setState({ purposeValid: true });
+	            } else {
+	                this.setState({ purposeValid: false });
+	            }
 	        }
 	    }, {
 	        key: "render",
@@ -49275,10 +49311,11 @@
 	                    },
 	                    _react2.default.createElement(
 	                        _reactBootstrap.ControlLabel,
-	                        null,
+	                        { htmlFor: "challengeTitle" },
 	                        "Challenge Title"
 	                    ),
 	                    _react2.default.createElement(_reactBootstrap.FormControl, {
+	                        ref: "challengeTitle",
 	                        onChange: this.handleTitleChange,
 	                        value: this.state.titleValue,
 	                        type: "text"
@@ -49298,7 +49335,7 @@
 	                    },
 	                    _react2.default.createElement(
 	                        _reactBootstrap.ControlLabel,
-	                        null,
+	                        { htmlFor: "challengeDescription" },
 	                        "Challenge Description"
 	                    ),
 	                    _react2.default.createElement(_reactBootstrap.FormControl, {
@@ -49321,7 +49358,7 @@
 	                    },
 	                    _react2.default.createElement(
 	                        _reactBootstrap.ControlLabel,
-	                        null,
+	                        { htmlFor: "challengePurpose" },
 	                        "Challenge Purpose"
 	                    ),
 	                    _react2.default.createElement(_reactBootstrap.FormControl, {
@@ -49333,7 +49370,7 @@
 	                    _react2.default.createElement(
 	                        _reactBootstrap.HelpBlock,
 	                        { className: "form-text text-muted" },
-	                        "Write a little bit about what you hope to accomplish."
+	                        "Why is accomplishing this important to you?"
 	                    )
 	                ),
 	                _react2.default.createElement(
@@ -49341,14 +49378,9 @@
 	                    null,
 	                    _react2.default.createElement(
 	                        _reactBootstrap.Button,
-	                        { bsStyle: "primary", disabled: true },
-	                        "Back"
-	                    ),
-	                    _react2.default.createElement(
-	                        _reactBootstrap.Button,
 	                        { onClick: this.onFormSubmit,
-	                            disabled: this.state.nextButtonDisabled,
-	                            className: this.state.nextButtonClass },
+	                            disabled: this.state.titleValid && this.state.descriptionValid && this.state.purposeValid ? false : true,
+	                            bsStyle: this.state.titleValid && this.state.descriptionValid && this.state.purposeValid ? "success" : "danger" },
 	                        "Next"
 	                    )
 	                )
@@ -49366,13 +49398,7 @@
 	exports.default = ChallengeDataInput;
 
 /***/ },
-/* 519 */,
-/* 520 */,
-/* 521 */,
-/* 522 */,
-/* 523 */,
-/* 524 */,
-/* 525 */
+/* 519 */
 /*!************************************************************************!*\
   !*** ./src/client/app/components/ChallengeFormInput/TaskDataInput.jsx ***!
   \************************************************************************/
@@ -49386,8 +49412,7 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _templateObject = _taggedTemplateLiteral(["btn btn-primary"], ["btn btn-primary"]),
-	    _templateObject2 = _taggedTemplateLiteral(["btn"], ["btn"]);
+	var _templateObject = _taggedTemplateLiteral(["btn"], ["btn"]);
 	
 	var _react = __webpack_require__(/*! react */ 1);
 	
@@ -49416,11 +49441,13 @@
 	        var _this = _possibleConstructorReturn(this, (TaskDataInput.__proto__ || Object.getPrototypeOf(TaskDataInput)).call(this, props));
 	
 	        _this.onFormSubmit = _this.onFormSubmit.bind(_this);
-	        _this.getStatus = _this.getStatus.bind(_this);
-	        _this.onBlurNumTasks = _this.onBlurNumTasks.bind(_this);
 	
 	        _this.state = {
-	            currentWeek: 1
+	            currentWeek: 1,
+	            titleValue: "",
+	            numDaysValue: 1,
+	            titleValid: false,
+	            numDaysValid: true
 	        };
 	        return _this;
 	    }
@@ -49535,14 +49562,9 @@
 	                    { className: "modal-footer" },
 	                    _react2.default.createElement(
 	                        _reactBootstrap.Button,
-	                        { className: this.state.backButtonDisabled(_templateObject) },
-	                        "Back"
-	                    ),
-	                    _react2.default.createElement(
-	                        _reactBootstrap.Button,
 	                        { onClick: this.onFormSubmit,
 	                            disabled: this.state.nextButtonDisabled,
-	                            className: this.state.nextButtonClass(_templateObject2) },
+	                            className: this.state.nextButtonClass(_templateObject) },
 	                        this.state.currentWeek === 4 ? "Submit" : "Next"
 	                    )
 	                )
@@ -49560,7 +49582,7 @@
 	exports.default = TaskDataInput;
 
 /***/ },
-/* 526 */
+/* 520 */
 /*!********************************************************!*\
   !*** ./src/client/app/container/UserDashboardBody.jsx ***!
   \********************************************************/
@@ -49578,7 +49600,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _UserDashboardChallenges = __webpack_require__(/*! ./UserDashboardChallenges.jsx */ 527);
+	var _UserDashboardChallenges = __webpack_require__(/*! ./UserDashboardChallenges.jsx */ 521);
 	
 	var _UserDashboardChallenges2 = _interopRequireDefault(_UserDashboardChallenges);
 	
@@ -49622,7 +49644,7 @@
 	exports.default = UserDashboardBody;
 
 /***/ },
-/* 527 */
+/* 521 */
 /*!**************************************************************!*\
   !*** ./src/client/app/container/UserDashboardChallenges.jsx ***!
   \**************************************************************/
@@ -49640,7 +49662,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _UserChallengeContainer = __webpack_require__(/*! ./UserChallengeContainer.jsx */ 528);
+	var _UserChallengeContainer = __webpack_require__(/*! ./UserChallengeContainer.jsx */ 522);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -49695,7 +49717,7 @@
 	exports.default = UserDashboardChallenges;
 
 /***/ },
-/* 528 */
+/* 522 */
 /*!*************************************************************!*\
   !*** ./src/client/app/container/UserChallengeContainer.jsx ***!
   \*************************************************************/

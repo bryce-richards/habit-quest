@@ -18,6 +18,9 @@ class ChallengeDataInput extends React.Component {
             titleValue: "",
             descriptionValue: "",
             purposeValue: "",
+            titleValid: false,
+            descriptionValid: false,
+            purposeValid: false
         }
     }
 
@@ -31,9 +34,9 @@ class ChallengeDataInput extends React.Component {
 
     getTitleValidationState() {
         var length = this.state.titleValue.length;
-        if (length > 10) {
+        if (length > 6) {
             return "success";
-        } else if (length > 5) {
+        } else if (length > 3) {
             return "warning";
         } else if (length > 0) {
             return "error";
@@ -63,15 +66,30 @@ class ChallengeDataInput extends React.Component {
     }
 
     handleTitleChange(e) {
-        this.setState({ titleValue: e.target.value });
+        this.setState({ titleValue: e.target.value })
+        if (e.target.value.length >= 6) {
+            this.setState({ titleValid: true})
+        } else {
+            this.setState({ titleValid: false });
+        }
     }
 
     handleDescriptionChange(e) {
         this.setState({ descriptionValue: e.target.value });
+        if (e.target.value.length >= 10) {
+            this.setState({ descriptionValid: true})
+        } else {
+            this.setState({ descriptionValid: false });
+        }
     }
 
     handlePurposeChange(e) {
         this.setState({ purposeValue: e.target.value });
+        if (e.target.value.length >= 10) {
+            this.setState({ purposeValid: true})
+        } else {
+            this.setState({ purposeValid: false });
+        }
     }
 
     render() {
@@ -81,10 +99,11 @@ class ChallengeDataInput extends React.Component {
                     controlId="challengeTitle"
                     validationState={this.getTitleValidationState()}
                 >
-                    <ControlLabel>
+                    <ControlLabel htmlFor="challengeTitle">
                         Challenge Title
                     </ControlLabel>
                     <FormControl
+                            ref="challengeTitle"
                             onChange={this.handleTitleChange}
                             value={this.state.titleValue}
                             type="text"
@@ -100,7 +119,7 @@ class ChallengeDataInput extends React.Component {
                     controlId="challengeDescription"
                     validationState={this.getDescriptionValidationState()}
                 >
-                    <ControlLabel>
+                    <ControlLabel htmlFor="challengeDescription">
                         Challenge Description
                     </ControlLabel>
                     <FormControl
@@ -119,7 +138,7 @@ class ChallengeDataInput extends React.Component {
                     controlId="challengePurpose"
                     validationState={this.getPurposeValidationState()}
                 >
-                    <ControlLabel>
+                    <ControlLabel htmlFor="challengePurpose">
                         Challenge Purpose
                     </ControlLabel>
                         <FormControl
@@ -129,17 +148,15 @@ class ChallengeDataInput extends React.Component {
                     />
                     <FormControl.Feedback />
                     <HelpBlock className="form-text text-muted">
-                        Write a little bit about what you hope to
-                        accomplish.
+                        Why is accomplishing this important to you?
                     </HelpBlock>
                 </FormGroup>
                 <FormGroup>
-                    <Button bsStyle="primary" disabled>
-                        Back
-                    </Button>
                     <Button onClick={this.onFormSubmit}
-                            disabled={this.state.nextButtonDisabled}
-                            className={this.state.nextButtonClass}>
+                            disabled={this.state.titleValid && this.state.descriptionValid && this.state.purposeValid ?
+                                false : true}
+                            bsStyle={this.state.titleValid && this.state.descriptionValid && this.state.purposeValid ?
+                                "success" : "danger"}>
                         Next
                     </Button>
                 </FormGroup>
