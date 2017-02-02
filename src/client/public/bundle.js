@@ -59,7 +59,11 @@
 	
 	var _reactRouter = __webpack_require__(/*! react-router */ 178);
 	
-	var _UserDashboardView = __webpack_require__(/*! ./container/UserDashboardView.jsx */ 233);
+	var _signup = __webpack_require__(/*! ./components/signup.jsx */ 233);
+	
+	var _signup2 = _interopRequireDefault(_signup);
+	
+	var _UserDashboardView = __webpack_require__(/*! ./container/UserDashboardView.jsx */ 234);
 	
 	var _UserDashboardView2 = _interopRequireDefault(_UserDashboardView);
 	
@@ -72,7 +76,7 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	// import Signin from './components/signin.jsx';
-	// import SignupForm from './components/signup.jsx';
+	
 	// import Profile from './components/profile.jsx';
 	// import Header from './components/header.jsx';
 	
@@ -92,7 +96,8 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_UserDashboardView2.default, null)
+	        _react2.default.createElement(_UserDashboardView2.default, null),
+	        this.props.children
 	      );
 	    }
 	  }]);
@@ -103,7 +108,11 @@
 	(0, _reactDom.render)(_react2.default.createElement(
 	  _reactRouter.Router,
 	  { history: _reactRouter.browserHistory },
-	  _react2.default.createElement(_reactRouter.Route, { path: '/', component: App })
+	  _react2.default.createElement(
+	    _reactRouter.Route,
+	    { path: '/', component: App },
+	    _react2.default.createElement(_reactRouter.Route, { path: 'signup', component: _signup2.default })
+	  )
 	), document.getElementById('app'));
 
 /***/ },
@@ -27270,6 +27279,128 @@
 
 /***/ },
 /* 233 */
+/*!**********************************************!*\
+  !*** ./src/client/app/components/signup.jsx ***!
+  \**********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 32);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var SignupForm = function (_Component) {
+	  _inherits(SignupForm, _Component);
+	
+	  function SignupForm() {
+	    _classCallCheck(this, SignupForm);
+	
+	    return _possibleConstructorReturn(this, (SignupForm.__proto__ || Object.getPrototypeOf(SignupForm)).apply(this, arguments));
+	  }
+	
+	  _createClass(SignupForm, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'form',
+	        { action: '/signup', method: 'post' },
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'label',
+	            null,
+	            'First Name:'
+	          ),
+	          _react2.default.createElement('input', { type: 'text', name: 'firstName' }),
+	          _react2.default.createElement('br', null)
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'label',
+	            null,
+	            'Last Name:'
+	          ),
+	          _react2.default.createElement('input', { type: 'text', name: 'lastName' }),
+	          _react2.default.createElement('br', null)
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'label',
+	            null,
+	            'Username:'
+	          ),
+	          _react2.default.createElement('input', { type: 'text', name: 'userName' }),
+	          _react2.default.createElement('br', null)
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'label',
+	            null,
+	            'Email:'
+	          ),
+	          _react2.default.createElement('input', { type: 'text', name: 'email' }),
+	          _react2.default.createElement('br', null)
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'label',
+	            null,
+	            'Password:'
+	          ),
+	          _react2.default.createElement('input', { type: 'password', name: 'password' })
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'label',
+	            null,
+	            'Image Link:'
+	          ),
+	          _react2.default.createElement('input', { type: 'text', name: 'imageUrl' })
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement('input', { type: 'submit', value: 'Submit' })
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return SignupForm;
+	}(_react.Component);
+	
+	exports.default = SignupForm;
+
+/***/ },
+/* 234 */
 /*!********************************************************!*\
   !*** ./src/client/app/container/UserDashboardView.jsx ***!
   \********************************************************/
@@ -27287,11 +27418,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Header = __webpack_require__(/*! ./Header.jsx */ 234);
+	var _Header = __webpack_require__(/*! ./Header.jsx */ 235);
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _UserDashboardBody = __webpack_require__(/*! ./UserDashboardBody.jsx */ 235);
+	var _UserDashboardBody = __webpack_require__(/*! ./UserDashboardBody.jsx */ 489);
 	
 	var _UserDashboardBody2 = _interopRequireDefault(_UserDashboardBody);
 	
@@ -27345,7 +27476,7 @@
 	exports.default = UserDashboardView;
 
 /***/ },
-/* 234 */
+/* 235 */
 /*!*********************************************!*\
   !*** ./src/client/app/container/Header.jsx ***!
   \*********************************************/
@@ -27410,99 +27541,6 @@
 	}(_react2.default.Component);
 	
 	exports.default = Header;
-
-/***/ },
-/* 235 */
-/*!********************************************************!*\
-  !*** ./src/client/app/container/UserDashboardBody.jsx ***!
-  \********************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _NewChallengeButton = __webpack_require__(/*! ../components/NewChallengeButton.jsx */ 489);
-	
-	var _NewChallengeButton2 = _interopRequireDefault(_NewChallengeButton);
-	
-	var _UserDashboardChallenges = __webpack_require__(/*! ./UserDashboardChallenges.jsx */ 490);
-	
-	var _UserDashboardChallenges2 = _interopRequireDefault(_UserDashboardChallenges);
-	
-	var _ModalForm = __webpack_require__(/*! ./ModalForm.jsx */ 486);
-	
-	var _ModalForm2 = _interopRequireDefault(_ModalForm);
-	
-	var _reactBootstrap = __webpack_require__(/*! react-bootstrap */ 236);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var UserDashboardBody = function (_React$Component) {
-	    _inherits(UserDashboardBody, _React$Component);
-	
-	    function UserDashboardBody(props) {
-	        _classCallCheck(this, UserDashboardBody);
-	
-	        var _this = _possibleConstructorReturn(this, (UserDashboardBody.__proto__ || Object.getPrototypeOf(UserDashboardBody)).call(this, props));
-	
-	        _this.newChallenge = _this.newChallenge.bind(_this);
-	        _this.modalClose = _this.modalClose.bind(_this);
-	
-	        _this.state = {
-	            newChallenge: false
-	        };
-	        return _this;
-	    }
-	
-	    _createClass(UserDashboardBody, [{
-	        key: "newChallenge",
-	        value: function newChallenge() {
-	            console.log("New Challenge Button Clicked!");
-	            this.setState({ newChallenge: true });
-	        }
-	    }, {
-	        key: "modalClose",
-	        value: function modalClose() {
-	            this.setState({ newChallenge: false });
-	        }
-	    }, {
-	        key: "render",
-	        value: function render() {
-	            return _react2.default.createElement(
-	                _reactBootstrap.Row,
-	                null,
-	                _react2.default.createElement(
-	                    _reactBootstrap.Button,
-	                    { bsStyle: "success", onClick: this.newChallenge },
-	                    "Create a New Challenge"
-	                ),
-	                _react2.default.createElement(_ModalForm2.default, {
-	                    modalOpen: this.state.newChallenge,
-	                    onClose: this.modalClose })
-	            );
-	        }
-	    }]);
-	
-	    return UserDashboardBody;
-	}(_react2.default.Component);
-	// <UserDashboardChallenges />
-	
-	exports.default = UserDashboardBody;
 
 /***/ },
 /* 236 */
@@ -47520,6 +47558,99 @@
 
 /***/ },
 /* 489 */
+/*!********************************************************!*\
+  !*** ./src/client/app/container/UserDashboardBody.jsx ***!
+  \********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _NewChallengeButton = __webpack_require__(/*! ../components/NewChallengeButton.jsx */ 490);
+	
+	var _NewChallengeButton2 = _interopRequireDefault(_NewChallengeButton);
+	
+	var _UserDashboardChallenges = __webpack_require__(/*! ./UserDashboardChallenges.jsx */ 491);
+	
+	var _UserDashboardChallenges2 = _interopRequireDefault(_UserDashboardChallenges);
+	
+	var _ModalForm = __webpack_require__(/*! ./ModalForm.jsx */ 486);
+	
+	var _ModalForm2 = _interopRequireDefault(_ModalForm);
+	
+	var _reactBootstrap = __webpack_require__(/*! react-bootstrap */ 236);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var UserDashboardBody = function (_React$Component) {
+	    _inherits(UserDashboardBody, _React$Component);
+	
+	    function UserDashboardBody(props) {
+	        _classCallCheck(this, UserDashboardBody);
+	
+	        var _this = _possibleConstructorReturn(this, (UserDashboardBody.__proto__ || Object.getPrototypeOf(UserDashboardBody)).call(this, props));
+	
+	        _this.newChallenge = _this.newChallenge.bind(_this);
+	        _this.modalClose = _this.modalClose.bind(_this);
+	
+	        _this.state = {
+	            newChallenge: false
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(UserDashboardBody, [{
+	        key: "newChallenge",
+	        value: function newChallenge() {
+	            console.log("New Challenge Button Clicked!");
+	            this.setState({ newChallenge: true });
+	        }
+	    }, {
+	        key: "modalClose",
+	        value: function modalClose() {
+	            this.setState({ newChallenge: false });
+	        }
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                _reactBootstrap.Row,
+	                null,
+	                _react2.default.createElement(
+	                    _reactBootstrap.Button,
+	                    { bsStyle: "success", onClick: this.newChallenge },
+	                    "Create a New Challenge"
+	                ),
+	                _react2.default.createElement(_ModalForm2.default, {
+	                    modalOpen: this.state.newChallenge,
+	                    onClose: this.modalClose })
+	            );
+	        }
+	    }]);
+	
+	    return UserDashboardBody;
+	}(_react2.default.Component);
+	// <UserDashboardChallenges />
+	
+	exports.default = UserDashboardBody;
+
+/***/ },
+/* 490 */
 /*!**********************************************************!*\
   !*** ./src/client/app/components/NewChallengeButton.jsx ***!
   \**********************************************************/
@@ -47575,7 +47706,7 @@
 	exports.default = NewChallengeButton;
 
 /***/ },
-/* 490 */
+/* 491 */
 /*!**************************************************************!*\
   !*** ./src/client/app/container/UserDashboardChallenges.jsx ***!
   \**************************************************************/
@@ -47593,7 +47724,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _UserChallengeContainer = __webpack_require__(/*! ./UserChallengeContainer.jsx */ 491);
+	var _UserChallengeContainer = __webpack_require__(/*! ./UserChallengeContainer.jsx */ 492);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -47648,7 +47779,7 @@
 	exports.default = UserDashboardChallenges;
 
 /***/ },
-/* 491 */
+/* 492 */
 /*!*************************************************************!*\
   !*** ./src/client/app/container/UserChallengeContainer.jsx ***!
   \*************************************************************/
