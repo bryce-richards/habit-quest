@@ -48967,7 +48967,7 @@
 	                            ),
 	                            _react2.default.createElement(
 	                                _reactBootstrap.Col,
-	                                { lg: 2, lgOffset: 5 },
+	                                { lg: 2, lgOffset: 5, md: 4, mdOffset: 4, sm: 8, smOffset: 2, xs: 12 },
 	                                _react2.default.createElement(
 	                                    "button",
 	                                    { type: "button", className: "text-center btn btn-success btn-block", onClick: this.modalOpen },
@@ -49177,8 +49177,6 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var validate = __webpack_require__(/*! validate */ 519);
-	
 	var ChallengeDataInput = function (_React$Component) {
 	    _inherits(ChallengeDataInput, _React$Component);
 	
@@ -49188,22 +49186,17 @@
 	        var _this = _possibleConstructorReturn(this, (ChallengeDataInput.__proto__ || Object.getPrototypeOf(ChallengeDataInput)).call(this, props));
 	
 	        _this.onFormSubmit = _this.onFormSubmit.bind(_this);
-	        _this.getStatus = _this.getStatus.bind(_this);
-	        _this.onBlurTitle = _this.onBlurTitle.bind(_this);
-	        _this.onBlurDescription = _this.onBlurDescription.bind(_this);
-	        _this.onBlurPurpose = _this.onBlurPurpose.bind(_this);
+	        _this.getTitleValidationState = _this.getTitleValidationState.bind(_this);
+	        _this.getDescriptionValidationState = _this.getDescriptionValidationState.bind(_this);
+	        _this.getPurposeValidationState = _this.getPurposeValidationState.bind(_this);
+	        _this.handleTitleChange = _this.handleTitleChange.bind(_this);
+	        _this.handleDescriptionChange = _this.handleDescriptionChange.bind(_this);
+	        _this.handlePurposeChange = _this.handlePurposeChange.bind(_this);
 	
 	        _this.state = {
-	            errors: [],
-	            backButtonDisabled: true,
-	            nextButtonClass: "btn-default",
-	            nextButtonDisabled: true,
-	            titleClass: "has-default",
-	            titleStatus: false,
-	            descriptionClass: "has-default",
-	            descriptionStatus: false,
-	            purposeClass: "has-default",
-	            purposeStatus: false
+	            titleValue: "",
+	            descriptionValue: "",
+	            purposeValue: ""
 	        };
 	        return _this;
 	    }
@@ -49212,81 +49205,61 @@
 	        key: "onFormSubmit",
 	        value: function onFormSubmit() {
 	            this.props.onSubmit({
-	                challengeTitle: this.refs.challengeTitle.value,
-	                challengeDescription: this.refs.challengeDescription.value,
-	                challengePurpose: this.refs.challengePurpose.value
+	                challengeTitle: this.state.titleValue,
+	                challengeDescription: this.state.descriptionValue,
+	                challengePurpose: this.state.purposeValue
 	            });
 	        }
 	    }, {
-	        key: "getStatus",
-	        value: function getStatus() {
-	            this.state.titleStatus && this.state.descriptionStatus && this.state.purposeStatus ? this.setState({
-	                nextButtonClass: "btn-success"
-	            }, {
-	                nextButtonDisabled: false
-	            }) : this.setState({
-	                nextButtonClass: "btn-default"
-	            }, {
-	                nextButtonDisabled: true
-	            });
+	        key: "getTitleValidationState",
+	        value: function getTitleValidationState() {
+	            var length = this.state.titleValue.length;
+	            if (length > 10) {
+	                return "success";
+	            } else if (length > 5) {
+	                return "warning";
+	            } else if (length > 0) {
+	                return "error";
+	            }
 	        }
 	    }, {
-	        key: "onBlurTitle",
-	        value: function onBlurTitle() {
-	            console.log("Title Blurred");
-	            var titleValid = validate({ title: this.refs.challengeTitle.value }, { title: { presence: true } });
-	            // VALIDATE TITLE ENTRY
-	            // if title is good to go, make status green
-	            // if title is not good to go, make status red
-	            console.log("titleValid = ", titleValid);
-	            !this.titleValid ? this.setClass({
-	                titleClass: "has-success"
-	            }, {
-	                titleStatus: true
-	            }) : this.setState({
-	                titleClass: "has-danger"
-	            }, {
-	                titleStatus: false
-	            });
-	            this.getStatus();
+	        key: "getDescriptionValidationState",
+	        value: function getDescriptionValidationState() {
+	            var length = this.state.descriptionValue.length;
+	            if (length > 10) {
+	                return "success";
+	            } else if (length > 5) {
+	                return "warning";
+	            } else if (length > 0) {
+	                return "error";
+	            }
 	        }
 	    }, {
-	        key: "onBlurDescription",
-	        value: function onBlurDescription() {
-	            var descriptionValid = validate({ description: this.refs.challengeDescription.value }, { description: { presence: true } });
-	
-	            // VALIDATE TITLE ENTRY
-	            // if title is good to go, make status green
-	            // if title is not good to go, make status red
-	            !descriptionValid ? this.setClass({
-	                descriptionClass: "has-success"
-	            }, {
-	                descriptionStatus: true
-	            }) : this.setState({
-	                descriptionClass: "has-danger"
-	            }, {
-	                descriptionStatus: false
-	            });
-	            this.getStatus();
+	        key: "getPurposeValidationState",
+	        value: function getPurposeValidationState() {
+	            var length = this.state.purposeValue.length;
+	            if (length > 10) {
+	                return "success";
+	            } else if (length > 5) {
+	                return "warning";
+	            } else if (length > 0) {
+	                return "error";
+	            }
 	        }
 	    }, {
-	        key: "onBlurPurpose",
-	        value: function onBlurPurpose() {
-	            var purposeValid = validate({ purpose: this.refs.challengePurpose.value }, { purpose: { presence: true } });
-	
-	            // VALIDATE TITLE ENTRY
-	            // if title is good to go, make status green
-	            // if title is not good to go, make status red
-	            !purposeValid ? this.setClass({
-	                purposeClass: "has-success"
-	            }, {
-	                purposeStatus: true
-	            }) : this.setState({
-	                purposeClass: "has-danger"
-	            }, {
-	                purposeStatus: false
-	            });
-	            this.getStatus();
+	        key: "handleTitleChange",
+	        value: function handleTitleChange(e) {
+	            this.setState({ titleValue: e.target.value });
+	        }
+	    }, {
+	        key: "handleDescriptionChange",
+	        value: function handleDescriptionChange(e) {
+	            this.setState({ descriptionValue: e.target.value });
+	        }
+	    }, {
+	        key: "handlePurposeChange",
+	        value: function handlePurposeChange(e) {
+	            this.setState({ purposeValue: e.target.value });
 	        }
 	    }, {
 	        key: "render",
@@ -49295,67 +49268,77 @@
 	                "form",
 	                null,
 	                _react2.default.createElement(
-	                    "fieldset",
-	                    null,
+	                    _reactBootstrap.FormGroup,
+	                    {
+	                        controlId: "challengeTitle",
+	                        validationState: this.getTitleValidationState()
+	                    },
 	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "form-group" },
-	                        _react2.default.createElement(
-	                            "label",
-	                            { htmlFor: "challengeTitle" },
-	                            "Challenge Title"
-	                        ),
-	                        _react2.default.createElement("input", { ref: "challengeTitle",
-	                            onBlur: this.onBlurTitle,
-	                            type: "text",
-	                            className: this.state.titleClass + " form-control"
-	                        }),
-	                        _react2.default.createElement(
-	                            "small",
-	                            { className: "form-text text-muted" },
-	                            "i.e. \"Live Healthy\", \"Explore the Outdoors\", \"Write a Story\""
-	                        )
+	                        _reactBootstrap.ControlLabel,
+	                        null,
+	                        "Challenge Title"
 	                    ),
+	                    _react2.default.createElement(_reactBootstrap.FormControl, {
+	                        onChange: this.handleTitleChange,
+	                        value: this.state.titleValue,
+	                        type: "text"
+	                    }),
+	                    _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null),
 	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "form-group" },
-	                        _react2.default.createElement(
-	                            "label",
-	                            { htmlFor: "challengeDescription" },
-	                            "Challenge Description"
-	                        ),
-	                        _react2.default.createElement("textarea", { ref: "challengeDescription",
-	                            onBlur: this.onBlurDescription,
-	                            className: this.state.descriptionClass + " form-control" }),
-	                        _react2.default.createElement(
-	                            "small",
-	                            { className: "form-text text-muted" },
-	                            "Write a little bit about what you hope to accomplish."
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "form-group" },
-	                        _react2.default.createElement(
-	                            "label",
-	                            { htmlFor: "challengePurpose" },
-	                            "Challenge Purpose"
-	                        ),
-	                        _react2.default.createElement("input", { ref: "challengePurpose",
-	                            onBlur: this.onBlurPurpose,
-	                            type: "text",
-	                            className: this.state.purposeClass + " form-control"
-	                        }),
-	                        _react2.default.createElement(
-	                            "small",
-	                            { className: "form-text text-muted" },
-	                            "Write a little bit about what you hope to accomplish."
-	                        )
+	                        _reactBootstrap.HelpBlock,
+	                        null,
+	                        "i.e. \"Live Healthy\", \"Explore the Outdoors\", \"Write a Story\""
 	                    )
 	                ),
 	                _react2.default.createElement(
-	                    "div",
-	                    { className: "modal-footer" },
+	                    _reactBootstrap.FormGroup,
+	                    {
+	                        controlId: "challengeDescription",
+	                        validationState: this.getDescriptionValidationState()
+	                    },
+	                    _react2.default.createElement(
+	                        _reactBootstrap.ControlLabel,
+	                        null,
+	                        "Challenge Description"
+	                    ),
+	                    _react2.default.createElement(_reactBootstrap.FormControl, {
+	                        onChange: this.handleDescriptionChange,
+	                        className: this.state.descriptionValue,
+	                        componentClass: "textarea"
+	                    }),
+	                    _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.HelpBlock,
+	                        { className: "form-text text-muted" },
+	                        "Write a little bit about what you hope to accomplish."
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactBootstrap.FormGroup,
+	                    {
+	                        controlId: "challengePurpose",
+	                        validationState: this.getPurposeValidationState()
+	                    },
+	                    _react2.default.createElement(
+	                        _reactBootstrap.ControlLabel,
+	                        null,
+	                        "Challenge Purpose"
+	                    ),
+	                    _react2.default.createElement(_reactBootstrap.FormControl, {
+	                        onChange: this.handlePurposeChange,
+	                        value: this.state.purposeValue,
+	                        type: "text"
+	                    }),
+	                    _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.HelpBlock,
+	                        { className: "form-text text-muted" },
+	                        "Write a little bit about what you hope to accomplish."
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactBootstrap.FormGroup,
+	                    null,
 	                    _react2.default.createElement(
 	                        _reactBootstrap.Button,
 	                        { bsStyle: "primary", disabled: true },
@@ -49383,617 +49366,12 @@
 	exports.default = ChallengeDataInput;
 
 /***/ },
-/* 519 */
-/*!*****************************!*\
-  !*** ./~/validate/index.js ***!
-  \*****************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__(/*! ./lib/schema */ 520);
-
-/***/ },
-/* 520 */
-/*!**********************************!*\
-  !*** ./~/validate/lib/schema.js ***!
-  \**********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	var Property = __webpack_require__(/*! ./property */ 521);
-	var typeOf, dot;
-	
-	try {
-	  typeOf = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"type\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-	  dot = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"dot\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-	} catch (err) {
-	  typeOf = __webpack_require__(/*! component-type */ 523);
-	  dot = __webpack_require__(/*! eivindfjeldstad-dot */ 524);
-	}
-	
-	/**
-	 * Expose schema
-	 */
-	
-	module.exports = Schema;
-	
-	/**
-	 * Schema constructor
-	 *
-	 * @param {Object} [obj]
-	 * @param {Object} [opts]
-	 * @api public
-	 */
-	
-	function Schema (obj, opts) {
-	  if (!(this instanceof Schema)) return new Schema(obj, opts);
-	  obj = obj || {};
-	  this.props = {};
-	  this.opts = opts || {};
-	  for (var key in obj) {
-	    if (!obj.hasOwnProperty(key)) continue;
-	    this.path(key, obj[key]);
-	  }
-	}
-	
-	/**
-	 * Add given `path` to schema with optional `rules`
-	 *
-	 * @param {String} path
-	 * @param {Object} [rules]
-	 * @return {Property}
-	 * @api public
-	 */
-	
-	Schema.prototype.path = function (path, rules) {
-	  var nested = false;
-	  var prop = this.props[path] || new Property(path, this);
-	  this.props[path] = prop;
-	
-	  // no rules?
-	  if (!rules) return prop;
-	
-	  // check if nested
-	  for (var key in rules) {
-	    if (!rules.hasOwnProperty(key)) continue;
-	    if ('function' == typeof prop[key]) continue;
-	    nested = true;
-	    break;
-	  }
-	
-	  for (var key in rules) {
-	    if (!rules.hasOwnProperty(key)) continue;
-	
-	    if (nested) {
-	      this.path(join(key, path), rules[key]);
-	      continue;
-	    }
-	
-	    var rule = rules[key];
-	    if (!Array.isArray(rule)) rule = [rule];
-	    prop[key].apply(prop, rule);
-	  }
-	
-	  return prop;
-	};
-	
-	/**
-	 * Typecast given `obj`
-	 *
-	 * @param {Object} obj
-	 * @api public
-	 */
-	
-	Schema.prototype.typecast = function (obj) {
-	  for (var key in this.props) {
-	    var prop = this.props[key];
-	    var value = dot.get(obj, key);
-	    if (value == null) continue;
-	    dot.set(obj, key, prop.typecast(value));
-	  }
-	};
-	
-	/**
-	 * Strip all keys not in the schema
-	 *
-	 * @param {Object} obj
-	 * @param {String} [prefix]
-	 * @api public
-	 */
-	
-	Schema.prototype.strip = function (obj, prefix) {
-	  for (var key in obj) {
-	    var path = join(key, prefix);
-	
-	    if (!obj.hasOwnProperty(key)) continue;
-	
-	    if (!this.props[path]) {
-	      delete obj[key];
-	      continue;
-	    }
-	
-	    if (typeOf(obj[key]) == 'object') {
-	      this.strip(obj[key], path);
-	    }
-	  }
-	};
-	
-	/**
-	 * Validate given `obj`
-	 *
-	 * @param {Object} obj
-	 * @param {Object} [opts]
-	 * @return {Array}
-	 * @api public
-	 */
-	
-	Schema.prototype.validate = function (obj, opts) {
-	  var errors = [];
-	  opts = opts || this.opts;
-	
-	  if (opts.typecast) this.typecast(obj);
-	  if (opts.strip !== false) this.strip(obj);
-	
-	  for (var key in this.props) {
-	    var prop = this.props[key];
-	    var value = dot.get(obj, key);
-	    var err = prop.validate(value, obj);
-	    if (err) errors.push(err);
-	  }
-	
-	  return errors;
-	};
-	
-	/**
-	 * Assert that given `obj` is valid
-	 *
-	 * @param {Object} obj
-	 * @param {Object} [opts]
-	 * @api public
-	 */
-	
-	Schema.prototype.assert = function (obj, opts) {
-	  var errors = this.validate(obj, opts);
-	  if (errors.length > 0) throw errors[0];
-	};
-	
-	/**
-	 * Join `path` with `prefix`
-	 */
-	
-	function join (path, prefix) {
-	  return prefix
-	    ? prefix + '.' + path
-	    : path;
-	}
-
-
-/***/ },
-/* 521 */
-/*!************************************!*\
-  !*** ./~/validate/lib/property.js ***!
-  \************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	var typecast = __webpack_require__(/*! typecast */ 522);
-	var typeOf;
-	
-	try {
-	  typeOf = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"type\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-	} catch (err) {
-	  typeOf = __webpack_require__(/*! component-type */ 523);
-	}
-	
-	/**
-	 * Expose Property
-	 */
-	
-	module.exports = Property;
-	
-	/**
-	 * Property constructor
-	 *
-	 * @param {String} name
-	 * @param {Object} [opts]
-	 * @api public
-	 */
-	
-	function Property (name, schema) {
-	  this.fns = [];
-	  this.name = name;
-	  this.schema = schema;
-	  this._type = undefined;
-	  this.msg = 'validation failed for path ' + name;
-	}
-	
-	Property.prototype = {
-	
-	  /**
-	   * Validate with given `fn` and optional `msg`
-	   *
-	   * @param {Function} fn
-	   * @param {String} [msg]
-	   * @return {Property}
-	   * @api public
-	   */
-	
-	  use: function (fn, msg) {
-	    this.fns.push([fn, msg]);
-	    return this;
-	  },
-	
-	  /**
-	   * Is required
-	   *
-	   * @param {Boolean} [bool]
-	   * @param {String} [msg]
-	   * @return {Property}
-	   * @api public
-	   */
-	
-	  required: function (bool, msg) {
-	    if ('string' == typeof bool) msg = bool;
-	    return this.use(required(bool), msg);
-	  },
-	
-	  /**
-	   * Is of type `name`
-	   *
-	   * @param {String} name
-	   * @param {String} [msg]
-	   * @return {Property}
-	   * @api public
-	   */
-	
-	  type: function (name, msg) {
-	    this._type = name;
-	    return this.use(type(name), msg);
-	  },
-	
-	  /**
-	   * Matches given `regexp`
-	   *
-	   * @param {RegExp} regexp
-	   * @param {String} [msg]
-	   * @return {Property}
-	   * @api public
-	   */
-	
-	  match: function (regexp, msg) {
-	    return this.use(match(regexp), msg);
-	  },
-	
-	  /**
-	   * Validate each value in array against given function `fn`
-	   *
-	   * @param {Function} fn
-	   * @param {String} [msg]
-	   * @return {Property}
-	   * @api public
-	   */
-	
-	  each: function (fn, msg) {
-	    return this.use(each(fn), msg);
-	  },
-	
-	  /**
-	   * Get schema path
-	   *
-	   * @param {String} path
-	   * @param {Object} [rules]
-	   * @return {Path}
-	   * @api public
-	   */
-	
-	  path: function (path, rules) {
-	    return this.schema(path, rules);
-	  },
-	
-	  /**
-	   * Set default error message
-	   *
-	   * @param {String} msg
-	   * @return {Property}
-	   * @api public
-	   */
-	
-	  message: function (msg) {
-	    return this.msg = msg;
-	  },
-	
-	  /**
-	   * Typecast given value
-	   *
-	   * @param {Mixed} val
-	   * @return {Mixed}
-	   * @api public
-	   */
-	
-	  typecast: function (val) {
-	    return typecast(val, this._type);
-	  },
-	
-	  /**
-	   * Validate given `value`
-	   *
-	   * @param {Mixed} value
-	   * @param {Object} [ctx]
-	   * @return {String|Boolean}
-	   * @api public
-	   */
-	
-	  validate: function (value, ctx) {
-	    var fns = this.fns;
-	
-	    for (var i = 0; i < fns.length; i++) {
-	      var fn = fns[i];
-	      var valid = fn[0].call(ctx, value);
-	      if (!valid) return error(this, fn[1]);
-	    }
-	
-	    return false;
-	  }
-	};
-	
-	/**
-	 * Validate presence
-	 *
-	 * @return {Function}
-	 * @api private
-	 */
-	
-	function required (bool) {
-	  return function (value) {
-	    return bool === false || !!value;
-	  }
-	}
-	
-	/**
-	 * Validate type
-	 *
-	 * @param {String} name
-	 * @return {Function}
-	 * @api private
-	 */
-	
-	function type (name) {
-	  return function (value) {
-	    return value == null || typeOf(value) == name;
-	  }
-	}
-	
-	/**
-	 * Validate values
-	 *
-	 * @param {String} name
-	 * @return {Function}
-	 * @api private
-	 */
-	
-	function each (fn) {
-	  return function (arr) {
-	    if (arr == null) return true;
-	    if (!Array.isArray(arr)) return false;
-	
-	    for (var i = 0; i < arr.length; i++) {
-	      if (!fn(arr[i])) return false;
-	    }
-	
-	    return true;
-	  }
-	}
-	
-	/**
-	 * Match given `regexp`
-	 *
-	 * @param {RegExp} regexp
-	 * @return {Function}
-	 * @api private
-	 */
-	
-	function match (regexp) {
-	  return function (value) {
-	    return value == null || regexp.test(value);
-	  }
-	}
-	
-	/**
-	 * Create an error
-	 *
-	 * @param {Property} prop
-	 * @param {String} msg
-	 * @return {Error}
-	 * @api private
-	 */
-	
-	
-	function error (prop, msg) {
-	  var err = new Error(msg || prop.msg);
-	  err.path = prop.name;
-	  return err;
-	}
-
-
-/***/ },
-/* 522 */
-/*!*****************************!*\
-  !*** ./~/typecast/index.js ***!
-  \*****************************/
-/***/ function(module, exports) {
-
-	module.exports = typecast;
-	
-	/**
-	 * Cast given `val` to `type`
-	 *
-	 * @param {Mixed} val
-	 * @param {String} type
-	 * @api public
-	 */
-	
-	function typecast (val, type) {
-	  var fn = typecast[type];
-	  if (typeof fn != 'function') throw new Error('cannot cast to ' + type);
-	  return fn(val);
-	}
-	
-	/**
-	 * Cast `val` to `String`
-	 *
-	 * @param {Mixed} val
-	 * @api public
-	 */
-	
-	typecast.string = function (val) {
-	  return val.toString();
-	};
-	
-	/**
-	 * Cast `val` to `Number`
-	 *
-	 * @param {Mixed} val
-	 * @api public
-	 */
-	
-	typecast.number = function (val) {
-	  var num = parseFloat(val);
-	  return isNaN(num)
-	    ? null
-	    : num;
-	};
-	
-	/**
-	 * Cast `val` to a`Date`
-	 *
-	 * @param {Mixed} val
-	 * @api public
-	 */
-	
-	typecast.date = function (val) {
-	  var date = new Date(val);
-	  return isNaN(date.valueOf())
-	    ? null
-	    : date;
-	};
-	
-	/**
-	 * Cast `val` to `Array`
-	 *
-	 * @param {Mixed} val
-	 * @api public
-	 */
-	
-	typecast.array = function (val) {
-	  if (val instanceof Array) return val;
-	  var arr = val.toString().split(',');
-	  for (var i = 0; i < arr.length; i++) {
-	    arr[i] = arr[i].trim();
-	  }
-	  return arr;
-	};
-	
-	/**
-	 * Cast `val` to `Boolean`
-	 *
-	 * @param {Mixed} val
-	 * @api public
-	 */
-	
-	typecast.boolean = function (val) {
-	  return !! val && val !== 'false';
-	};
-
-/***/ },
-/* 523 */
-/*!***********************************!*\
-  !*** ./~/component-type/index.js ***!
-  \***********************************/
-/***/ function(module, exports) {
-
-	
-	/**
-	 * toString ref.
-	 */
-	
-	var toString = Object.prototype.toString;
-	
-	/**
-	 * Return the type of `val`.
-	 *
-	 * @param {Mixed} val
-	 * @return {String}
-	 * @api public
-	 */
-	
-	module.exports = function(val){
-	  switch (toString.call(val)) {
-	    case '[object Function]': return 'function';
-	    case '[object Date]': return 'date';
-	    case '[object RegExp]': return 'regexp';
-	    case '[object Arguments]': return 'arguments';
-	    case '[object Array]': return 'array';
-	    case '[object String]': return 'string';
-	  }
-	
-	  if (val === null) return 'null';
-	  if (val === undefined) return 'undefined';
-	  if (val && val.nodeType === 1) return 'element';
-	  if (val === Object(val)) return 'object';
-	
-	  return typeof val;
-	};
-
-
-/***/ },
-/* 524 */
-/*!****************************************!*\
-  !*** ./~/eivindfjeldstad-dot/index.js ***!
-  \****************************************/
-/***/ function(module, exports) {
-
-	/**
-	 * Set given `path`
-	 *
-	 * @param {Object} obj
-	 * @param {String} path
-	 * @param {Mixed} val
-	 * @api public
-	 */
-	
-	exports.set = function (obj, path, val) {
-	  var segs = path.split('.');
-	  var attr = segs.pop();
-	  
-	  for (var i = 0; i < segs.length; i++) {
-	    var seg = segs[i];
-	    obj[seg] = obj[seg] || {};
-	    obj = obj[seg];
-	  }
-	  
-	  obj[attr] = val;
-	};
-	
-	/**
-	 * Get given `path`
-	 *
-	 * @param {Object} obj
-	 * @param {String} path
-	 * @return {Mixed}
-	 * @api public
-	 */
-	
-	exports.get = function (obj, path) {
-	  var segs = path.split('.');
-	  var attr = segs.pop();
-	  
-	  for (var i = 0; i < segs.length; i++) {
-	    var seg = segs[i];
-	    if (!obj[seg]) return;
-	    obj = obj[seg];
-	  }
-	  
-	  return obj[attr];
-	};
-
-/***/ },
+/* 519 */,
+/* 520 */,
+/* 521 */,
+/* 522 */,
+/* 523 */,
+/* 524 */,
 /* 525 */
 /*!************************************************************************!*\
   !*** ./src/client/app/components/ChallengeFormInput/TaskDataInput.jsx ***!
