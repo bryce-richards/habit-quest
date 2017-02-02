@@ -1,5 +1,6 @@
 import React, { PropTypes } from "react";
 import { Grid, Row, Col, Clearfix, Button, Jumbotron } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import ModalForm from "../container/ModalForm.jsx";
 
 class UserHeader extends React.Component {
