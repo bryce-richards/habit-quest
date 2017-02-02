@@ -27363,6 +27363,12 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _reactBootstrap = __webpack_require__(/*! react-bootstrap */ 236);
+	
+	var _ModalForm = __webpack_require__(/*! ./ModalForm.jsx */ 486);
+	
+	var _ModalForm2 = _interopRequireDefault(_ModalForm);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27370,9 +27376,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	// import { Button } from "react-bootstrap";
-	// import ModalForm from "../container/ModalForm.jsx";
 	
 	var Header = function (_React$Component) {
 	    _inherits(Header, _React$Component);
@@ -27427,6 +27430,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _ModalForm = __webpack_require__(/*! ./ModalForm.jsx */ 486);
+	
+	var _ModalForm2 = _interopRequireDefault(_ModalForm);
+	
 	var _reactBootstrap = __webpack_require__(/*! react-bootstrap */ 236);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -27438,7 +27445,7 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	// import NewChallengeButton from "../components/NewChallengeButton.jsx";
 	// import UserDashboardChallenges from "./UserDashboardChallenges.jsx";
-	// import ModalForm from "./ModalForm.jsx";
+	
 	
 	var UserDashboardBody = function (_React$Component) {
 	    _inherits(UserDashboardBody, _React$Component);
@@ -27478,7 +27485,10 @@
 	                    _reactBootstrap.Button,
 	                    { bsStyle: "success", onClick: this.newChallenge },
 	                    "Create a New Challenge"
-	                )
+	                ),
+	                _react2.default.createElement(_ModalForm2.default, {
+	                    modalOpen: this.state.newChallenge,
+	                    onClose: this.modalClose })
 	            );
 	        }
 	    }]);
@@ -46938,6 +46948,570 @@
 	exports.bootstrapUtils = _bootstrapUtils;
 	exports.createChainedFunction = _createChainedFunction3['default'];
 	exports.ValidComponentChildren = _ValidComponentChildren3['default'];
+
+/***/ },
+/* 486 */
+/*!************************************************!*\
+  !*** ./src/client/app/container/ModalForm.jsx ***!
+  \************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactBootstrap = __webpack_require__(/*! react-bootstrap */ 236);
+	
+	var _ChallengeDataInput = __webpack_require__(/*! ../components/ChallengeFormInput/ChallengeDataInput.jsx */ 487);
+	
+	var _ChallengeDataInput2 = _interopRequireDefault(_ChallengeDataInput);
+	
+	var _TaskDataInput = __webpack_require__(/*! ../components/ChallengeFormInput/TaskDataInput.jsx */ 488);
+	
+	var _TaskDataInput2 = _interopRequireDefault(_TaskDataInput);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ModalForm = function (_React$Component) {
+	    _inherits(ModalForm, _React$Component);
+	
+	    function ModalForm(props) {
+	        _classCallCheck(this, ModalForm);
+	
+	        var _this = _possibleConstructorReturn(this, (ModalForm.__proto__ || Object.getPrototypeOf(ModalForm)).call(this, props));
+	
+	        _this.onChallengeDataSubmit = _this.onChallengeDataSubmit.bind(_this);
+	        _this.onWeekDataSubmit = _this.onWeekDataSubmit.bind(_this);
+	        _this.getModalFormComponent = _this.getModalFormComponent.bind(_this);
+	        _this.closeModal = _this.closeModal.bind(_this);
+	        _this.postData = _this.postData.bind(_this);
+	
+	        _this.state = {
+	            currentForm: 1,
+	            newChallenge: {}
+	        };
+	        return _this;
+	    }
+	
+	    // formValues IS EQUAL TO THE PASSED IN INFORMATION ON THE CHILD'S onFormSubmit FUNCTION
+	
+	
+	    _createClass(ModalForm, [{
+	        key: "onChallengeDataSubmit",
+	        value: function onChallengeDataSubmit(formValues) {
+	            var updatedChallenge = this.state.newChallenge;
+	            updatedChallenge.title = formValues.challengeTitle;
+	            updatedChallenge.description = formValues.challengeDescription;
+	            updatedChallenge.purpsoe = formValues.challengePurpse;
+	            this.setState({ newChallenge: updatedChallenge });
+	            this.setState({ currentForm: this.state.currentForm + 1 });
+	        }
+	    }, {
+	        key: "onWeekDataSubmit",
+	        value: function onWeekDataSubmit(formValues) {
+	            var updatedChallenge = this.state.newChallenge;
+	
+	            if (!updatedChallenge.weeks) {
+	                updatedChallenge.weeks = [];
+	            }
+	            updatedChallenge.weeks.push({
+	                week: formValues.currentWeek,
+	                task: formValues.taskTitle,
+	                days: formValues.numDays
+	            });
+	            this.setState({ newChallenge: updatedChallenge });
+	            this.setState({ currentForm: this.state.currentFrom + 1 });
+	        }
+	    }, {
+	        key: "postData",
+	        value: function postData() {
+	            /* POST NEW CHALLENGE TO DATABASE */
+	            return this.closeModal();
+	        }
+	    }, {
+	        key: "getModalFormComponent",
+	        value: function getModalFormComponent() {
+	            switch (this.state.currentForm) {
+	                case 1:
+	                    return _react2.default.createElement(_ChallengeDataInput2.default, { onSubmit: this.onChallengeDataSubmit });
+	                case 2:
+	                    return _react2.default.createElement(_TaskDataInput2.default, { onSubmit: this.onChallengeWeekSubmit });
+	                case 3:
+	                    return _react2.default.createElement(_TaskDataInput2.default, { onSubmit: this.onChallengeWeekSubmit });
+	                case 4:
+	                    return _react2.default.createElement(_TaskDataInput2.default, { onSubmit: this.onChallengeWeekSubmit });
+	                case 5:
+	                    return _react2.default.createElement(_TaskDataInput2.default, { onSubmit: this.onChallengeWeekSubmit });
+	                case 6:
+	                    return this.postData();
+	            }
+	            return null;
+	        }
+	    }, {
+	        key: "closeModal",
+	        value: function closeModal() {
+	            return this.props.onClose();
+	        }
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                _reactBootstrap.Modal,
+	                { className: "fade", show: this.props.modalOpen, tabIndex: "-1", onHide: this.closeModal },
+	                _react2.default.createElement(
+	                    _reactBootstrap.Modal.Header,
+	                    { closeButton: true },
+	                    _react2.default.createElement(
+	                        _reactBootstrap.Modal.Title,
+	                        null,
+	                        "New 4 Week Challenge"
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactBootstrap.Modal.Body,
+	                    null,
+	                    this.getModalFormComponent()
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return ModalForm;
+	}(_react2.default.Component);
+	
+	ModalForm.propTypes = {
+	    modalOpen: _react.PropTypes.bool,
+	    onClose: _react.PropTypes.func
+	};
+	
+	exports.default = ModalForm;
+
+/***/ },
+/* 487 */
+/*!*****************************************************************************!*\
+  !*** ./src/client/app/components/ChallengeFormInput/ChallengeDataInput.jsx ***!
+  \*****************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactBootstrap = __webpack_require__(/*! react-bootstrap */ 236);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ChallengeDataInput = function (_React$Component) {
+	    _inherits(ChallengeDataInput, _React$Component);
+	
+	    function ChallengeDataInput(props) {
+	        _classCallCheck(this, ChallengeDataInput);
+	
+	        var _this = _possibleConstructorReturn(this, (ChallengeDataInput.__proto__ || Object.getPrototypeOf(ChallengeDataInput)).call(this, props));
+	
+	        _this.onFormSubmit = _this.onFormSubmit.bind(_this);
+	        _this.getStatus = _this.getStatus.bind(_this);
+	        _this.onBlurTitle = _this.onBlurTitle.bind(_this);
+	        _this.onBlurDescription = _this.onBlurDescription.bind(_this);
+	        _this.onBlurPurpose = _this.onBlurPurpose.bind(_this);
+	
+	        _this.state = {
+	            errors: [],
+	            backButtonDisabled: true,
+	            nextButtonClass: "btn-default",
+	            nextButtonDisabled: true,
+	            titleClass: "has-default",
+	            titleStatus: false,
+	            descriptionClass: "has-default",
+	            descriptionStatus: false,
+	            purposeClass: "has-default",
+	            purposeStatus: false
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(ChallengeDataInput, [{
+	        key: "onFormSubmit",
+	        value: function onFormSubmit() {
+	            this.props.onSubmit({
+	                challengeTitle: this.refs.challengeTitle.value,
+	                challengeDescription: this.refs.challengeDescription.value,
+	                challengePurpose: this.refs.challengePurpose.value
+	            });
+	        }
+	    }, {
+	        key: "getStatus",
+	        value: function getStatus() {
+	            this.state.titleStatus && this.state.descriptionStatus && this.state.purposeStatus ? this.setState({
+	                nextButtonClass: "btn-success"
+	            }, {
+	                nextButtonDisabled: false
+	            }) : this.setState({
+	                nextButtonClass: "btn-default"
+	            }, {
+	                nextButtonDisabled: true
+	            });
+	        }
+	    }, {
+	        key: "onBlurTitle",
+	        value: function onBlurTitle() {
+	            // VALIDATE TITLE ENTRY
+	            // if title is good to go, make status green
+	            // if title is not good to go, make status red
+	            this.refs.challengeTitle.value ? this.setClass({
+	                titleClass: "has-success"
+	            }, {
+	                titleStatus: true
+	            }) : this.setState({
+	                titleClass: "has-danger"
+	            }, {
+	                titleStatus: false
+	            });
+	            this.getStatus();
+	        }
+	    }, {
+	        key: "onBlurDescription",
+	        value: function onBlurDescription() {
+	            // VALIDATE TITLE ENTRY
+	            // if title is good to go, make status green
+	            // if title is not good to go, make status red
+	            this.refs.challengeDescription.value ? this.setClass({
+	                descriptionClass: "has-success"
+	            }, {
+	                descriptionStatus: true
+	            }) : this.setState({
+	                descriptionClass: "has-danger"
+	            }, {
+	                descriptionStatus: false
+	            });
+	            this.getStatus();
+	        }
+	    }, {
+	        key: "onBlurPurpose",
+	        value: function onBlurPurpose() {
+	            // VALIDATE TITLE ENTRY
+	            // if title is good to go, make status green
+	            // if title is not good to go, make status red
+	            this.refs.challengePurpose.value ? this.setClass({
+	                purposeClass: "has-success"
+	            }, {
+	                purposeStatus: true
+	            }) : this.setState({
+	                purposeClass: "has-danger"
+	            }, {
+	                purposeStatus: false
+	            });
+	            this.getStatus();
+	        }
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "form",
+	                null,
+	                _react2.default.createElement(
+	                    "fieldset",
+	                    null,
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "form-group" },
+	                        _react2.default.createElement(
+	                            "label",
+	                            { htmlFor: "challengeTitle" },
+	                            "Challenge Title"
+	                        ),
+	                        _react2.default.createElement("input", { ref: "challengeTitle",
+	                            onBlur: this.onBlurTitle,
+	                            type: "text",
+	                            className: this.state.titleClass + " form-control"
+	                        }),
+	                        _react2.default.createElement(
+	                            "small",
+	                            { className: "form-text text-muted" },
+	                            "i.e. \"Live Healthy\", \"Explore the Outdoors\", \"Write a Story\""
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "form-group" },
+	                        _react2.default.createElement(
+	                            "label",
+	                            { htmlFor: "challengeDescription" },
+	                            "Challenge Description"
+	                        ),
+	                        _react2.default.createElement("textarea", { ref: "challengeDescription",
+	                            onBlur: this.onBlurDescription,
+	                            className: this.state.descriptionClass + " form-control" }),
+	                        _react2.default.createElement(
+	                            "small",
+	                            { className: "form-text text-muted" },
+	                            "Write a little bit about what you hope to accomplish."
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "form-group" },
+	                        _react2.default.createElement(
+	                            "label",
+	                            { htmlFor: "challengePurpose" },
+	                            "Challenge Purpose"
+	                        ),
+	                        _react2.default.createElement("input", { ref: "challengePurpose",
+	                            onBlur: this.onBlurPurpose,
+	                            type: "text",
+	                            className: this.state.purposeClass + "form-control"
+	                        }),
+	                        _react2.default.createElement(
+	                            "small",
+	                            { className: "form-text text-muted" },
+	                            "Write a little bit about what you hope to accomplish."
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "modal-footer" },
+	                    _react2.default.createElement(
+	                        _reactBootstrap.Button,
+	                        { className: "btn btn-primary disabled" },
+	                        "Back"
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.Button,
+	                        { onClick: this.onFormSubmit,
+	                            disabled: this.state.nextButtonDisabled,
+	                            className: this.state.nextButtonClass },
+	                        "Next"
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return ChallengeDataInput;
+	}(_react2.default.Component);
+	
+	ChallengeDataInput.propTypes = {
+	    onSubmit: _react.PropTypes.func
+	};
+	
+	exports.default = ChallengeDataInput;
+
+/***/ },
+/* 488 */
+/*!************************************************************************!*\
+  !*** ./src/client/app/components/ChallengeFormInput/TaskDataInput.jsx ***!
+  \************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _templateObject = _taggedTemplateLiteral(["btn btn-primary"], ["btn btn-primary"]),
+	    _templateObject2 = _taggedTemplateLiteral(["btn"], ["btn"]);
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactBootstrap = __webpack_require__(/*! react-bootstrap */ 236);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	// var validate = require("validate");
+	
+	var TaskDataInput = function (_React$Component) {
+	    _inherits(TaskDataInput, _React$Component);
+	
+	    function TaskDataInput(props) {
+	        _classCallCheck(this, TaskDataInput);
+	
+	        var _this = _possibleConstructorReturn(this, (TaskDataInput.__proto__ || Object.getPrototypeOf(TaskDataInput)).call(this, props));
+	
+	        _this.onFormSubmit = _this.onFormSubmit.bind(_this);
+	        _this.getStatus = _this.getStatus.bind(_this);
+	        _this.onBlurNumTasks = _this.onBlurNumTasks.bind(_this);
+	
+	        _this.state = {
+	            currentWeek: 1
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(TaskDataInput, [{
+	        key: "onFormSubmit",
+	        value: function onFormSubmit() {
+	            this.props.onSubmit({
+	                currentWeek: this.state.currentWeek,
+	                taskTitle: this.refs.taskTitle,
+	                numDays: this.refs.numDays
+	            });
+	        }
+	    }, {
+	        key: "render",
+	        value: function render() {
+	
+	            return _react2.default.createElement(
+	                "form",
+	                null,
+	                _react2.default.createElement(
+	                    "fieldset",
+	                    null,
+	                    _react2.default.createElement("legend", null),
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "form-group" },
+	                        _react2.default.createElement(
+	                            "label",
+	                            null,
+	                            "Week ",
+	                            this.state.currentWeek
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "form-group" },
+	                    _react2.default.createElement(
+	                        "div",
+	                        null,
+	                        _react2.default.createElement(
+	                            "label",
+	                            null,
+	                            "What do you want to accomplish this week?"
+	                        ),
+	                        _react2.default.createElement("input", {
+	                            className: "form-control",
+	                            ref: "taskTitle",
+	                            onBlur: this.onBlurTitle
+	                        })
+	                    ),
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "form-group" },
+	                        _react2.default.createElement(
+	                            "label",
+	                            null,
+	                            "Days of The Week"
+	                        ),
+	                        _react2.default.createElement(
+	                            "select",
+	                            {
+	                                onBlur: this.addDays,
+	                                className: "form-control",
+	                                ref: "numDays" },
+	                            _react2.default.createElement(
+	                                "option",
+	                                null,
+	                                "1"
+	                            ),
+	                            _react2.default.createElement(
+	                                "option",
+	                                null,
+	                                "2"
+	                            ),
+	                            _react2.default.createElement(
+	                                "option",
+	                                null,
+	                                "3"
+	                            ),
+	                            _react2.default.createElement(
+	                                "option",
+	                                null,
+	                                "4"
+	                            ),
+	                            _react2.default.createElement(
+	                                "option",
+	                                null,
+	                                "5"
+	                            ),
+	                            _react2.default.createElement(
+	                                "option",
+	                                null,
+	                                "6"
+	                            ),
+	                            _react2.default.createElement(
+	                                "option",
+	                                null,
+	                                "7"
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            "small",
+	                            { className: "form-text text-muted" },
+	                            "Select How Many Days You Want To Complete This Task This Week"
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "modal-footer" },
+	                    _react2.default.createElement(
+	                        _reactBootstrap.Button,
+	                        { className: this.state.backButtonDisabled(_templateObject) },
+	                        "Back"
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.Button,
+	                        { onClick: this.onFormSubmit,
+	                            disabled: this.state.nextButtonDisabled,
+	                            className: this.state.nextButtonClass(_templateObject2) },
+	                        this.state.currentWeek === 4 ? "Submit" : "Next"
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return TaskDataInput;
+	}(_react2.default.Component);
+	
+	TaskDataInput.propTypes = {
+	    onSubmit: _react.PropTypes.func
+	};
+	
+	exports.default = TaskDataInput;
 
 /***/ }
 /******/ ]);

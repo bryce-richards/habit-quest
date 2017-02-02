@@ -1,6 +1,6 @@
 import React from "react";
-// import { Button } from "react-bootstrap";
-// import ModalForm from "../container/ModalForm.jsx";
+import { Button } from "react-bootstrap";
+import ModalForm from "./ModalForm.jsx";
 
 class Header extends React.Component {
 
