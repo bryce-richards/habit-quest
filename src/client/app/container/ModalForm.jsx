@@ -14,7 +14,7 @@ class ModalForm extends React.Component {
         this.getModalFormComponent = this.getModalFormComponent.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.postData = this.postData.bind(this);
-
+        
         this.state = {
             currentForm: 1,
             newChallenge: {},
@@ -45,12 +45,12 @@ class ModalForm extends React.Component {
         this.setState({newChallenge: updatedChallenge});
         this.setState({currentForm: this.state.currentFrom + 1});
     }
-
+    
     postData() {
         /* POST NEW CHALLENGE TO DATABASE */
         return this.closeModal();
     }
-
+    
     getModalFormComponent() {
         switch(this.state.currentForm) {
             case 1:
@@ -75,7 +75,7 @@ class ModalForm extends React.Component {
 
     render() {
         return (
-            <Modal className="fade" show={this.props.modalOpen} tabIndex="-1" onHide={this.closeModal}>
+            <Modal className="fade" show={this.props.modalOpen} tabIndex="-1" onHide={this.props.onClose}>
 
                 <Modal.Header closeButton>
 

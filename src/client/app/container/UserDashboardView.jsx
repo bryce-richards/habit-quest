@@ -1,8 +1,9 @@
 import React from "react";
-import Header from "./Header.jsx";
+import SignedInNavbar from "./SignedInNavbar.jsx";
+import UserDashboardHeader from "./UserDashboardHeader.jsx";
 import UserDashboardBody from "./UserDashboardBody.jsx";
 
-// var request = require("request");
+import { Grid, Row, Col, Clearfix } from "react-bootstrap";
 
 class UserDashboardView extends React.Component {
 
@@ -24,13 +25,20 @@ class UserDashboardView extends React.Component {
 
     render() {
         return (
-            <div>
-              <Header />
-              <UserDashboardBody />
+            <Grid>
+                <Row>
+                    <SignedInNavbar />
+                </Row>
+                <Row>
+                    <UserDashboardHeader />
+                </Row>
+                <Row>
+                    <UserDashboardBody />
+                </Row>
                 {/*
                   <h1>User Dashboard View Component</h1>
                   */}
-            </div>
+            </Grid>
 
         );
     }

@@ -1,6 +1,8 @@
 import React, {PropTypes} from "react";
-import {Button} from "react-bootstrap";
+import { FormGroup, Button} from "react-bootstrap";
 
+
+var validate = require("validate");
 
 class ChallengeDataInput extends React.Component {
 
@@ -34,7 +36,7 @@ class ChallengeDataInput extends React.Component {
             challengePurpose: this.refs.challengePurpose.value
         });
     }
-
+    
     getStatus() {
         (this.state.titleStatus && this.state.descriptionStatus && this.state.purposeStatus) ?
             this.setState(
@@ -55,19 +57,22 @@ class ChallengeDataInput extends React.Component {
     }
 
     onBlurTitle() {
+        console.log("Title Blurred");
+        var titleValid = validate({title: this.refs.challengeTitle.value}, {title: {presence: true}})
         // VALIDATE TITLE ENTRY
         // if title is good to go, make status green
         // if title is not good to go, make status red
-        this.refs.challengeTitle.value ?
+        console.log("titleValid = ", titleValid);
+        !this.titleValid ? 
             this.setClass(
                 {
                     titleClass: "has-success"
                 }, {
                     titleStatus: true
                 })
-
+            
             :
-
+            
             this.setState(
                 {
                     titleClass: "has-danger"
@@ -78,10 +83,13 @@ class ChallengeDataInput extends React.Component {
     }
 
     onBlurDescription() {
+        var descriptionValid = validate({description: this.refs.challengeDescription.value}, {description: {presence: true}})
+
         // VALIDATE TITLE ENTRY
         // if title is good to go, make status green
         // if title is not good to go, make status red
-        this.refs.challengeDescription.value ? this.setClass(
+        !descriptionValid ? 
+            this.setClass(
                 {
                     descriptionClass: "has-success"
                 }, {
@@ -100,10 +108,12 @@ class ChallengeDataInput extends React.Component {
     }
 
     onBlurPurpose() {
+        var purposeValid = validate({purpose: this.refs.challengePurpose.value}, {purpose: {presence: true}})
+
         // VALIDATE TITLE ENTRY
         // if title is good to go, make status green
         // if title is not good to go, make status red
-        this.refs.challengePurpose.value ?
+        !purposeValid ?
             this.setClass(
                 {
                     purposeClass: "has-success"
@@ -126,52 +136,52 @@ class ChallengeDataInput extends React.Component {
         return (
             <form>
                 <fieldset>
-                    <div className="form-group">
+                    <FormGroup>
                         <label htmlFor="challengeTitle">
                             Challenge Title
                         </label>
                         <input ref="challengeTitle"
                                onBlur={this.onBlurTitle}
                                type="text"
-                               className={this.state.titleClass + " form-control"}
+                               className={`${this.state.titleClass} form-control`}
                         />
                         <small className="form-text text-muted">
                             i.e. "Live Healthy", "Explore the Outdoors",
                             "Write a Story"
                         </small>
-                    </div>
+                    </FormGroup>
 
-                    <div className="form-group">
+                    <FormGroup>
                         <label htmlFor="challengeDescription">
                             Challenge Description
                         </label>
                         <textarea ref="challengeDescription"
                                   onBlur={this.onBlurDescription}
-                                  className={this.state.descriptionClass + " form-control"}>
+                                  className={`${this.state.descriptionClass} form-control`}>
                         </textarea>
                         <small className="form-text text-muted">
                             Write a little bit about what you hope to
                             accomplish.
                         </small>
-                    </div>
+                    </FormGroup>
 
-                    <div className="form-group">
+                    <FormGroup>
                         <label htmlFor="challengePurpose">
                             Challenge Purpose
                         </label>
                         <input ref="challengePurpose"
                                onBlur={this.onBlurPurpose}
                                type="text"
-                               className={this.state.purposeClass + "form-control"}
+                               className={`${this.state.purposeClass} form-control`}
                         />
                         <small className="form-text text-muted">
                             Write a little bit about what you hope to
                             accomplish.
                         </small>
-                    </div>
+                    </FormGroup>
                 </fieldset>
                 <div className="modal-footer">
-                    <Button className="btn btn-primary disabled">
+                    <Button bsStyle="primary" disabled>
                         Back
                     </Button>
                     <Button onClick={this.onFormSubmit}
