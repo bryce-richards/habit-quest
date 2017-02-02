@@ -20,7 +20,7 @@ module.exports = function(app) {
 
   });
 
-  // route to fetch challenge by id
+  // route to fetch challenge by foreign key user id
   app.get('/api/challenge/:user_id', (req, res) => {
 
     db.Challenge.findAll({
@@ -41,7 +41,7 @@ module.exports = function(app) {
 
   });
 
-  // route to create challenge
+  // route to create challenge. Has to be associated with user id
   app.post('/api/challenge/:user_id', (req, res) => {
 
     db.Challenge.create({
@@ -66,6 +66,7 @@ module.exports = function(app) {
 
   });
 
+  // route to delete Users
   app.post("/api/challenge/:user_id", (req, res) => {
     db.User.destroy({
       where: {
