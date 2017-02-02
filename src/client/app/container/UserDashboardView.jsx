@@ -1,8 +1,9 @@
 import React from "react";
-import Header from "./Header.jsx";
+import SignedInNavbar from "./SignedInNavbar.jsx";
+import UserDashboardHeader from "./UserDashboardHeader.jsx";
 import UserDashboardBody from "./UserDashboardBody.jsx";
 
-// var request = require("request");
+var axios = require("axios");
 
 class UserDashboardView extends React.Component {
 
@@ -10,26 +11,36 @@ class UserDashboardView extends React.Component {
         super(props);
 
         this.state = {
-            newChallenge: false,
-            userData: {},
-            challenges: [],
-            tasks: []
+            user: []
         }
     }
 
-    // getChallenges() {
-    //     /* AJAX request */
-    //     request.get(/*URL*/);
-    // }
+    componentWillMount() {
+        this.getUser();
+    }
+
+    // GET USER DATA
+    getUser() {
+
+        var that = this;
+
+        axios.get('/api/user').then((res) => {
+            var user = res.data.data;
+            console.log(user);
+            that.setState({
+                user: user
+            });
+            }).catch((e) => {
+            return e
+        });
+    }
 
     render() {
         return (
             <div>
-              <Header />
-              <UserDashboardBody />
-                {/*
-                  <h1>User Dashboard View Component</h1>
-                  */}
+                <SignedInNavbar />
+                <UserDashboardHeader />
+                <UserDashboardBody />
             </div>
 
         );

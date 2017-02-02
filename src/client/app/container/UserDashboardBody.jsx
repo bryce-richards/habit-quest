@@ -1,5 +1,4 @@
 import React from "react";
-import NewChallengeButton from "../components/NewChallengeButton.jsx";
 import UserDashboardChallenges from "./UserDashboardChallenges.jsx";
 import ModalForm from "./ModalForm.jsx";
 
@@ -12,35 +11,19 @@ class UserDashboardBody extends React.Component {
 
         this.newChallenge = this.newChallenge.bind(this);
         this.modalClose = this.modalClose.bind(this);
-
+        
         this.state = {
             newChallenge: false
         }
     }
 
-    newChallenge() {
-        console.log("New Challenge Button Clicked!");
-        this.setState({newChallenge: true});
-    }
-
-    modalClose() {
-        this.setState({newChallenge: false});
-    }
-
     render() {
         return (
             <Row>
-                <Button bsStyle="success" onClick={this.newChallenge}>Create a New Challenge</Button>
-
-
-                  <ModalForm
-                  modalOpen={this.state.newChallenge}
-                  onClose={this.modalClose} />
-
+                <UserDashboardChallenges />
             </Row>
         );
     }
 }
-                // <UserDashboardChallenges />
 
 export default UserDashboardBody;

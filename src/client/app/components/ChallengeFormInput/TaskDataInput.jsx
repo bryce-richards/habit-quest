@@ -41,19 +41,19 @@ class TaskDataInput extends React.Component {
                         <label>
                             What do you want to accomplish this week?
                         </label>
-                        <input
-                            className="form-control"
+                        <input 
+                            className="form-control" 
                             ref={"taskTitle"}
-                            onBlur={this.onBlurTitle}
+                            onBlur={this.onBlurTitle} 
                         />
                     </div>
                     <div className="form-group">
                         <label>
                             Days of The Week
                         </label>
-                        <select
+                        <select 
                             onBlur={this.addDays}
-                            className="form-control"
+                            className="form-control" 
                             ref={"numDays"}>
                             <option>1</option>
                             <option>2</option>
@@ -89,3 +89,4 @@ TaskDataInput.propTypes = {
 };
 
 export default TaskDataInput;
+

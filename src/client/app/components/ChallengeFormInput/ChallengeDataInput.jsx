@@ -34,7 +34,7 @@ class ChallengeDataInput extends React.Component {
             challengePurpose: this.refs.challengePurpose.value
         });
     }
-
+    
     getStatus() {
         (this.state.titleStatus && this.state.descriptionStatus && this.state.purposeStatus) ?
             this.setState(
@@ -58,16 +58,16 @@ class ChallengeDataInput extends React.Component {
         // VALIDATE TITLE ENTRY
         // if title is good to go, make status green
         // if title is not good to go, make status red
-        this.refs.challengeTitle.value ?
+        this.refs.challengeTitle.value ? 
             this.setClass(
                 {
                     titleClass: "has-success"
                 }, {
                     titleStatus: true
                 })
-
+            
             :
-
+            
             this.setState(
                 {
                     titleClass: "has-danger"
@@ -133,7 +133,7 @@ class ChallengeDataInput extends React.Component {
                         <input ref="challengeTitle"
                                onBlur={this.onBlurTitle}
                                type="text"
-                               className={this.state.titleClass + " form-control"}
+                               className={`${this.state.titleClass} form-control`}
                         />
                         <small className="form-text text-muted">
                             i.e. "Live Healthy", "Explore the Outdoors",
@@ -147,7 +147,7 @@ class ChallengeDataInput extends React.Component {
                         </label>
                         <textarea ref="challengeDescription"
                                   onBlur={this.onBlurDescription}
-                                  className={this.state.descriptionClass + " form-control"}>
+                                  className={`${this.state.descriptionClass} form-control`}>
                         </textarea>
                         <small className="form-text text-muted">
                             Write a little bit about what you hope to
@@ -162,7 +162,7 @@ class ChallengeDataInput extends React.Component {
                         <input ref="challengePurpose"
                                onBlur={this.onBlurPurpose}
                                type="text"
-                               className={this.state.purposeClass + "form-control"}
+                               className={`${this.state.purposeClass} form-control`}
                         />
                         <small className="form-text text-muted">
                             Write a little bit about what you hope to
