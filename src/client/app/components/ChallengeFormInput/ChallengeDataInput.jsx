@@ -28,7 +28,6 @@ class ChallengeDataInput extends React.Component {
             challengePurpose: this.state.purposeValue
         });
     }
-<<<<<<< HEAD
 
     getTitleValidationState() {
         var length = this.state.titleValue.length;
@@ -50,49 +49,6 @@ class ChallengeDataInput extends React.Component {
         } else if (length > 0) {
             return "error";
         }
-=======
-    
-    getStatus() {
-        (this.state.titleStatus && this.state.descriptionStatus && this.state.purposeStatus) ?
-            this.setState(
-                {
-                    nextButtonClass: "btn-success"
-                }, {
-                    nextButtonDisabled: false
-                })
-
-            :
-
-            this.setState(
-                {
-                    nextButtonClass: "btn-default"
-                }, {
-                    nextButtonDisabled: true
-                });
-    }
-
-    onBlurTitle() {
-        // VALIDATE TITLE ENTRY
-        // if title is good to go, make status green
-        // if title is not good to go, make status red
-        this.refs.challengeTitle.value ? 
-            this.setClass(
-                {
-                    titleClass: "has-success"
-                }, {
-                    titleStatus: true
-                })
-            
-            :
-            
-            this.setState(
-                {
-                    titleClass: "has-danger"
-                }, {
-                    titleStatus: false
-        });
-            this.getStatus();
->>>>>>> a4bfb70675645179bd7da6f983d45bb0a6bac43d
     }
 
     getPurposeValidationState() {
@@ -121,7 +77,6 @@ class ChallengeDataInput extends React.Component {
     render() {
         return (
             <form>
-<<<<<<< HEAD
                 <FormGroup
                     controlId="challengeTitle"
                     validationState={this.getTitleValidationState()}
@@ -180,55 +135,6 @@ class ChallengeDataInput extends React.Component {
                 </FormGroup>
                 <FormGroup>
                     <Button bsStyle="primary" disabled>
-=======
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="challengeTitle">
-                            Challenge Title
-                        </label>
-                        <input ref="challengeTitle"
-                               onBlur={this.onBlurTitle}
-                               type="text"
-                               className={`${this.state.titleClass} form-control`}
-                        />
-                        <small className="form-text text-muted">
-                            i.e. "Live Healthy", "Explore the Outdoors",
-                            "Write a Story"
-                        </small>
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="challengeDescription">
-                            Challenge Description
-                        </label>
-                        <textarea ref="challengeDescription"
-                                  onBlur={this.onBlurDescription}
-                                  className={`${this.state.descriptionClass} form-control`}>
-                        </textarea>
-                        <small className="form-text text-muted">
-                            Write a little bit about what you hope to
-                            accomplish.
-                        </small>
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="challengePurpose">
-                            Challenge Purpose
-                        </label>
-                        <input ref="challengePurpose"
-                               onBlur={this.onBlurPurpose}
-                               type="text"
-                               className={`${this.state.purposeClass} form-control`}
-                        />
-                        <small className="form-text text-muted">
-                            Write a little bit about what you hope to
-                            accomplish.
-                        </small>
-                    </div>
-                </fieldset>
-                <div className="modal-footer">
-                    <Button className="btn btn-primary disabled">
->>>>>>> a4bfb70675645179bd7da6f983d45bb0a6bac43d
                         Back
                     </Button>
                     <Button onClick={this.onFormSubmit}
