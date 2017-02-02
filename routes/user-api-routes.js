@@ -27,6 +27,7 @@ module.exports = function(app) {
 
   });
 
+  // route to get all users
   app.get('/api/users', (req, res) => {
 
   db.User.findAll().then((data) => {
@@ -43,6 +44,7 @@ module.exports = function(app) {
 
   });
 
+  // route to log a user in
   app.post('/signin',
     passport.authenticate('local', { failureRedirect: '/signin' }),
     function(req, res) {
