@@ -29,15 +29,10 @@ class UserDashboardBody extends React.Component {
     render() {
         return (
             <Row>
-                <Button bsStyle="success" onClick={this.newChallenge}>Create a New Challenge</Button>
-
-                <ModalForm 
-                    modalOpen={this.state.newChallenge}
-                    onClose={this.modalClose} />
+                <UserDashboardChallenges />
             </Row>
         );
     }
 }
-                // <UserDashboardChallenges />
 
 export default UserDashboardBody;

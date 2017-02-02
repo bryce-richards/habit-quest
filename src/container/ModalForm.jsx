@@ -75,7 +75,7 @@ class ModalForm extends React.Component {
 
     render() {
         return (
-            <Modal className="fade" show={this.props.modalOpen} tabIndex="-1" onHide={this.closeModal}>
+            <Modal className="fade" show={this.props.modalOpen} tabIndex="-1" onHide={this.props.onClose}>
 
                 <Modal.Header closeButton>
 
