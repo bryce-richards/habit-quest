@@ -4,7 +4,7 @@ import { Router, Route, Link, browserHistory } from 'react-router';
 
 import Signin from './components/signin.jsx';
 import SignupForm from './components/signup.jsx';
-// import Profile from './components/profile.jsx';
+import Profile from './components/profile.jsx';
 // import Header from './components/header.jsx';
 import UserDashboardView from './container/UserDashboardView.jsx';
 
@@ -24,8 +24,8 @@ render(
     <Route path="/" component={App}>
       <Route path="signup" component={SignupForm}/>
       <Route path="signin" component={Signin}/>
+      <Route path="profile" component={Profile }/> // route that should require auth
       {/*
-        <Route path="profile" component={Profile }/> // route that should require auth
         */}
     </Route>
   </Router>,
