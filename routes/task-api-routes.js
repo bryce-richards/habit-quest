@@ -3,10 +3,15 @@
 var db = require('../models');
 
 module.exports = function(app) {
-  // route to fetch all tasks
+  // route to fetch all tasks for logged in user
   app.get('/api/task', (req, res) => {
+    var id = req.user.id;
 
-    db.Task.findAll().then((data) => {
+    db.Task.findAll({
+      where: {
+        UserId: id
+      }
+    }).then((data) => {
       res.json({
         success: true,
         data: data
@@ -19,10 +24,10 @@ module.exports = function(app) {
     });
   });
 
-  //route to fetch task by challenge id
+  // route to fetch task by challenge id
   app.get('/api/task/:challenge_id', (req, res) => {
 
-    db.Task.findAll({
+    db.Task.findOne({
       where: {
         ChallengeId: req.params.challenge_id
       }
