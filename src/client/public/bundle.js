@@ -27503,7 +27503,7 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _UserDashboardBody = __webpack_require__(/*! ./UserDashboardBody.jsx */ 490);
+	var _UserDashboardBody = __webpack_require__(/*! ./UserDashboardBody.jsx */ 491);
 	
 	var _UserDashboardBody2 = _interopRequireDefault(_UserDashboardBody);
 	
@@ -27566,7 +27566,7 @@
 	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -27581,6 +27581,10 @@
 	
 	var _ModalForm2 = _interopRequireDefault(_ModalForm);
 	
+	var _Navbar = __webpack_require__(/*! ../components/Navbar.jsx */ 490);
+	
+	var _Navbar2 = _interopRequireDefault(_Navbar);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27590,35 +27594,40 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var Header = function (_React$Component) {
-	    _inherits(Header, _React$Component);
+	  _inherits(Header, _React$Component);
 	
-	    function Header() {
-	        _classCallCheck(this, Header);
+	  function Header() {
+	    _classCallCheck(this, Header);
 	
-	        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
+	  }
+	
+	  _createClass(Header, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        null,
+	        _react2.default.createElement(_Navbar2.default, null),
+	        _react2.default.createElement(
+	          "div",
+	          { className: "jumbotron" },
+	          _react2.default.createElement(
+	            "h1",
+	            null,
+	            "4 Week Challenge"
+	          ),
+	          _react2.default.createElement(
+	            "p",
+	            null,
+	            "Live your life to the fullest, one week at a time"
+	          )
+	        )
+	      );
 	    }
+	  }]);
 	
-	    _createClass(Header, [{
-	        key: "render",
-	        value: function render() {
-	            return _react2.default.createElement(
-	                "div",
-	                { className: "jumbotron" },
-	                _react2.default.createElement(
-	                    "h1",
-	                    null,
-	                    "4 Week Challenge"
-	                ),
-	                _react2.default.createElement(
-	                    "p",
-	                    null,
-	                    "Live your life to the fullest, one week at a time"
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return Header;
+	  return Header;
 	}(_react2.default.Component);
 	
 	exports.default = Header;
@@ -47639,6 +47648,136 @@
 
 /***/ },
 /* 490 */
+/*!**********************************************!*\
+  !*** ./src/client/app/components/Navbar.jsx ***!
+  \**********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Navbar = function (_React$Component) {
+	    _inherits(Navbar, _React$Component);
+	
+	    function Navbar() {
+	        _classCallCheck(this, Navbar);
+	
+	        return _possibleConstructorReturn(this, (Navbar.__proto__ || Object.getPrototypeOf(Navbar)).apply(this, arguments));
+	    }
+	
+	    _createClass(Navbar, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "nav",
+	                { className: "navbar navbar-inverse navbar-fixed-top" },
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "container-fluid" },
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "navbar-header" },
+	                        _react2.default.createElement(
+	                            "button",
+	                            { type: "button", className: "navbar-toggle collapsed", "data-toggle": "collapse", "data-target": "#bs-example-navbar-collapse-1", "aria-expanded": "false" },
+	                            _react2.default.createElement(
+	                                "span",
+	                                { className: "sr-only" },
+	                                "Toggle navigation"
+	                            ),
+	                            _react2.default.createElement("span", { className: "icon-bar" }),
+	                            _react2.default.createElement("span", { className: "icon-bar" }),
+	                            _react2.default.createElement("span", { className: "icon-bar" })
+	                        ),
+	                        _react2.default.createElement(
+	                            "p",
+	                            { className: "navbar-brand" },
+	                            this.props.username
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "collapse navbar-collapse", id: "bs-example-navbar-collapse-1" },
+	                        _react2.default.createElement(
+	                            "ul",
+	                            { className: "nav navbar-nav" },
+	                            _react2.default.createElement(
+	                                "li",
+	                                null,
+	                                _react2.default.createElement(
+	                                    "a",
+	                                    { href: "#" },
+	                                    "Dashboard"
+	                                )
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            "ul",
+	                            { className: "nav navbar-nav navbar-right" },
+	                            _react2.default.createElement(
+	                                "li",
+	                                { className: "dropdown" },
+	                                _react2.default.createElement(
+	                                    "a",
+	                                    { href: "#", className: "dropdown-toggle", "data-toggle": "dropdown", role: "button", "aria-haspopup": "true", "aria-expanded": "false" },
+	                                    _react2.default.createElement("i", { className: "fa fa-cogs", "aria-hidden": "true" }),
+	                                    _react2.default.createElement("span", { className: "caret" })
+	                                ),
+	                                _react2.default.createElement(
+	                                    "ul",
+	                                    { className: "dropdown-menu" },
+	                                    _react2.default.createElement(
+	                                        "li",
+	                                        null,
+	                                        _react2.default.createElement(
+	                                            "a",
+	                                            { href: "#" },
+	                                            "Settings"
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement("li", { role: "separator", className: "divider" }),
+	                                    _react2.default.createElement(
+	                                        "li",
+	                                        null,
+	                                        _react2.default.createElement(
+	                                            "a",
+	                                            { href: "#" },
+	                                            "Sign Out"
+	                                        )
+	                                    )
+	                                )
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Navbar;
+	}(_react2.default.Component);
+	
+	exports.default = Navbar;
+
+/***/ },
+/* 491 */
 /*!********************************************************!*\
   !*** ./src/client/app/container/UserDashboardBody.jsx ***!
   \********************************************************/
@@ -47656,11 +47795,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _NewChallengeButton = __webpack_require__(/*! ../components/NewChallengeButton.jsx */ 491);
+	var _NewChallengeButton = __webpack_require__(/*! ../components/NewChallengeButton.jsx */ 492);
 	
 	var _NewChallengeButton2 = _interopRequireDefault(_NewChallengeButton);
 	
-	var _UserDashboardChallenges = __webpack_require__(/*! ./UserDashboardChallenges.jsx */ 492);
+	var _UserDashboardChallenges = __webpack_require__(/*! ./UserDashboardChallenges.jsx */ 493);
 	
 	var _UserDashboardChallenges2 = _interopRequireDefault(_UserDashboardChallenges);
 	
@@ -47731,7 +47870,7 @@
 	exports.default = UserDashboardBody;
 
 /***/ },
-/* 491 */
+/* 492 */
 /*!**********************************************************!*\
   !*** ./src/client/app/components/NewChallengeButton.jsx ***!
   \**********************************************************/
@@ -47787,7 +47926,7 @@
 	exports.default = NewChallengeButton;
 
 /***/ },
-/* 492 */
+/* 493 */
 /*!**************************************************************!*\
   !*** ./src/client/app/container/UserDashboardChallenges.jsx ***!
   \**************************************************************/
@@ -47805,7 +47944,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _UserChallengeContainer = __webpack_require__(/*! ./UserChallengeContainer.jsx */ 493);
+	var _UserChallengeContainer = __webpack_require__(/*! ./UserChallengeContainer.jsx */ 494);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -47860,7 +47999,7 @@
 	exports.default = UserDashboardChallenges;
 
 /***/ },
-/* 493 */
+/* 494 */
 /*!*************************************************************!*\
   !*** ./src/client/app/container/UserChallengeContainer.jsx ***!
   \*************************************************************/
