@@ -4,7 +4,7 @@ var db = require('../models');
 
 module.exports = function(app) {
 
-  // route to fetch challenge by user id
+  // route to fetch all challenges using logged in user's id
   app.get('/api/challenge', (req, res) => {
     var id = req.user.id;
 
@@ -26,8 +26,10 @@ module.exports = function(app) {
 
   });
 
-  // route to create challenge. Has to be associated with user id
-  app.post('/api/challenge/:user_id', (req, res) => {
+
+  // route to create challenge using logged in user's id
+  app.post('/api/challenge', (req, res) => {
+    var id = req.user.id;
 
     db.Challenge.create({
       title: req.body.title,
@@ -35,7 +37,7 @@ module.exports = function(app) {
       purpose: req.body.purpose,
       private: req.body.private,
       imageUrl: req.body.challengeImageUrl,
-      UserId: req.params.user_id
+      UserId: id
     }).then((data) => {
       res.json({
         success: true,
@@ -50,11 +52,14 @@ module.exports = function(app) {
 
   });
 
-  // route to delete Users
-  app.post("/api/challenge/:user_id", (req, res) => {
+
+// route to delete ALL of the logged in user's challenges
+  app.delete("/api/challenge", (req, res) => {
+    var id = req.user.id;
+
     db.User.destroy({
       where: {
-        id: req.body.users_id
+        id: id
       }
     }).then((data) => {
           res.json({
