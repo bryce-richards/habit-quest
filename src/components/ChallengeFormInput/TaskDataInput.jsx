@@ -1,4 +1,5 @@
 import React, {PropTypes} from "react";
+import {Button} from "react-bootstrap";
 var validate = require("validate");
 
 class TaskDataInput extends React.Component {
@@ -11,17 +12,17 @@ class TaskDataInput extends React.Component {
         this.onBlurNumTasks = this.onBlurNumTasks.bind(this);
 
         this.state = {
-            currentWeek: 1,
-            numTasks: 1,
-            task: {
-                week: 1,
-                task: "",
-                taskDays: 1
-            }
+            currentWeek: 1
         }
     }
 
-    /* SET THE NUMBER OF TASKS WHEN A NEW VALUE IS SELECTED */
+    onFormSubmit() {
+        this.props.onSubmit({
+            currentWeek: this.state.currentWeek,
+            taskTitle: this.refs.taskTitle,
+            numDays: this.refs.numDays
+        })
+    }
 
     render() {
 
@@ -37,6 +38,9 @@ class TaskDataInput extends React.Component {
                 </fieldset>
                 <div className="form-group">
                     <div>
+                        <label>
+                            What do you want to accomplish this week?
+                        </label>
                         <input 
                             className="form-control" 
                             ref={"taskTitle"}
@@ -54,6 +58,10 @@ class TaskDataInput extends React.Component {
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
                         </select>
                         <small className="form-text text-muted">
                             Select How Many Days You Want To
@@ -62,16 +70,14 @@ class TaskDataInput extends React.Component {
                     </div>
                 </div>
                 <div className="modal-footer">
-                    <button type="button"
-                            className={this.state.backButtonDisabled `btn btn-primary`}>
+                    <Button className={this.state.backButtonDisabled `btn btn-primary`}>
                         Back
-                    </button>
-                    <button onClick={this.onFormSubmit}
-                            type="button"
+                    </Button>
+                    <Button onClick={this.onFormSubmit}
                             disabled={this.state.nextButtonDisabled}
                             className={this.state.nextButtonClass `btn`}>
-                        Next
-                    </button>
+                        {this.state.currentWeek === 4 ? "Submit" : "Next"}
+                    </Button>
                 </div>
             </form>
         );

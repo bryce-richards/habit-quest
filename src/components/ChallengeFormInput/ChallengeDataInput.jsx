@@ -176,7 +176,7 @@ class ChallengeDataInput extends React.Component {
                     </Button>
                     <Button onClick={this.onFormSubmit}
                             disabled={this.state.nextButtonDisabled}
-                            className={this.state.nextButtonClass `btn`}>
+                            className={this.state.nextButtonClass}>
                         Next
                     </Button>
                 </div>

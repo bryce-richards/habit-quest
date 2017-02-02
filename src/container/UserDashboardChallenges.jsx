@@ -12,9 +12,9 @@ class UserDashboardChallenges extends React.Component {
     }
 
     buildChallenges() {
-        return this.state.challenges.map((challenge, index) => {
+        return this.state.challenges.map((challenge, i) => {
             return <UserChallengeContainer
-                key={index}
+                key={i}
                 id={challenge.id}
                 title={challenge.title}
                 numDays={challenge.numDays}
@@ -25,7 +25,9 @@ class UserDashboardChallenges extends React.Component {
 
     render() {
         return (
-            {this.buildChallenges()}
+            <div>
+                {this.buildChallenges()}
+            </div>
         );
     }
 }

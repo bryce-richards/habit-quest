@@ -2,6 +2,7 @@ import React, {PropTypes} from "react";
 import ChallengeDataInput from "../components/ChallengeFormInput/ChallengeDataInput.jsx";
 import {Modal, Button} from "react-bootstrap";
 
+var request = require("request");
 
 class ModalForm extends React.Component {
 
@@ -9,24 +10,42 @@ class ModalForm extends React.Component {
         super(props);
 
         this.onChallengeDataSubmit = this.onChallengeDataSubmit.bind(this);
+        this.onWeekDataSubmit = this.onWeekDataSubmit.bind(this);
         this.getModalFormComponent = this.getModalFormComponent.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.postData = this.postData.bind(this);
         
         this.state = {
-            modalOpen: this.props.modalOpen,
             currentForm: 1,
-            newChallenge: {}
+            newChallenge: {},
         }
     }
 
     // formValues IS EQUAL TO THE PASSED IN INFORMATION ON THE CHILD'S onFormSubmit FUNCTION
     onChallengeDataSubmit(formValues) {
-        let updatedChallenge = {};
+        var updatedChallenge = this.state.newChallenge;
         updatedChallenge.title = formValues.challengeTitle;
         updatedChallenge.description = formValues.challengeDescription;
         updatedChallenge.purpse = formValues.challengePurpse;
         this.setState({newChallenge: updatedChallenge});
         this.setState({currentForm: this.state.currentForm + 1});
+    }
+
+    onWeekDataSubmit(formValues) {
+        var updatedChallenge = this.state.newChallenge;
+        updatedChallenge.weeks = [];
+        updatedChallenge.weeks.push({
+            week: formValues.currentWeek,
+            task: formValues.taskTitle,
+            days: formValues.numDays
+        });
+        this.setState({newChallenge: updatedChallenge});
+        this.setSTate({currentForm: this.state.currentFrom + 1});
+    }
+    
+    postData() {
+        /* POST NEW CHALLENGE TO DATABASE */
+        closeModal();
     }
 
     getModalFormComponent() {
@@ -35,19 +54,26 @@ class ModalForm extends React.Component {
                 return <ChallengeDataInput onSubmit={this.onChallengeDataSubmit} />;
             case 2:
                 return <WeekDataInput onSubmit={this.onChallengeWeekSubmit} />;
+            case 3:
+                return <WeekDataInput onSubmit={this.onChallengeWeekSubmit} />;
+            case 4:
+                return <WeekDataInput onSubmit={this.onChallengeWeekSubmit} />;
+            case 5:
+                return <WeekDataInput onSubmit={this.onChallengeWeekSubmit} />;
+            case 6:
+                postData();
         }
         return null;
 
     }
 
     closeModal() {
-        this.setState({ modalOpen: false });
         this.props.onClose(false);
     }
 
     render() {
         return (
-            <Modal className="fade" show={this.state.modalOpen} tabIndex="-1" role="dialog"
+            <Modal className="fade" show={this.props.modalOpen} tabIndex="-1" role="dialog"
                  aria-labelledby="exampleModalLongTitle"
                  aria-hidden="true">
                 <Modal.Dialog role="document">
