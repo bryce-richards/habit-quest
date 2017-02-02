@@ -1,6 +1,6 @@
 import React, {PropTypes} from "react";
-import {Button} from "react-bootstrap";
-var validate = require("validate");
+import { Button } from "react-bootstrap";
+// var validate = require("validate");
 
 class TaskDataInput extends React.Component {
 
@@ -84,7 +84,7 @@ class TaskDataInput extends React.Component {
     }
 }
 
-ChallengeData.propTypes = {
+TaskDataInput.propTypes = {
     onSubmit: PropTypes.func
 };
 

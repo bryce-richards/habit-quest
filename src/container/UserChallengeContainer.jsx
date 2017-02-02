@@ -1,26 +1,14 @@
 import React from "react";
 
-{/*CONTAINS DATA FOR INDIVIDUAL CHALLENGE*/}
+/*CONTAINS DATA FOR INDIVIDUAL CHALLENGE*/
 
 class UserChallengeContainer extends React.Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-        }
-    }
-
-
     render() {
         return (
-            
+            <div></div>
         );
     }
-}
-
-UserChallengeContainer.propTypes = {
-    challenge: PropTypes.object
 }
 
 export default UserChallengeContainer;

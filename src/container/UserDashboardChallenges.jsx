@@ -1,5 +1,6 @@
 import React from "react";
 import { UserChallengeContainer } from "./UserChallengeContainer.jsx";
+var request = require("request");
 
 class UserDashboardChallenges extends React.Component {
 
@@ -11,29 +12,29 @@ class UserDashboardChallenges extends React.Component {
         }
     }
 
-    buildChallenges() {
-        return this.state.challenges.map((challenge, i) => {
-            return <UserChallengeContainer
-                key={i}
-                id={challenge.id}
-                title={challenge.title}
-                numDays={challenge.numDays}
-                completedDays={challenge.completedDays}
-            />;
-        });
-    }
+    // buildChallenges() {
+    //     return this.state.challenges.map((challenge, i) => {
+    //         return <UserChallengeContainer
+    //             key={i}
+    //             id={challenge.id}
+    //             title={challenge.title}
+    //             numDays={challenge.numDays}
+    //             completedDays={challenge.completedDays}
+    //         />;
+    //     });
+    // }
 
     render() {
         return (
             <div>
-                {this.buildChallenges()}
+                {/*this.buildChallenges()*/}
             </div>
         );
     }
 }
 
-UserDashboardChallenges.propTypes = {
-    userChallenges: PropTypes.object
-};
+// UserDashboardChallenges.propTypes = {
+//     userChallenges: PropTypes.object
+// };
 
 export default UserDashboardChallenges;

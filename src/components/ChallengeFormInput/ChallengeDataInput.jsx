@@ -10,8 +10,8 @@ class ChallengeDataInput extends React.Component {
         this.onFormSubmit = this.onFormSubmit.bind(this);
         this.getStatus = this.getStatus.bind(this);
         this.onBlurTitle = this.onBlurTitle.bind(this);
-        this.onBlurDescription = this.onBlurDescription(this);
-        this.onBlurPurpose = this.onBlurPurpose(this);
+        this.onBlurDescription = this.onBlurDescription.bind(this);
+        this.onBlurPurpose = this.onBlurPurpose.bind(this);
 
         this.state = {
             errors: [],
@@ -133,7 +133,7 @@ class ChallengeDataInput extends React.Component {
                         <input ref="challengeTitle"
                                onBlur={this.onBlurTitle}
                                type="text"
-                               className={this.state.titleClass `form-control`}
+                               className={this.state.titleClass + " form-control"}
                         />
                         <small className="form-text text-muted">
                             i.e. "Live Healthy", "Explore the Outdoors",
@@ -147,7 +147,7 @@ class ChallengeDataInput extends React.Component {
                         </label>
                         <textarea ref="challengeDescription"
                                   onBlur={this.onBlurDescription}
-                                  className={this.state.descriptionClass `form-control`}>
+                                  className={this.state.descriptionClass + " form-control"}>
                         </textarea>
                         <small className="form-text text-muted">
                             Write a little bit about what you hope to
@@ -162,7 +162,7 @@ class ChallengeDataInput extends React.Component {
                         <input ref="challengePurpose"
                                onBlur={this.onBlurPurpose}
                                type="text"
-                               className={this.state.purposeClass `form-control`}
+                               className={this.state.purposeClass + "form-control"}
                         />
                         <small className="form-text text-muted">
                             Write a little bit about what you hope to

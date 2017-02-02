@@ -1,8 +1,8 @@
-import React, {PropTypes} from "react";
-import ChallengeDataInput from "../components/ChallengeFormInput/ChallengeDataInput.jsx";
-import {Modal, Button} from "react-bootstrap";
+import React, { PropTypes } from "react";
+import { Modal, Button } from "react-bootstrap";
 
-var request = require("request");
+import ChallengeDataInput from "../components/ChallengeFormInput/ChallengeDataInput.jsx";
+import TaskDataInput from "../components/ChallengeFormInput/TaskDataInput.jsx";
 
 class ModalForm extends React.Component {
 
@@ -40,66 +40,52 @@ class ModalForm extends React.Component {
             days: formValues.numDays
         });
         this.setState({newChallenge: updatedChallenge});
-        this.setSTate({currentForm: this.state.currentFrom + 1});
+        this.setState({currentForm: this.state.currentFrom + 1});
     }
     
     postData() {
         /* POST NEW CHALLENGE TO DATABASE */
-        closeModal();
+        return this.closeModal();
     }
-
+    
     getModalFormComponent() {
         switch(this.state.currentForm) {
             case 1:
                 return <ChallengeDataInput onSubmit={this.onChallengeDataSubmit} />;
             case 2:
-                return <WeekDataInput onSubmit={this.onChallengeWeekSubmit} />;
+                return <TaskDataInput onSubmit={this.onChallengeWeekSubmit} />;
             case 3:
-                return <WeekDataInput onSubmit={this.onChallengeWeekSubmit} />;
+                return <TaskDataInput onSubmit={this.onChallengeWeekSubmit} />;
             case 4:
-                return <WeekDataInput onSubmit={this.onChallengeWeekSubmit} />;
+                return <TaskDataInput onSubmit={this.onChallengeWeekSubmit} />;
             case 5:
-                return <WeekDataInput onSubmit={this.onChallengeWeekSubmit} />;
+                return <TaskDataInput onSubmit={this.onChallengeWeekSubmit} />;
             case 6:
-                postData();
+                return this.postData();
         }
         return null;
-
     }
 
     closeModal() {
-        this.props.onClose(false);
+        return this.props.onClose();
     }
 
     render() {
         return (
-            <Modal className="fade" show={this.props.modalOpen} tabIndex="-1" role="dialog"
-                 aria-labelledby="exampleModalLongTitle"
-                 aria-hidden="true">
-                <Modal.Dialog role="document">
+            <Modal className="fade" show={this.props.modalOpen} tabIndex="-1" onHide={this.closeModal}>
 
-                    <Modal.Content>
+                <Modal.Header closeButton>
 
-                        <Modal.Header>
+                    {/* MODAL HEADER TEXT*/}
+                    <Modal.Title>New 4 Week Challenge</Modal.Title>
+                </Modal.Header>
 
-                            {/* WHEN USER CLICKS TO CLOSE, CALL PROP FUNCTION onClose */}
-                            <Button onClick={this.closeModal}>
-                                <span aria-hidden="true">&times;</span>
-                            </Button>
+                <Modal.Body>
+                    {this.getModalFormComponent()}
+                </Modal.Body>
 
-                            {/* MODAL HEADER TEXT*/}
-                            <h5 className="modal-title">New 4 Week Challenge</h5>
-                        </Modal.Header>
-
-                        <Modal.Body>
-                            {this.getModalFormComponent}
-                        </Modal.Body>
-
-                    </Modal.Content>
-                </Modal.Dialog>
             </Modal>
         );
-
     }
 }
 

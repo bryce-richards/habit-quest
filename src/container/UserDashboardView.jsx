@@ -1,11 +1,8 @@
 import React from "react";
+import Header from "./Header.jsx";
+import UserDashboardBody from "./UserDashboardBody.jsx";
 
-var challenge = {
-    challengeId: "",
-    challengeTite: "",
-    numDays: "",
-    completedDays: ""
-}
+var request = require("request");
 
 class UserDashboardView extends React.Component {
 
@@ -14,22 +11,23 @@ class UserDashboardView extends React.Component {
 
         this.state = {
             newChallenge: false,
-            userData: {
-                first: "",
-                last: "",
-                password: "",
-                email: "",
-                imageUrl: ""
-            }
+            userData: {},
+            challenges: [],
+            tasks: []
         }
     }
 
+    // getChallenges() {
+    //     /* AJAX request */
+    //     request.get(/*URL*/);
+    // }
+
     render() {
         return (
-            <main>
-                <UserDashboardHeader />
-                <UserDashoardBody />
-            </main>
+            <div>
+                <Header />
+                <UserDashboardBody />
+            </div>
 
         );
     }
