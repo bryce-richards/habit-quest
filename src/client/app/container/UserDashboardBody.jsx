@@ -1,6 +1,6 @@
 import React from "react";
-// import NewChallengeButton from "../components/NewChallengeButton.jsx";
-// import UserDashboardChallenges from "./UserDashboardChallenges.jsx";
+import NewChallengeButton from "../components/NewChallengeButton.jsx";
+import UserDashboardChallenges from "./UserDashboardChallenges.jsx";
 import ModalForm from "./ModalForm.jsx";
 
 import { Grid, Row, Col, Clearfix, Button } from "react-bootstrap";
@@ -36,7 +36,7 @@ class UserDashboardBody extends React.Component {
                   <ModalForm
                   modalOpen={this.state.newChallenge}
                   onClose={this.modalClose} />
-                  
+
             </Row>
         );
     }

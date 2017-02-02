@@ -27430,6 +27430,14 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _NewChallengeButton = __webpack_require__(/*! ../components/NewChallengeButton.jsx */ 489);
+	
+	var _NewChallengeButton2 = _interopRequireDefault(_NewChallengeButton);
+	
+	var _UserDashboardChallenges = __webpack_require__(/*! ./UserDashboardChallenges.jsx */ 490);
+	
+	var _UserDashboardChallenges2 = _interopRequireDefault(_UserDashboardChallenges);
+	
 	var _ModalForm = __webpack_require__(/*! ./ModalForm.jsx */ 486);
 	
 	var _ModalForm2 = _interopRequireDefault(_ModalForm);
@@ -27443,9 +27451,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	// import NewChallengeButton from "../components/NewChallengeButton.jsx";
-	// import UserDashboardChallenges from "./UserDashboardChallenges.jsx";
-	
 	
 	var UserDashboardBody = function (_React$Component) {
 	    _inherits(UserDashboardBody, _React$Component);
@@ -47512,6 +47517,134 @@
 	};
 	
 	exports.default = TaskDataInput;
+
+/***/ },
+/* 489 */
+/*!**********************************************************!*\
+  !*** ./src/client/app/components/NewChallengeButton.jsx ***!
+  \**********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactBootstrap = __webpack_require__(/*! react-bootstrap */ 236);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var NewChallengeButton = function (_React$Component) {
+	    _inherits(NewChallengeButton, _React$Component);
+	
+	    function NewChallengeButton() {
+	        _classCallCheck(this, NewChallengeButton);
+	
+	        return _possibleConstructorReturn(this, (NewChallengeButton.__proto__ || Object.getPrototypeOf(NewChallengeButton)).apply(this, arguments));
+	    }
+	
+	    _createClass(NewChallengeButton, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                _extends({}, this.props, { bsStyle: "success" }),
+	                "Create a New Challenge"
+	            );
+	        }
+	    }]);
+	
+	    return NewChallengeButton;
+	}(_react2.default.Component);
+	
+	exports.default = NewChallengeButton;
+
+/***/ },
+/* 490 */
+/*!**************************************************************!*\
+  !*** ./src/client/app/container/UserDashboardChallenges.jsx ***!
+  \**************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	// import { UserChallengeContainer } from "./UserChallengeContainer.jsx";
+	// var request = require("request");
+	
+	var UserDashboardChallenges = function (_React$Component) {
+	    _inherits(UserDashboardChallenges, _React$Component);
+	
+	    function UserDashboardChallenges(props) {
+	        _classCallCheck(this, UserDashboardChallenges);
+	
+	        var _this = _possibleConstructorReturn(this, (UserDashboardChallenges.__proto__ || Object.getPrototypeOf(UserDashboardChallenges)).call(this, props));
+	
+	        _this.state = {
+	            challenges: []
+	        };
+	        return _this;
+	    }
+	
+	    // buildChallenges() {
+	    //     return this.state.challenges.map((challenge, i) => {
+	    //         return <UserChallengeContainer
+	    //             key={i}
+	    //             id={challenge.id}
+	    //             title={challenge.title}
+	    //             numDays={challenge.numDays}
+	    //             completedDays={challenge.completedDays}
+	    //         />;
+	    //     });
+	    // }
+	
+	    _createClass(UserDashboardChallenges, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement("div", null);
+	        }
+	    }]);
+	
+	    return UserDashboardChallenges;
+	}(_react2.default.Component);
+	
+	// UserDashboardChallenges.propTypes = {
+	//     userChallenges: PropTypes.object
+	// };
+	
+	exports.default = UserDashboardChallenges;
 
 /***/ }
 /******/ ]);
