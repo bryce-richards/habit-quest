@@ -1,5 +1,4 @@
 import React from "react";
-import NewChallengeButton from "../components/NewChallengeButton.jsx";
 import UserDashboardChallenges from "./UserDashboardChallenges.jsx";
 import ModalForm from "./ModalForm.jsx";
 
