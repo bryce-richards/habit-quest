@@ -17,7 +17,11 @@ module.exports = function (sequelize, DataTypes) {
 		},
 		taskEnd: {
 			type: DataTypes.DATEONLY
+		},
+		UserId: {
+			type: DataTypes.INTEGER
 		}
+
 	}, {
 		classMethods: {
 			associate: function(models) {

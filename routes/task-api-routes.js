@@ -47,7 +47,8 @@ module.exports = function(app) {
   		countComplete: req.body.countComplete,
   		targetComplete: req.body.targetComplete,
   		taskEnd: req.body.taskEnd,
-  		ChallengeId: req.params.challenge_id
+  		ChallengeId: req.params.challenge_id,
+  		UserId: req.user.id
     }).then((data) => {
       res.json({
         success: true,
