@@ -1,5 +1,5 @@
 import React from "react";
-// import { UserChallengeContainer } from "./UserChallengeContainer.jsx";
+import { UserChallengeContainer } from "./UserChallengeContainer.jsx";
 // var request = require("request");
 
 class UserDashboardChallenges extends React.Component {
