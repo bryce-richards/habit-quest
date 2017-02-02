@@ -26,14 +26,17 @@ class ModalForm extends React.Component {
         var updatedChallenge = this.state.newChallenge;
         updatedChallenge.title = formValues.challengeTitle;
         updatedChallenge.description = formValues.challengeDescription;
-        updatedChallenge.purpse = formValues.challengePurpse;
+        updatedChallenge.purpsoe = formValues.challengePurpse;
         this.setState({newChallenge: updatedChallenge});
         this.setState({currentForm: this.state.currentForm + 1});
     }
 
     onWeekDataSubmit(formValues) {
         var updatedChallenge = this.state.newChallenge;
-        updatedChallenge.weeks = [];
+
+        if(!updatedChallenge.weeks) {
+            updatedChallenge.weeks = [];
+        }
         updatedChallenge.weeks.push({
             week: formValues.currentWeek,
             task: formValues.taskTitle,
