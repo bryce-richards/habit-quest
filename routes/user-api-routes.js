@@ -1,16 +1,18 @@
 /*jshint esversion: 6*/
 const passport = require('passport');
 const db = require("../models");
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 module.exports = function(app) {
 
   // route to fetch challenge by id
-  app.get('/api/user/:user_id', (req, res) => {
-
+  app.get('/api/user', (req, res) => {
+  var id = req.user.id
   db.User.findOne({
     where: {
-      id:req.params.user_id
-    }
+      id: id
+      }
     }).then((data) => {
       res.json({
         success: true,
@@ -44,29 +46,36 @@ module.exports = function(app) {
   app.post('/signin',
     passport.authenticate('local', { failureRedirect: '/signin' }),
     function(req, res) {
-
-      res.redirect('/profile');
-
+      req.session.user = req.user;
+      res.redirect('/profile/');
     });
 
+  // route to create a new user
   app.post('/signup', (req, res) => {
 
     var user = req.body;
 
-    db.User.create({
-      firstName: user.firstName,
-      lastName: user.lastName,
-      userName: user.userName,
-      email: user.email,
-      password: user.password,
-      imageUrl: user.imageUrl
-    }).then((data) => {
-      res.json(data);
-    }).catch((e) => {
-      res.json({
-        error: e
-      });
+    bcrypt.hash(user.password, saltRounds, function(err, hash) {
+
+        var encryptedPassword = hash;
+
+        db.User.create({
+          firstName: user.firstName,
+          lastName: user.lastName,
+          userName: user.userName,
+          email: user.email,
+          password: hash,
+          imageUrl: user.imageUrl
+        }).then((data) => {
+          res.redirect('/signin');
+        }).catch((e) => {
+          res.json({
+            error: e
+          });
+        });
+
     });
+
 
   });
 
