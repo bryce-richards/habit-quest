@@ -53,13 +53,14 @@ class ModalForm extends React.Component {
         })
         .then((returnedChallenge) => {
             var challengeId = returnedChallenge.data.data.id;
-            console.log("tasks: ", this.state.newChallenge.tasks);
-            for (var i = 0; i < this.state.newChallenge.tasks.length; i++) {
+            var weeksData = that.state.newChallenge.weeks
+            console.log("tasks: ", that.state.newChallenge.weeks);
+            for (var i = 0; i < weeksData.length; i++) {
                 axios.post('/api/task/' + challengeId, {
                     challengeId: challengeId,
-                    taskName: this.state.newChallenge.tasks[i].task,
-                    targetComplete: this.state.newChallenge.tasks[i].numDays,
-                    weekNum: this.state.newChallenge.tasks[i].week
+                    taskName: weeksData[i].task,
+                    targetComplete: weeksData[i].numDays,
+                    weekNum: weeksData[i].week
                 })
                 .catch((e) => {
                     return e;

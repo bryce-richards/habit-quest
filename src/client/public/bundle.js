@@ -49151,13 +49151,14 @@
 	                purpose: this.state.newChallenge.purpose
 	            }).then(function (returnedChallenge) {
 	                var challengeId = returnedChallenge.data.data.id;
-	                console.log("tasks: ", _this2.state.newChallenge.tasks);
-	                for (var i = 0; i < _this2.state.newChallenge.tasks.length; i++) {
+	                var weeksData = that.state.newChallenge.weeks;
+	                console.log("tasks: ", that.state.newChallenge.weeks);
+	                for (var i = 0; i < weeksData.length; i++) {
 	                    axios.post('/api/task/' + challengeId, {
 	                        challengeId: challengeId,
-	                        taskName: _this2.state.newChallenge.tasks[i].task,
-	                        targetComplete: _this2.state.newChallenge.tasks[i].numDays,
-	                        weekNum: _this2.state.newChallenge.tasks[i].week
+	                        taskName: weeksData[i].task,
+	                        targetComplete: weeksData[i].numDays,
+	                        weekNum: weeksData[i].week
 	                    }).catch(function (e) {
 	                        return e;
 	                    });
