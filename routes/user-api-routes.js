@@ -8,7 +8,7 @@ module.exports = function(app) {
 
   // route to fetch challenge by id
   app.get('/api/user', (req, res) => {
-  var id = req.user.id
+  var id = req.user.id;
   db.User.findOne({
     where: {
       id: id

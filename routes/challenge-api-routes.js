@@ -26,6 +26,25 @@ module.exports = function(app) {
 
   });
 
+  // route to fetch challenges by id
+  app.get('/api/challenge', (req, res) => {
+    db.Challenge.findOne({
+      where: {
+        id: req.body.id
+      }
+    }).then((data) => {
+      res.json({
+        success: true,
+        data: data
+      });
+    }).catch((e) => {
+      res.json({
+        success: false,
+        error: e
+      });
+    });
+  });
+
   // route to create challenge using logged in user's id
   app.post('/api/challenge', (req, res) => {
     var id = req.user.id;
@@ -48,8 +67,8 @@ module.exports = function(app) {
         error: e
       });
     });
-
   });
+
 
 // route to delete ALL of the logged in user's challenges
   app.delete("/api/challenge", (req, res) => {

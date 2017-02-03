@@ -29297,13 +29297,19 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Header = __webpack_require__(/*! ./Header.jsx */ 265);
+	var _SignedInNavbar = __webpack_require__(/*! ./SignedInNavbar.jsx */ 265);
 	
-	var _Header2 = _interopRequireDefault(_Header);
+	var _SignedInNavbar2 = _interopRequireDefault(_SignedInNavbar);
+	
+	var _UserDashboardHeader = __webpack_require__(/*! ./UserDashboardHeader.jsx */ 516);
+	
+	var _UserDashboardHeader2 = _interopRequireDefault(_UserDashboardHeader);
 	
 	var _UserDashboardBody = __webpack_require__(/*! ./UserDashboardBody.jsx */ 520);
 	
 	var _UserDashboardBody2 = _interopRequireDefault(_UserDashboardBody);
+	
+	var _reactBootstrap = __webpack_require__(/*! react-bootstrap */ 266);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -29313,7 +29319,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	// var request = require("request");
+	var axios = __webpack_require__(/*! axios */ 236);
 	
 	var UserDashboardView = function (_React$Component) {
 	    _inherits(UserDashboardView, _React$Component);
@@ -29324,27 +29330,56 @@
 	        var _this = _possibleConstructorReturn(this, (UserDashboardView.__proto__ || Object.getPrototypeOf(UserDashboardView)).call(this, props));
 	
 	        _this.state = {
-	            newChallenge: false,
-	            userData: {},
-	            challenges: [],
-	            tasks: []
+	            user: []
 	        };
 	        return _this;
 	    }
 	
-	    // getChallenges() {
-	    //     /* AJAX request */
-	    //     request.get(/*URL*/);
-	    // }
-	
 	    _createClass(UserDashboardView, [{
+	        key: "componentWillMount",
+	        value: function componentWillMount() {
+	            this.getUser();
+	        }
+	
+	        // GET USER DATA
+	
+	    }, {
+	        key: "getUser",
+	        value: function getUser() {
+	
+	            var that = this;
+	
+	            axios.get('/api/user').then(function (res) {
+	                var user = res.data.data;
+	                console.log(user);
+	                that.setState({
+	                    user: user
+	                });
+	            }).catch(function (e) {
+	                return e;
+	            });
+	        }
+	    }, {
 	        key: "render",
 	        value: function render() {
 	            return _react2.default.createElement(
-	                "div",
+	                _reactBootstrap.Grid,
 	                null,
-	                _react2.default.createElement(_Header2.default, null),
-	                _react2.default.createElement(_UserDashboardBody2.default, null)
+	                _react2.default.createElement(
+	                    _reactBootstrap.Row,
+	                    null,
+	                    _react2.default.createElement(_SignedInNavbar2.default, null)
+	                ),
+	                _react2.default.createElement(
+	                    _reactBootstrap.Row,
+	                    null,
+	                    _react2.default.createElement(_UserDashboardHeader2.default, null)
+	                ),
+	                _react2.default.createElement(
+	                    _reactBootstrap.Row,
+	                    null,
+	                    _react2.default.createElement(_UserDashboardBody2.default, null)
+	                )
 	            );
 	        }
 	    }]);
@@ -29356,15 +29391,15 @@
 
 /***/ },
 /* 265 */
-/*!*********************************************!*\
-  !*** ./src/client/app/container/Header.jsx ***!
-  \*********************************************/
+/*!*****************************************************!*\
+  !*** ./src/client/app/container/SignedInNavbar.jsx ***!
+  \*****************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -29375,14 +29410,6 @@
 	
 	var _reactBootstrap = __webpack_require__(/*! react-bootstrap */ 266);
 	
-	var _ModalForm = __webpack_require__(/*! ./ModalForm.jsx */ 516);
-	
-	var _ModalForm2 = _interopRequireDefault(_ModalForm);
-	
-	var _Navbar = __webpack_require__(/*! ../components/Navbar.jsx */ 519);
-	
-	var _Navbar2 = _interopRequireDefault(_Navbar);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -29391,44 +29418,52 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var Header = function (_React$Component) {
-	  _inherits(Header, _React$Component);
+	var SignedInNavbar = function (_React$Component) {
+	    _inherits(SignedInNavbar, _React$Component);
 	
-	  function Header() {
-	    _classCallCheck(this, Header);
+	    function SignedInNavbar() {
+	        _classCallCheck(this, SignedInNavbar);
 	
-	    return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
-	  }
-	
-	  _createClass(Header, [{
-	    key: "render",
-	    value: function render() {
-	      return _react2.default.createElement(
-	        "div",
-	        null,
-	        _react2.default.createElement(_Navbar2.default, null),
-	        _react2.default.createElement(
-	          "div",
-	          { className: "jumbotron" },
-	          _react2.default.createElement(
-	            "h1",
-	            null,
-	            "4 Week Challenge"
-	          ),
-	          _react2.default.createElement(
-	            "p",
-	            null,
-	            "Live your life to the fullest, one week at a time"
-	          )
-	        )
-	      );
+	        return _possibleConstructorReturn(this, (SignedInNavbar.__proto__ || Object.getPrototypeOf(SignedInNavbar)).apply(this, arguments));
 	    }
-	  }]);
 	
-	  return Header;
+	    _createClass(SignedInNavbar, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                _reactBootstrap.Navbar,
+	                { inverse: true, collapseOnSelect: true, className: "navbar-fixed-top" },
+	                _react2.default.createElement(
+	                    _reactBootstrap.Navbar.Header,
+	                    null,
+	                    _react2.default.createElement(_reactBootstrap.Navbar.Brand, null),
+	                    _react2.default.createElement(_reactBootstrap.Navbar.Toggle, null)
+	                ),
+	                _react2.default.createElement(
+	                    _reactBootstrap.Navbar.Collapse,
+	                    null,
+	                    _react2.default.createElement(
+	                        _reactBootstrap.Nav,
+	                        { pullRight: true },
+	                        _react2.default.createElement(
+	                            _reactBootstrap.NavItem,
+	                            { eventKey: 1, href: "#" },
+	                            "Sign Out"
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return SignedInNavbar;
 	}(_react2.default.Component);
 	
-	exports.default = Header;
+	SignedInNavbar.propTypes = {
+	    user: _react.PropTypes.array
+	};
+	
+	exports.default = SignedInNavbar;
 
 /***/ },
 /* 266 */
@@ -29883,9 +29918,9 @@
 
 /***/ },
 /* 270 */
-/*!***************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/fn/object/assign.js ***!
-  \***************************************************************/
+/*!***********************************************!*\
+  !*** ./~/core-js/library/fn/object/assign.js ***!
+  \***********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(/*! ../../modules/es6.object.assign */ 271);
@@ -29893,9 +29928,9 @@
 
 /***/ },
 /* 271 */
-/*!************************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/es6.object.assign.js ***!
-  \************************************************************************/
+/*!********************************************************!*\
+  !*** ./~/core-js/library/modules/es6.object.assign.js ***!
+  \********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.3.1 Object.assign(target, source)
@@ -29905,9 +29940,9 @@
 
 /***/ },
 /* 272 */
-/*!**************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_export.js ***!
-  \**************************************************************/
+/*!**********************************************!*\
+  !*** ./~/core-js/library/modules/_export.js ***!
+  \**********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var global    = __webpack_require__(/*! ./_global */ 273)
@@ -29974,9 +30009,9 @@
 
 /***/ },
 /* 273 */
-/*!**************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_global.js ***!
-  \**************************************************************/
+/*!**********************************************!*\
+  !*** ./~/core-js/library/modules/_global.js ***!
+  \**********************************************/
 /***/ function(module, exports) {
 
 	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -29986,9 +30021,9 @@
 
 /***/ },
 /* 274 */
-/*!************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_core.js ***!
-  \************************************************************/
+/*!********************************************!*\
+  !*** ./~/core-js/library/modules/_core.js ***!
+  \********************************************/
 /***/ function(module, exports) {
 
 	var core = module.exports = {version: '2.4.0'};
@@ -29996,9 +30031,9 @@
 
 /***/ },
 /* 275 */
-/*!***********************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_ctx.js ***!
-  \***********************************************************/
+/*!*******************************************!*\
+  !*** ./~/core-js/library/modules/_ctx.js ***!
+  \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// optional / simple context binding
@@ -30024,9 +30059,9 @@
 
 /***/ },
 /* 276 */
-/*!******************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_a-function.js ***!
-  \******************************************************************/
+/*!**************************************************!*\
+  !*** ./~/core-js/library/modules/_a-function.js ***!
+  \**************************************************/
 /***/ function(module, exports) {
 
 	module.exports = function(it){
@@ -30036,9 +30071,9 @@
 
 /***/ },
 /* 277 */
-/*!************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_hide.js ***!
-  \************************************************************/
+/*!********************************************!*\
+  !*** ./~/core-js/library/modules/_hide.js ***!
+  \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var dP         = __webpack_require__(/*! ./_object-dp */ 278)
@@ -30052,9 +30087,9 @@
 
 /***/ },
 /* 278 */
-/*!*****************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_object-dp.js ***!
-  \*****************************************************************/
+/*!*************************************************!*\
+  !*** ./~/core-js/library/modules/_object-dp.js ***!
+  \*************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var anObject       = __webpack_require__(/*! ./_an-object */ 279)
@@ -30076,9 +30111,9 @@
 
 /***/ },
 /* 279 */
-/*!*****************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_an-object.js ***!
-  \*****************************************************************/
+/*!*************************************************!*\
+  !*** ./~/core-js/library/modules/_an-object.js ***!
+  \*************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var isObject = __webpack_require__(/*! ./_is-object */ 280);
@@ -30089,9 +30124,9 @@
 
 /***/ },
 /* 280 */
-/*!*****************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_is-object.js ***!
-  \*****************************************************************/
+/*!*************************************************!*\
+  !*** ./~/core-js/library/modules/_is-object.js ***!
+  \*************************************************/
 /***/ function(module, exports) {
 
 	module.exports = function(it){
@@ -30100,9 +30135,9 @@
 
 /***/ },
 /* 281 */
-/*!**********************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_ie8-dom-define.js ***!
-  \**********************************************************************/
+/*!******************************************************!*\
+  !*** ./~/core-js/library/modules/_ie8-dom-define.js ***!
+  \******************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = !__webpack_require__(/*! ./_descriptors */ 282) && !__webpack_require__(/*! ./_fails */ 283)(function(){
@@ -30111,9 +30146,9 @@
 
 /***/ },
 /* 282 */
-/*!*******************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_descriptors.js ***!
-  \*******************************************************************/
+/*!***************************************************!*\
+  !*** ./~/core-js/library/modules/_descriptors.js ***!
+  \***************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// Thank's IE8 for his funny defineProperty
@@ -30123,9 +30158,9 @@
 
 /***/ },
 /* 283 */
-/*!*************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_fails.js ***!
-  \*************************************************************/
+/*!*********************************************!*\
+  !*** ./~/core-js/library/modules/_fails.js ***!
+  \*********************************************/
 /***/ function(module, exports) {
 
 	module.exports = function(exec){
@@ -30138,9 +30173,9 @@
 
 /***/ },
 /* 284 */
-/*!******************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_dom-create.js ***!
-  \******************************************************************/
+/*!**************************************************!*\
+  !*** ./~/core-js/library/modules/_dom-create.js ***!
+  \**************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var isObject = __webpack_require__(/*! ./_is-object */ 280)
@@ -30153,9 +30188,9 @@
 
 /***/ },
 /* 285 */
-/*!********************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_to-primitive.js ***!
-  \********************************************************************/
+/*!****************************************************!*\
+  !*** ./~/core-js/library/modules/_to-primitive.js ***!
+  \****************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.1.1 ToPrimitive(input [, PreferredType])
@@ -30173,9 +30208,9 @@
 
 /***/ },
 /* 286 */
-/*!*********************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_property-desc.js ***!
-  \*********************************************************************/
+/*!*****************************************************!*\
+  !*** ./~/core-js/library/modules/_property-desc.js ***!
+  \*****************************************************/
 /***/ function(module, exports) {
 
 	module.exports = function(bitmap, value){
@@ -30189,9 +30224,9 @@
 
 /***/ },
 /* 287 */
-/*!*********************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_object-assign.js ***!
-  \*********************************************************************/
+/*!*****************************************************!*\
+  !*** ./~/core-js/library/modules/_object-assign.js ***!
+  \*****************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30230,9 +30265,9 @@
 
 /***/ },
 /* 288 */
-/*!*******************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_object-keys.js ***!
-  \*******************************************************************/
+/*!***************************************************!*\
+  !*** ./~/core-js/library/modules/_object-keys.js ***!
+  \***************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.14 / 15.2.3.14 Object.keys(O)
@@ -30245,9 +30280,9 @@
 
 /***/ },
 /* 289 */
-/*!****************************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_object-keys-internal.js ***!
-  \****************************************************************************/
+/*!************************************************************!*\
+  !*** ./~/core-js/library/modules/_object-keys-internal.js ***!
+  \************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var has          = __webpack_require__(/*! ./_has */ 290)
@@ -30270,9 +30305,9 @@
 
 /***/ },
 /* 290 */
-/*!***********************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_has.js ***!
-  \***********************************************************/
+/*!*******************************************!*\
+  !*** ./~/core-js/library/modules/_has.js ***!
+  \*******************************************/
 /***/ function(module, exports) {
 
 	var hasOwnProperty = {}.hasOwnProperty;
@@ -30282,9 +30317,9 @@
 
 /***/ },
 /* 291 */
-/*!******************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_to-iobject.js ***!
-  \******************************************************************/
+/*!**************************************************!*\
+  !*** ./~/core-js/library/modules/_to-iobject.js ***!
+  \**************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// to indexed object, toObject with fallback for non-array-like ES3 strings
@@ -30296,9 +30331,9 @@
 
 /***/ },
 /* 292 */
-/*!***************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_iobject.js ***!
-  \***************************************************************/
+/*!***********************************************!*\
+  !*** ./~/core-js/library/modules/_iobject.js ***!
+  \***********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// fallback for non-array-like ES3 and non-enumerable old V8 strings
@@ -30309,9 +30344,9 @@
 
 /***/ },
 /* 293 */
-/*!***********************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_cof.js ***!
-  \***********************************************************/
+/*!*******************************************!*\
+  !*** ./~/core-js/library/modules/_cof.js ***!
+  \*******************************************/
 /***/ function(module, exports) {
 
 	var toString = {}.toString;
@@ -30322,9 +30357,9 @@
 
 /***/ },
 /* 294 */
-/*!***************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_defined.js ***!
-  \***************************************************************/
+/*!***********************************************!*\
+  !*** ./~/core-js/library/modules/_defined.js ***!
+  \***********************************************/
 /***/ function(module, exports) {
 
 	// 7.2.1 RequireObjectCoercible(argument)
@@ -30335,9 +30370,9 @@
 
 /***/ },
 /* 295 */
-/*!**********************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_array-includes.js ***!
-  \**********************************************************************/
+/*!******************************************************!*\
+  !*** ./~/core-js/library/modules/_array-includes.js ***!
+  \******************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// false -> Array#indexOf
@@ -30364,9 +30399,9 @@
 
 /***/ },
 /* 296 */
-/*!*****************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_to-length.js ***!
-  \*****************************************************************/
+/*!*************************************************!*\
+  !*** ./~/core-js/library/modules/_to-length.js ***!
+  \*************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.1.15 ToLength
@@ -30378,9 +30413,9 @@
 
 /***/ },
 /* 297 */
-/*!******************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_to-integer.js ***!
-  \******************************************************************/
+/*!**************************************************!*\
+  !*** ./~/core-js/library/modules/_to-integer.js ***!
+  \**************************************************/
 /***/ function(module, exports) {
 
 	// 7.1.4 ToInteger
@@ -30392,9 +30427,9 @@
 
 /***/ },
 /* 298 */
-/*!****************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_to-index.js ***!
-  \****************************************************************/
+/*!************************************************!*\
+  !*** ./~/core-js/library/modules/_to-index.js ***!
+  \************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var toInteger = __webpack_require__(/*! ./_to-integer */ 297)
@@ -30407,9 +30442,9 @@
 
 /***/ },
 /* 299 */
-/*!******************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_shared-key.js ***!
-  \******************************************************************/
+/*!**************************************************!*\
+  !*** ./~/core-js/library/modules/_shared-key.js ***!
+  \**************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var shared = __webpack_require__(/*! ./_shared */ 300)('keys')
@@ -30420,9 +30455,9 @@
 
 /***/ },
 /* 300 */
-/*!**************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_shared.js ***!
-  \**************************************************************/
+/*!**********************************************!*\
+  !*** ./~/core-js/library/modules/_shared.js ***!
+  \**********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var global = __webpack_require__(/*! ./_global */ 273)
@@ -30434,9 +30469,9 @@
 
 /***/ },
 /* 301 */
-/*!***********************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_uid.js ***!
-  \***********************************************************/
+/*!*******************************************!*\
+  !*** ./~/core-js/library/modules/_uid.js ***!
+  \*******************************************/
 /***/ function(module, exports) {
 
 	var id = 0
@@ -30447,9 +30482,9 @@
 
 /***/ },
 /* 302 */
-/*!*********************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_enum-bug-keys.js ***!
-  \*********************************************************************/
+/*!*****************************************************!*\
+  !*** ./~/core-js/library/modules/_enum-bug-keys.js ***!
+  \*****************************************************/
 /***/ function(module, exports) {
 
 	// IE 8- don't enum bug keys
@@ -30459,27 +30494,27 @@
 
 /***/ },
 /* 303 */
-/*!*******************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_object-gops.js ***!
-  \*******************************************************************/
+/*!***************************************************!*\
+  !*** ./~/core-js/library/modules/_object-gops.js ***!
+  \***************************************************/
 /***/ function(module, exports) {
 
 	exports.f = Object.getOwnPropertySymbols;
 
 /***/ },
 /* 304 */
-/*!******************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_object-pie.js ***!
-  \******************************************************************/
+/*!**************************************************!*\
+  !*** ./~/core-js/library/modules/_object-pie.js ***!
+  \**************************************************/
 /***/ function(module, exports) {
 
 	exports.f = {}.propertyIsEnumerable;
 
 /***/ },
 /* 305 */
-/*!*****************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_to-object.js ***!
-  \*****************************************************************/
+/*!*************************************************!*\
+  !*** ./~/core-js/library/modules/_to-object.js ***!
+  \*************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.1.13 ToObject(argument)
@@ -30570,9 +30605,9 @@
 
 /***/ },
 /* 310 */
-/*!*****************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/fn/symbol/iterator.js ***!
-  \*****************************************************************/
+/*!*************************************************!*\
+  !*** ./~/core-js/library/fn/symbol/iterator.js ***!
+  \*************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(/*! ../../modules/es6.string.iterator */ 311);
@@ -30581,9 +30616,9 @@
 
 /***/ },
 /* 311 */
-/*!**************************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/es6.string.iterator.js ***!
-  \**************************************************************************/
+/*!**********************************************************!*\
+  !*** ./~/core-js/library/modules/es6.string.iterator.js ***!
+  \**********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30606,9 +30641,9 @@
 
 /***/ },
 /* 312 */
-/*!*****************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_string-at.js ***!
-  \*****************************************************************/
+/*!*************************************************!*\
+  !*** ./~/core-js/library/modules/_string-at.js ***!
+  \*************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var toInteger = __webpack_require__(/*! ./_to-integer */ 297)
@@ -30631,9 +30666,9 @@
 
 /***/ },
 /* 313 */
-/*!*******************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_iter-define.js ***!
-  \*******************************************************************/
+/*!***************************************************!*\
+  !*** ./~/core-js/library/modules/_iter-define.js ***!
+  \***************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30709,36 +30744,36 @@
 
 /***/ },
 /* 314 */
-/*!***************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_library.js ***!
-  \***************************************************************/
+/*!***********************************************!*\
+  !*** ./~/core-js/library/modules/_library.js ***!
+  \***********************************************/
 /***/ function(module, exports) {
 
 	module.exports = true;
 
 /***/ },
 /* 315 */
-/*!****************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_redefine.js ***!
-  \****************************************************************/
+/*!************************************************!*\
+  !*** ./~/core-js/library/modules/_redefine.js ***!
+  \************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(/*! ./_hide */ 277);
 
 /***/ },
 /* 316 */
-/*!*****************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_iterators.js ***!
-  \*****************************************************************/
+/*!*************************************************!*\
+  !*** ./~/core-js/library/modules/_iterators.js ***!
+  \*************************************************/
 /***/ function(module, exports) {
 
 	module.exports = {};
 
 /***/ },
 /* 317 */
-/*!*******************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_iter-create.js ***!
-  \*******************************************************************/
+/*!***************************************************!*\
+  !*** ./~/core-js/library/modules/_iter-create.js ***!
+  \***************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30757,9 +30792,9 @@
 
 /***/ },
 /* 318 */
-/*!*********************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_object-create.js ***!
-  \*********************************************************************/
+/*!*****************************************************!*\
+  !*** ./~/core-js/library/modules/_object-create.js ***!
+  \*****************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
@@ -30807,9 +30842,9 @@
 
 /***/ },
 /* 319 */
-/*!******************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_object-dps.js ***!
-  \******************************************************************/
+/*!**************************************************!*\
+  !*** ./~/core-js/library/modules/_object-dps.js ***!
+  \**************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var dP       = __webpack_require__(/*! ./_object-dp */ 278)
@@ -30828,18 +30863,18 @@
 
 /***/ },
 /* 320 */
-/*!************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_html.js ***!
-  \************************************************************/
+/*!********************************************!*\
+  !*** ./~/core-js/library/modules/_html.js ***!
+  \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(/*! ./_global */ 273).document && document.documentElement;
 
 /***/ },
 /* 321 */
-/*!*************************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_set-to-string-tag.js ***!
-  \*************************************************************************/
+/*!*********************************************************!*\
+  !*** ./~/core-js/library/modules/_set-to-string-tag.js ***!
+  \*********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var def = __webpack_require__(/*! ./_object-dp */ 278).f
@@ -30852,9 +30887,9 @@
 
 /***/ },
 /* 322 */
-/*!***********************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_wks.js ***!
-  \***********************************************************/
+/*!*******************************************!*\
+  !*** ./~/core-js/library/modules/_wks.js ***!
+  \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var store      = __webpack_require__(/*! ./_shared */ 300)('wks')
@@ -30871,9 +30906,9 @@
 
 /***/ },
 /* 323 */
-/*!******************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_object-gpo.js ***!
-  \******************************************************************/
+/*!**************************************************!*\
+  !*** ./~/core-js/library/modules/_object-gpo.js ***!
+  \**************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
@@ -30892,9 +30927,9 @@
 
 /***/ },
 /* 324 */
-/*!***********************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/web.dom.iterable.js ***!
-  \***********************************************************************/
+/*!*******************************************************!*\
+  !*** ./~/core-js/library/modules/web.dom.iterable.js ***!
+  \*******************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(/*! ./es6.array.iterator */ 325);
@@ -30913,9 +30948,9 @@
 
 /***/ },
 /* 325 */
-/*!*************************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/es6.array.iterator.js ***!
-  \*************************************************************************/
+/*!*********************************************************!*\
+  !*** ./~/core-js/library/modules/es6.array.iterator.js ***!
+  \*********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30955,18 +30990,18 @@
 
 /***/ },
 /* 326 */
-/*!**************************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_add-to-unscopables.js ***!
-  \**************************************************************************/
+/*!**********************************************************!*\
+  !*** ./~/core-js/library/modules/_add-to-unscopables.js ***!
+  \**********************************************************/
 /***/ function(module, exports) {
 
 	module.exports = function(){ /* empty */ };
 
 /***/ },
 /* 327 */
-/*!*****************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_iter-step.js ***!
-  \*****************************************************************/
+/*!*************************************************!*\
+  !*** ./~/core-js/library/modules/_iter-step.js ***!
+  \*************************************************/
 /***/ function(module, exports) {
 
 	module.exports = function(done, value){
@@ -30975,9 +31010,9 @@
 
 /***/ },
 /* 328 */
-/*!***************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_wks-ext.js ***!
-  \***************************************************************/
+/*!***********************************************!*\
+  !*** ./~/core-js/library/modules/_wks-ext.js ***!
+  \***********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	exports.f = __webpack_require__(/*! ./_wks */ 322);
@@ -30993,9 +31028,9 @@
 
 /***/ },
 /* 330 */
-/*!**************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/fn/symbol/index.js ***!
-  \**************************************************************/
+/*!**********************************************!*\
+  !*** ./~/core-js/library/fn/symbol/index.js ***!
+  \**********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(/*! ../../modules/es6.symbol */ 331);
@@ -31006,9 +31041,9 @@
 
 /***/ },
 /* 331 */
-/*!*****************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/es6.symbol.js ***!
-  \*****************************************************************/
+/*!*************************************************!*\
+  !*** ./~/core-js/library/modules/es6.symbol.js ***!
+  \*************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31249,9 +31284,9 @@
 
 /***/ },
 /* 332 */
-/*!************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_meta.js ***!
-  \************************************************************/
+/*!********************************************!*\
+  !*** ./~/core-js/library/modules/_meta.js ***!
+  \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var META     = __webpack_require__(/*! ./_uid */ 301)('meta')
@@ -31310,9 +31345,9 @@
 
 /***/ },
 /* 333 */
-/*!******************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_wks-define.js ***!
-  \******************************************************************/
+/*!**************************************************!*\
+  !*** ./~/core-js/library/modules/_wks-define.js ***!
+  \**************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var global         = __webpack_require__(/*! ./_global */ 273)
@@ -31327,9 +31362,9 @@
 
 /***/ },
 /* 334 */
-/*!*************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_keyof.js ***!
-  \*************************************************************/
+/*!*********************************************!*\
+  !*** ./~/core-js/library/modules/_keyof.js ***!
+  \*********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var getKeys   = __webpack_require__(/*! ./_object-keys */ 288)
@@ -31345,9 +31380,9 @@
 
 /***/ },
 /* 335 */
-/*!*****************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_enum-keys.js ***!
-  \*****************************************************************/
+/*!*************************************************!*\
+  !*** ./~/core-js/library/modules/_enum-keys.js ***!
+  \*************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// all enumerable object keys, includes symbols
@@ -31368,9 +31403,9 @@
 
 /***/ },
 /* 336 */
-/*!****************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_is-array.js ***!
-  \****************************************************************/
+/*!************************************************!*\
+  !*** ./~/core-js/library/modules/_is-array.js ***!
+  \************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.2.2 IsArray(argument)
@@ -31381,9 +31416,9 @@
 
 /***/ },
 /* 337 */
-/*!***********************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_object-gopn-ext.js ***!
-  \***********************************************************************/
+/*!*******************************************************!*\
+  !*** ./~/core-js/library/modules/_object-gopn-ext.js ***!
+  \*******************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
@@ -31409,9 +31444,9 @@
 
 /***/ },
 /* 338 */
-/*!*******************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_object-gopn.js ***!
-  \*******************************************************************/
+/*!***************************************************!*\
+  !*** ./~/core-js/library/modules/_object-gopn.js ***!
+  \***************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
@@ -31424,9 +31459,9 @@
 
 /***/ },
 /* 339 */
-/*!*******************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_object-gopd.js ***!
-  \*******************************************************************/
+/*!***************************************************!*\
+  !*** ./~/core-js/library/modules/_object-gopd.js ***!
+  \***************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var pIE            = __webpack_require__(/*! ./_object-pie */ 304)
@@ -31448,27 +31483,27 @@
 
 /***/ },
 /* 340 */
-/*!***************************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/es6.object.to-string.js ***!
-  \***************************************************************************/
+/*!***********************************************************!*\
+  !*** ./~/core-js/library/modules/es6.object.to-string.js ***!
+  \***********************************************************/
 /***/ function(module, exports) {
 
 
 
 /***/ },
 /* 341 */
-/*!********************************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/es7.symbol.async-iterator.js ***!
-  \********************************************************************************/
+/*!****************************************************************!*\
+  !*** ./~/core-js/library/modules/es7.symbol.async-iterator.js ***!
+  \****************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(/*! ./_wks-define */ 333)('asyncIterator');
 
 /***/ },
 /* 342 */
-/*!****************************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/es7.symbol.observable.js ***!
-  \****************************************************************************/
+/*!************************************************************!*\
+  !*** ./~/core-js/library/modules/es7.symbol.observable.js ***!
+  \************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(/*! ./_wks-define */ 333)('observable');
@@ -31525,9 +31560,9 @@
 
 /***/ },
 /* 345 */
-/*!*************************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/fn/object/set-prototype-of.js ***!
-  \*************************************************************************/
+/*!*********************************************************!*\
+  !*** ./~/core-js/library/fn/object/set-prototype-of.js ***!
+  \*********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(/*! ../../modules/es6.object.set-prototype-of */ 346);
@@ -31535,9 +31570,9 @@
 
 /***/ },
 /* 346 */
-/*!**********************************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/es6.object.set-prototype-of.js ***!
-  \**********************************************************************************/
+/*!******************************************************************!*\
+  !*** ./~/core-js/library/modules/es6.object.set-prototype-of.js ***!
+  \******************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.3.19 Object.setPrototypeOf(O, proto)
@@ -31546,9 +31581,9 @@
 
 /***/ },
 /* 347 */
-/*!*****************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_set-proto.js ***!
-  \*****************************************************************/
+/*!*************************************************!*\
+  !*** ./~/core-js/library/modules/_set-proto.js ***!
+  \*************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// Works with __proto__ only. Old v8 can't work with null proto objects.
@@ -31588,9 +31623,9 @@
 
 /***/ },
 /* 349 */
-/*!***************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/fn/object/create.js ***!
-  \***************************************************************/
+/*!***********************************************!*\
+  !*** ./~/core-js/library/fn/object/create.js ***!
+  \***********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(/*! ../../modules/es6.object.create */ 350);
@@ -31601,9 +31636,9 @@
 
 /***/ },
 /* 350 */
-/*!************************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/es6.object.create.js ***!
-  \************************************************************************/
+/*!********************************************************!*\
+  !*** ./~/core-js/library/modules/es6.object.create.js ***!
+  \********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var $export = __webpack_require__(/*! ./_export */ 272)
@@ -32078,9 +32113,9 @@
 
 /***/ },
 /* 356 */
-/*!****************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/fn/object/entries.js ***!
-  \****************************************************************/
+/*!************************************************!*\
+  !*** ./~/core-js/library/fn/object/entries.js ***!
+  \************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(/*! ../../modules/es7.object.entries */ 357);
@@ -32088,9 +32123,9 @@
 
 /***/ },
 /* 357 */
-/*!*************************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/es7.object.entries.js ***!
-  \*************************************************************************/
+/*!*********************************************************!*\
+  !*** ./~/core-js/library/modules/es7.object.entries.js ***!
+  \*********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// https://github.com/tc39/proposal-object-values-entries
@@ -32105,9 +32140,9 @@
 
 /***/ },
 /* 358 */
-/*!***********************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_object-to-array.js ***!
-  \***********************************************************************/
+/*!*******************************************************!*\
+  !*** ./~/core-js/library/modules/_object-to-array.js ***!
+  \*******************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var getKeys   = __webpack_require__(/*! ./_object-keys */ 288)
@@ -32564,9 +32599,9 @@
 
 /***/ },
 /* 364 */
-/*!***************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/fn/object/values.js ***!
-  \***************************************************************/
+/*!***********************************************!*\
+  !*** ./~/core-js/library/fn/object/values.js ***!
+  \***********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(/*! ../../modules/es7.object.values */ 365);
@@ -32574,9 +32609,9 @@
 
 /***/ },
 /* 365 */
-/*!************************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/es7.object.values.js ***!
-  \************************************************************************/
+/*!********************************************************!*\
+  !*** ./~/core-js/library/modules/es7.object.values.js ***!
+  \********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// https://github.com/tc39/proposal-object-values-entries
@@ -37285,9 +37320,9 @@
 
 /***/ },
 /* 410 */
-/*!************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/fn/array/from.js ***!
-  \************************************************************/
+/*!********************************************!*\
+  !*** ./~/core-js/library/fn/array/from.js ***!
+  \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(/*! ../../modules/es6.string.iterator */ 311);
@@ -37296,9 +37331,9 @@
 
 /***/ },
 /* 411 */
-/*!*********************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/es6.array.from.js ***!
-  \*********************************************************************/
+/*!*****************************************************!*\
+  !*** ./~/core-js/library/modules/es6.array.from.js ***!
+  \*****************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -37342,9 +37377,9 @@
 
 /***/ },
 /* 412 */
-/*!*****************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_iter-call.js ***!
-  \*****************************************************************/
+/*!*************************************************!*\
+  !*** ./~/core-js/library/modules/_iter-call.js ***!
+  \*************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// call something on iterator step with safe closing on error
@@ -37362,9 +37397,9 @@
 
 /***/ },
 /* 413 */
-/*!*********************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_is-array-iter.js ***!
-  \*********************************************************************/
+/*!*****************************************************!*\
+  !*** ./~/core-js/library/modules/_is-array-iter.js ***!
+  \*****************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// check on default Array iterator
@@ -37378,9 +37413,9 @@
 
 /***/ },
 /* 414 */
-/*!***********************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_create-property.js ***!
-  \***********************************************************************/
+/*!*******************************************************!*\
+  !*** ./~/core-js/library/modules/_create-property.js ***!
+  \*******************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -37394,9 +37429,9 @@
 
 /***/ },
 /* 415 */
-/*!*******************************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/core.get-iterator-method.js ***!
-  \*******************************************************************************/
+/*!***************************************************************!*\
+  !*** ./~/core-js/library/modules/core.get-iterator-method.js ***!
+  \***************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var classof   = __webpack_require__(/*! ./_classof */ 416)
@@ -37410,9 +37445,9 @@
 
 /***/ },
 /* 416 */
-/*!***************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_classof.js ***!
-  \***************************************************************/
+/*!***********************************************!*\
+  !*** ./~/core-js/library/modules/_classof.js ***!
+  \***********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// getting tag from 19.1.3.6 Object.prototype.toString()
@@ -37441,9 +37476,9 @@
 
 /***/ },
 /* 417 */
-/*!*******************************************************************!*\
-  !*** ./~/babel-runtime/~/core-js/library/modules/_iter-detect.js ***!
-  \*******************************************************************/
+/*!***************************************************!*\
+  !*** ./~/core-js/library/modules/_iter-detect.js ***!
+  \***************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var ITERATOR     = __webpack_require__(/*! ./_wks */ 322)('iterator')
@@ -48882,6 +48917,129 @@
 
 /***/ },
 /* 516 */
+/*!**********************************************************!*\
+  !*** ./src/client/app/container/UserDashboardHeader.jsx ***!
+  \**********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactBootstrap = __webpack_require__(/*! react-bootstrap */ 266);
+	
+	var _ModalForm = __webpack_require__(/*! ../container/ModalForm.jsx */ 517);
+	
+	var _ModalForm2 = _interopRequireDefault(_ModalForm);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 32);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var UserHeader = function (_React$Component) {
+	    _inherits(UserHeader, _React$Component);
+	
+	    function UserHeader(props) {
+	        _classCallCheck(this, UserHeader);
+	
+	        var _this = _possibleConstructorReturn(this, (UserHeader.__proto__ || Object.getPrototypeOf(UserHeader)).call(this, props));
+	
+	        _this.modalOpen = _this.modalOpen.bind(_this);
+	        _this.modalClose = _this.modalClose.bind(_this);
+	
+	        _this.state = {
+	            newChallenge: false
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(UserHeader, [{
+	        key: "modalOpen",
+	        value: function modalOpen() {
+	            console.log("New Challenge Button Clicked!");
+	            this.setState({ newChallenge: true });
+	        }
+	    }, {
+	        key: "modalClose",
+	        value: function modalClose() {
+	            this.setState({ newChallenge: false });
+	            this.setState({ currentState: this.state.currentState + 1 });
+	        }
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                _reactBootstrap.Row,
+	                null,
+	                _react2.default.createElement(
+	                    _reactBootstrap.Col,
+	                    { lg: 12 },
+	                    _react2.default.createElement(
+	                        _reactBootstrap.Jumbotron,
+	                        null,
+	                        _react2.default.createElement(
+	                            _reactBootstrap.Row,
+	                            null,
+	                            _react2.default.createElement(
+	                                _reactBootstrap.Col,
+	                                { lg: 12 },
+	                                _react2.default.createElement(
+	                                    "h1",
+	                                    { className: "text-center" },
+	                                    "Welcome Back!"
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                _reactBootstrap.Col,
+	                                { lg: 2, lgOffset: 5, md: 4, mdOffset: 4, sm: 8, smOffset: 2, xs: 12 },
+	                                _react2.default.createElement(
+	                                    "button",
+	                                    { type: "button", className: "text-center btn btn-success btn-block", onClick: this.modalOpen },
+	                                    "Create a Challenge"
+	                                )
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.Row,
+	                        null,
+	                        _react2.default.createElement(_ModalForm2.default, {
+	                            key: this.state.currentState,
+	                            modalOpen: this.state.newChallenge,
+	                            onClose: this.modalClose })
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return UserHeader;
+	}(_react2.default.Component);
+	
+	UserHeader.propTypes = {
+	    user: _react.PropTypes.object
+	};
+	
+	exports.default = UserHeader;
+
+/***/ },
+/* 517 */
 /*!************************************************!*\
   !*** ./src/client/app/container/ModalForm.jsx ***!
   \************************************************/
@@ -48901,11 +49059,11 @@
 	
 	var _reactBootstrap = __webpack_require__(/*! react-bootstrap */ 266);
 	
-	var _ChallengeDataInput = __webpack_require__(/*! ../components/ChallengeFormInput/ChallengeDataInput.jsx */ 517);
+	var _ChallengeDataInput = __webpack_require__(/*! ../components/ChallengeFormInput/ChallengeDataInput.jsx */ 518);
 	
 	var _ChallengeDataInput2 = _interopRequireDefault(_ChallengeDataInput);
 	
-	var _TaskDataInput = __webpack_require__(/*! ../components/ChallengeFormInput/TaskDataInput.jsx */ 518);
+	var _TaskDataInput = __webpack_require__(/*! ../components/ChallengeFormInput/TaskDataInput.jsx */ 519);
 	
 	var _TaskDataInput2 = _interopRequireDefault(_TaskDataInput);
 	
@@ -48926,14 +49084,15 @@
 	        var _this = _possibleConstructorReturn(this, (ModalForm.__proto__ || Object.getPrototypeOf(ModalForm)).call(this, props));
 	
 	        _this.onChallengeDataSubmit = _this.onChallengeDataSubmit.bind(_this);
-	        _this.onWeekDataSubmit = _this.onWeekDataSubmit.bind(_this);
+	        _this.onTaskDataSubmit = _this.onTaskDataSubmit.bind(_this);
 	        _this.getModalFormComponent = _this.getModalFormComponent.bind(_this);
 	        _this.closeModal = _this.closeModal.bind(_this);
 	        _this.postData = _this.postData.bind(_this);
 	
 	        _this.state = {
 	            currentForm: 1,
-	            newChallenge: {}
+	            newChallenge: {},
+	            currentWeek: 1
 	        };
 	        return _this;
 	    }
@@ -48947,62 +49106,53 @@
 	            var updatedChallenge = this.state.newChallenge;
 	            updatedChallenge.title = formValues.challengeTitle;
 	            updatedChallenge.description = formValues.challengeDescription;
-	            updatedChallenge.purpsoe = formValues.challengePurpse;
+	            updatedChallenge.purpose = formValues.challengePurpose;
 	            this.setState({ newChallenge: updatedChallenge });
 	            this.setState({ currentForm: this.state.currentForm + 1 });
 	        }
 	    }, {
-	        key: "onWeekDataSubmit",
-	        value: function onWeekDataSubmit(formValues) {
+	        key: "onTaskDataSubmit",
+	        value: function onTaskDataSubmit(formValues) {
+	            console.log("Submitting Task Data...", formValues);
 	            var updatedChallenge = this.state.newChallenge;
-	
-	            if (!updatedChallenge.weeks) {
-	                updatedChallenge.weeks = [];
-	            }
-	            updatedChallenge.weeks.push({
-	                week: formValues.currentWeek,
-	                task: formValues.taskTitle,
-	                days: formValues.numDays
-	            });
+	            updatedChallenge.weeks = formValues;
 	            this.setState({ newChallenge: updatedChallenge });
-	            this.setState({ currentForm: this.state.currentFrom + 1 });
+	            this.setState({ currentForm: this.state.currentForm + 1 });
 	        }
 	    }, {
 	        key: "postData",
 	        value: function postData() {
-	            /* POST NEW CHALLENGE TO DATABASE */
-	            return this.closeModal();
+	            console.log("Your New Challenge is: ", this.state.newChallenge);
+	
+	            this.closeModal();
 	        }
 	    }, {
 	        key: "getModalFormComponent",
 	        value: function getModalFormComponent() {
+	            console.log("Current Page: ", this.state.currentForm);
 	            switch (this.state.currentForm) {
 	                case 1:
 	                    return _react2.default.createElement(_ChallengeDataInput2.default, { onSubmit: this.onChallengeDataSubmit });
 	                case 2:
-	                    return _react2.default.createElement(_TaskDataInput2.default, { onSubmit: this.onChallengeWeekSubmit });
+	                    return _react2.default.createElement(_TaskDataInput2.default, { onSubmit: this.onTaskDataSubmit });
 	                case 3:
-	                    return _react2.default.createElement(_TaskDataInput2.default, { onSubmit: this.onChallengeWeekSubmit });
-	                case 4:
-	                    return _react2.default.createElement(_TaskDataInput2.default, { onSubmit: this.onChallengeWeekSubmit });
-	                case 5:
-	                    return _react2.default.createElement(_TaskDataInput2.default, { onSubmit: this.onChallengeWeekSubmit });
-	                case 6:
-	                    return this.postData();
+	                    {
+	                        this.postData();
+	                    };
 	            }
 	            return null;
 	        }
 	    }, {
 	        key: "closeModal",
 	        value: function closeModal() {
-	            return this.props.onClose();
+	            this.props.onClose();
 	        }
 	    }, {
 	        key: "render",
 	        value: function render() {
 	            return _react2.default.createElement(
 	                _reactBootstrap.Modal,
-	                { className: "fade", show: this.props.modalOpen, tabIndex: "-1", onHide: this.closeModal },
+	                { className: "fade", show: this.props.modalOpen, tabIndex: "-1", onHide: this.props.onClose },
 	                _react2.default.createElement(
 	                    _reactBootstrap.Modal.Header,
 	                    { closeButton: true },
@@ -49032,7 +49182,7 @@
 	exports.default = ModalForm;
 
 /***/ },
-/* 517 */
+/* 518 */
 /*!*****************************************************************************!*\
   !*** ./src/client/app/components/ChallengeFormInput/ChallengeDataInput.jsx ***!
   \*****************************************************************************/
@@ -49069,22 +49219,20 @@
 	        var _this = _possibleConstructorReturn(this, (ChallengeDataInput.__proto__ || Object.getPrototypeOf(ChallengeDataInput)).call(this, props));
 	
 	        _this.onFormSubmit = _this.onFormSubmit.bind(_this);
-	        _this.getStatus = _this.getStatus.bind(_this);
-	        _this.onBlurTitle = _this.onBlurTitle.bind(_this);
-	        _this.onBlurDescription = _this.onBlurDescription.bind(_this);
-	        _this.onBlurPurpose = _this.onBlurPurpose.bind(_this);
+	        _this.getTitleValidationState = _this.getTitleValidationState.bind(_this);
+	        _this.getDescriptionValidationState = _this.getDescriptionValidationState.bind(_this);
+	        _this.getPurposeValidationState = _this.getPurposeValidationState.bind(_this);
+	        _this.handleTitleChange = _this.handleTitleChange.bind(_this);
+	        _this.handleDescriptionChange = _this.handleDescriptionChange.bind(_this);
+	        _this.handlePurposeChange = _this.handlePurposeChange.bind(_this);
 	
 	        _this.state = {
-	            errors: [],
-	            backButtonDisabled: true,
-	            nextButtonClass: "btn-default",
-	            nextButtonDisabled: true,
-	            titleClass: "has-default",
-	            titleStatus: false,
-	            descriptionClass: "has-default",
-	            descriptionStatus: false,
-	            purposeClass: "has-default",
-	            purposeStatus: false
+	            titleValue: "",
+	            descriptionValue: "",
+	            purposeValue: "",
+	            titleValid: false,
+	            descriptionValid: false,
+	            purposeValid: false
 	        };
 	        return _this;
 	    }
@@ -49093,74 +49241,76 @@
 	        key: "onFormSubmit",
 	        value: function onFormSubmit() {
 	            this.props.onSubmit({
-	                challengeTitle: this.refs.challengeTitle.value,
-	                challengeDescription: this.refs.challengeDescription.value,
-	                challengePurpose: this.refs.challengePurpose.value
+	                challengeTitle: this.state.titleValue,
+	                challengeDescription: this.state.descriptionValue,
+	                challengePurpose: this.state.purposeValue
 	            });
 	        }
 	    }, {
-	        key: "getStatus",
-	        value: function getStatus() {
-	            this.state.titleStatus && this.state.descriptionStatus && this.state.purposeStatus ? this.setState({
-	                nextButtonClass: "btn-success"
-	            }, {
-	                nextButtonDisabled: false
-	            }) : this.setState({
-	                nextButtonClass: "btn-default"
-	            }, {
-	                nextButtonDisabled: true
-	            });
+	        key: "getTitleValidationState",
+	        value: function getTitleValidationState() {
+	            var length = this.state.titleValue.length;
+	            if (length > 6) {
+	                return "success";
+	            } else if (length > 3) {
+	                return "warning";
+	            } else if (length > 0) {
+	                return "error";
+	            }
 	        }
 	    }, {
-	        key: "onBlurTitle",
-	        value: function onBlurTitle() {
-	            // VALIDATE TITLE ENTRY
-	            // if title is good to go, make status green
-	            // if title is not good to go, make status red
-	            this.refs.challengeTitle.value ? this.setClass({
-	                titleClass: "has-success"
-	            }, {
-	                titleStatus: true
-	            }) : this.setState({
-	                titleClass: "has-danger"
-	            }, {
-	                titleStatus: false
-	            });
-	            this.getStatus();
+	        key: "getDescriptionValidationState",
+	        value: function getDescriptionValidationState() {
+	            var length = this.state.descriptionValue.length;
+	            if (length > 10) {
+	                return "success";
+	            } else if (length > 5) {
+	                return "warning";
+	            } else if (length > 0) {
+	                return "error";
+	            }
 	        }
 	    }, {
-	        key: "onBlurDescription",
-	        value: function onBlurDescription() {
-	            // VALIDATE TITLE ENTRY
-	            // if title is good to go, make status green
-	            // if title is not good to go, make status red
-	            this.refs.challengeDescription.value ? this.setClass({
-	                descriptionClass: "has-success"
-	            }, {
-	                descriptionStatus: true
-	            }) : this.setState({
-	                descriptionClass: "has-danger"
-	            }, {
-	                descriptionStatus: false
-	            });
-	            this.getStatus();
+	        key: "getPurposeValidationState",
+	        value: function getPurposeValidationState() {
+	            var length = this.state.purposeValue.length;
+	            if (length > 10) {
+	                return "success";
+	            } else if (length > 5) {
+	                return "warning";
+	            } else if (length > 0) {
+	                return "error";
+	            }
 	        }
 	    }, {
-	        key: "onBlurPurpose",
-	        value: function onBlurPurpose() {
-	            // VALIDATE TITLE ENTRY
-	            // if title is good to go, make status green
-	            // if title is not good to go, make status red
-	            this.refs.challengePurpose.value ? this.setClass({
-	                purposeClass: "has-success"
-	            }, {
-	                purposeStatus: true
-	            }) : this.setState({
-	                purposeClass: "has-danger"
-	            }, {
-	                purposeStatus: false
-	            });
-	            this.getStatus();
+	        key: "handleTitleChange",
+	        value: function handleTitleChange(e) {
+	            this.setState({ titleValue: e.target.value });
+	            if (e.target.value.length >= 6) {
+	                this.setState({ titleValid: true });
+	            } else {
+	                this.setState({ titleValid: false });
+	            }
+	        }
+	    }, {
+	        key: "handleDescriptionChange",
+	        value: function handleDescriptionChange(e) {
+	            this.setState({ descriptionValue: e.target.value });
+	            if (e.target.value.length >= 10) {
+	                this.setState({ descriptionValid: true });
+	            } else {
+	                this.setState({ descriptionValid: false });
+	            }
+	        }
+	    }, {
+	        key: "handlePurposeChange",
+	        value: function handlePurposeChange(e) {
+	            this.setState({ purposeValue: e.target.value });
+	            if (e.target.value.length >= 10) {
+	                this.setState({ purposeValid: true });
+	            } else {
+	                this.setState({ purposeValid: false });
+	            }
 	        }
 	    }, {
 	        key: "render",
@@ -49169,77 +49319,80 @@
 	                "form",
 	                null,
 	                _react2.default.createElement(
-	                    "fieldset",
-	                    null,
+	                    _reactBootstrap.FormGroup,
+	                    {
+	                        validationState: this.getTitleValidationState()
+	                    },
 	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "form-group" },
-	                        _react2.default.createElement(
-	                            "label",
-	                            { htmlFor: "challengeTitle" },
-	                            "Challenge Title"
-	                        ),
-	                        _react2.default.createElement("input", { ref: "challengeTitle",
-	                            onBlur: this.onBlurTitle,
-	                            type: "text",
-	                            className: this.state.titleClass + " form-control"
-	                        }),
-	                        _react2.default.createElement(
-	                            "small",
-	                            { className: "form-text text-muted" },
-	                            "i.e. \"Live Healthy\", \"Explore the Outdoors\", \"Write a Story\""
-	                        )
+	                        _reactBootstrap.ControlLabel,
+	                        null,
+	                        "Challenge Title"
 	                    ),
+	                    _react2.default.createElement(_reactBootstrap.FormControl, {
+	                        onChange: this.handleTitleChange,
+	                        value: this.state.titleValue,
+	                        type: "text"
+	                    }),
+	                    _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null),
 	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "form-group" },
-	                        _react2.default.createElement(
-	                            "label",
-	                            { htmlFor: "challengeDescription" },
-	                            "Challenge Description"
-	                        ),
-	                        _react2.default.createElement("textarea", { ref: "challengeDescription",
-	                            onBlur: this.onBlurDescription,
-	                            className: this.state.descriptionClass + " form-control" }),
-	                        _react2.default.createElement(
-	                            "small",
-	                            { className: "form-text text-muted" },
-	                            "Write a little bit about what you hope to accomplish."
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "form-group" },
-	                        _react2.default.createElement(
-	                            "label",
-	                            { htmlFor: "challengePurpose" },
-	                            "Challenge Purpose"
-	                        ),
-	                        _react2.default.createElement("input", { ref: "challengePurpose",
-	                            onBlur: this.onBlurPurpose,
-	                            type: "text",
-	                            className: this.state.purposeClass + "form-control"
-	                        }),
-	                        _react2.default.createElement(
-	                            "small",
-	                            { className: "form-text text-muted" },
-	                            "Write a little bit about what you hope to accomplish."
-	                        )
+	                        _reactBootstrap.HelpBlock,
+	                        null,
+	                        "i.e. \"Live Healthy\", \"Explore the Outdoors\", \"Write a Story\""
 	                    )
 	                ),
 	                _react2.default.createElement(
-	                    "div",
-	                    { className: "modal-footer" },
+	                    _reactBootstrap.FormGroup,
+	                    {
+	                        validationState: this.getDescriptionValidationState()
+	                    },
 	                    _react2.default.createElement(
-	                        _reactBootstrap.Button,
-	                        { className: "btn btn-primary disabled" },
-	                        "Back"
+	                        _reactBootstrap.ControlLabel,
+	                        null,
+	                        "Challenge Description"
 	                    ),
+	                    _react2.default.createElement(_reactBootstrap.FormControl, {
+	                        onChange: this.handleDescriptionChange,
+	                        value: this.state.descriptionValue,
+	                        componentClass: "textarea"
+	                    }),
+	                    _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.HelpBlock,
+	                        null,
+	                        "Write a little bit about what you hope to accomplish."
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactBootstrap.FormGroup,
+	                    {
+	                        validationState: this.getPurposeValidationState()
+	                    },
+	                    _react2.default.createElement(
+	                        _reactBootstrap.ControlLabel,
+	                        null,
+	                        "Challenge Purpose"
+	                    ),
+	                    _react2.default.createElement(_reactBootstrap.FormControl, {
+	                        onChange: this.handlePurposeChange,
+	                        value: this.state.purposeValue,
+	                        type: "text"
+	                    }),
+	                    _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.HelpBlock,
+	                        null,
+	                        "Why is accomplishing this important to you?"
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactBootstrap.FormGroup,
+	                    null,
 	                    _react2.default.createElement(
 	                        _reactBootstrap.Button,
 	                        { onClick: this.onFormSubmit,
-	                            disabled: this.state.nextButtonDisabled,
-	                            className: this.state.nextButtonClass },
+	                            disabled: this.state.titleValid && this.state.descriptionValid && this.state.purposeValid ? false : true,
+	                            bsStyle: this.state.titleValid && this.state.descriptionValid && this.state.purposeValid ? "success" : "danger"
+	                        },
 	                        "Next"
 	                    )
 	                )
@@ -49257,7 +49410,7 @@
 	exports.default = ChallengeDataInput;
 
 /***/ },
-/* 518 */
+/* 519 */
 /*!************************************************************************!*\
   !*** ./src/client/app/components/ChallengeFormInput/TaskDataInput.jsx ***!
   \************************************************************************/
@@ -49271,9 +49424,6 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _templateObject = _taggedTemplateLiteral(["btn btn-primary"], ["btn btn-primary"]),
-	    _templateObject2 = _taggedTemplateLiteral(["btn"], ["btn"]);
-	
 	var _react = __webpack_require__(/*! react */ 1);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -49282,15 +49432,11 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	// var validate = require("validate");
 	
 	var TaskDataInput = function (_React$Component) {
 	    _inherits(TaskDataInput, _React$Component);
@@ -49301,23 +49447,74 @@
 	        var _this = _possibleConstructorReturn(this, (TaskDataInput.__proto__ || Object.getPrototypeOf(TaskDataInput)).call(this, props));
 	
 	        _this.onFormSubmit = _this.onFormSubmit.bind(_this);
-	        _this.getStatus = _this.getStatus.bind(_this);
-	        _this.onBlurNumTasks = _this.onBlurNumTasks.bind(_this);
+	        _this.handleTitleChange = _this.handleTitleChange.bind(_this);
+	        _this.handleDaysChange = _this.handleDaysChange.bind(_this);
+	        _this.getTitleValidationState = _this.getTitleValidationState.bind(_this);
 	
 	        _this.state = {
-	            currentWeek: 1
+	            tasks: [],
+	            currentWeek: 1,
+	            titleValue: "",
+	            numDaysValue: 1,
+	            titleValid: false,
+	            numDaysValid: true
 	        };
 	        return _this;
 	    }
 	
 	    _createClass(TaskDataInput, [{
+	        key: "resetForm",
+	        value: function resetForm() {
+	            this.state = {
+	                titleValue: "",
+	                numDaysValue: 1,
+	                titleValid: false,
+	                numDaysValid: true
+	            };
+	        }
+	    }, {
 	        key: "onFormSubmit",
 	        value: function onFormSubmit() {
-	            this.props.onSubmit({
-	                currentWeek: this.state.currentWeek,
-	                taskTitle: this.refs.taskTitle,
-	                numDays: this.refs.numDays
+	            var tasks = this.state.tasks;
+	            tasks.push({
+	                week: this.state.currentWeek,
+	                task: this.state.titleValue,
+	                numDays: this.state.numDaysValue
 	            });
+	            this.setState({ tasks: tasks });
+	            if (this.state.currentWeek < 4) {
+	                this.setState({ currentWeek: this.state.currentWeek + 1 });
+	                this.resetForm();
+	            } else {
+	                this.props.onSubmit(tasks);
+	            }
+	        }
+	    }, {
+	        key: "handleTitleChange",
+	        value: function handleTitleChange(e) {
+	            this.setState({ titleValue: e.target.value });
+	            if (e.target.value.length >= 6) {
+	                this.setState({ titleValid: true });
+	            } else {
+	                this.setState({ titleValid: false });
+	            }
+	        }
+	    }, {
+	        key: "handleDaysChange",
+	        value: function handleDaysChange(e) {
+	            this.setState({ numDaysValue: e.target.value });
+	        }
+	    }, {
+	        key: "getTitleValidationState",
+	        value: function getTitleValidationState() {
+	            var length = this.state.titleValue.length;
+	            if (length > 6) {
+	                return "success";
+	            } else if (length > 3) {
+	                return "warning";
+	            } else if (length > 0) {
+	                return "error";
+	            }
 	        }
 	    }, {
 	        key: "render",
@@ -49327,108 +49524,103 @@
 	                "form",
 	                null,
 	                _react2.default.createElement(
-	                    "fieldset",
+	                    "legend",
 	                    null,
-	                    _react2.default.createElement("legend", null),
-	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "form-group" },
-	                        _react2.default.createElement(
-	                            "label",
-	                            null,
-	                            "Week ",
-	                            this.state.currentWeek
-	                        )
-	                    )
+	                    "Week ",
+	                    this.state.currentWeek
 	                ),
 	                _react2.default.createElement(
-	                    "div",
-	                    { className: "form-group" },
+	                    _reactBootstrap.FormGroup,
+	                    {
+	                        validationState: this.getTitleValidationState()
+	                    },
 	                    _react2.default.createElement(
-	                        "div",
+	                        _reactBootstrap.ControlLabel,
 	                        null,
-	                        _react2.default.createElement(
-	                            "label",
-	                            null,
-	                            "What do you want to accomplish this week?"
-	                        ),
-	                        _react2.default.createElement("input", {
-	                            className: "form-control",
-	                            ref: "taskTitle",
-	                            onBlur: this.onBlurTitle
-	                        })
+	                        "What do you want to accomplish this week?"
 	                    ),
+	                    _react2.default.createElement(_reactBootstrap.FormControl, {
+	                        onChange: this.handleTitleChange,
+	                        value: this.state.titleValue,
+	                        type: "text"
+	                    }),
+	                    _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null),
 	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "form-group" },
-	                        _react2.default.createElement(
-	                            "label",
-	                            null,
-	                            "Days of The Week"
-	                        ),
-	                        _react2.default.createElement(
-	                            "select",
-	                            {
-	                                onBlur: this.addDays,
-	                                className: "form-control",
-	                                ref: "numDays" },
-	                            _react2.default.createElement(
-	                                "option",
-	                                null,
-	                                "1"
-	                            ),
-	                            _react2.default.createElement(
-	                                "option",
-	                                null,
-	                                "2"
-	                            ),
-	                            _react2.default.createElement(
-	                                "option",
-	                                null,
-	                                "3"
-	                            ),
-	                            _react2.default.createElement(
-	                                "option",
-	                                null,
-	                                "4"
-	                            ),
-	                            _react2.default.createElement(
-	                                "option",
-	                                null,
-	                                "5"
-	                            ),
-	                            _react2.default.createElement(
-	                                "option",
-	                                null,
-	                                "6"
-	                            ),
-	                            _react2.default.createElement(
-	                                "option",
-	                                null,
-	                                "7"
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            "small",
-	                            { className: "form-text text-muted" },
-	                            "Select How Many Days You Want To Complete This Task This Week"
-	                        )
+	                        _reactBootstrap.HelpBlock,
+	                        null,
+	                        this.state.currentWeek === 1 && "i.e. Cook Breakfast",
+	                        this.state.currentWeek === 2 && "i.e. Do 20 Push-ups",
+	                        this.state.currentWeek === 3 && "i.e. Write in my journal",
+	                        this.state.currentWeek === 4 && "i.e. No cigarettes"
 	                    )
 	                ),
 	                _react2.default.createElement(
-	                    "div",
-	                    { className: "modal-footer" },
+	                    _reactBootstrap.FormGroup,
+	                    null,
 	                    _react2.default.createElement(
-	                        _reactBootstrap.Button,
-	                        { className: this.state.backButtonDisabled(_templateObject) },
-	                        "Back"
+	                        _reactBootstrap.ControlLabel,
+	                        null,
+	                        "Days of The Week"
 	                    ),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.FormControl,
+	                        {
+	                            componentClass: "select",
+	                            onChange: this.handleDaysChange
+	                        },
+	                        _react2.default.createElement(
+	                            "option",
+	                            { value: "1" },
+	                            "1"
+	                        ),
+	                        _react2.default.createElement(
+	                            "option",
+	                            { value: "2" },
+	                            "2"
+	                        ),
+	                        _react2.default.createElement(
+	                            "option",
+	                            { value: "3" },
+	                            "3"
+	                        ),
+	                        _react2.default.createElement(
+	                            "option",
+	                            { value: "4" },
+	                            "4"
+	                        ),
+	                        _react2.default.createElement(
+	                            "option",
+	                            { value: "5" },
+	                            "5"
+	                        ),
+	                        _react2.default.createElement(
+	                            "option",
+	                            { value: "6" },
+	                            "6"
+	                        ),
+	                        _react2.default.createElement(
+	                            "option",
+	                            { value: "7" },
+	                            "7"
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.HelpBlock,
+	                        { className: "form-text text-muted" },
+	                        "Select How Many Days You Want To Complete This Task This Week"
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactBootstrap.FormGroup,
+	                    null,
 	                    _react2.default.createElement(
 	                        _reactBootstrap.Button,
 	                        { onClick: this.onFormSubmit,
-	                            disabled: this.state.nextButtonDisabled,
-	                            className: this.state.nextButtonClass(_templateObject2) },
-	                        this.state.currentWeek === 4 ? "Submit" : "Next"
+	                            disabled: this.state.titleValid ? false : true,
+	                            bsStyle: this.state.titleValid ? "success" : "danger"
+	
+	                        },
+	                        this.state.currentWeek < 4 ? "Next" : "Submit"
 	                    )
 	                )
 	            );
@@ -49439,140 +49631,11 @@
 	}(_react2.default.Component);
 	
 	TaskDataInput.propTypes = {
-	    onSubmit: _react.PropTypes.func
+	    onSubmit: _react.PropTypes.func,
+	    currentWeek: _react.PropTypes.string
 	};
 	
 	exports.default = TaskDataInput;
-
-/***/ },
-/* 519 */
-/*!**********************************************!*\
-  !*** ./src/client/app/components/Navbar.jsx ***!
-  \**********************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Navbar = function (_React$Component) {
-	    _inherits(Navbar, _React$Component);
-	
-	    function Navbar() {
-	        _classCallCheck(this, Navbar);
-	
-	        return _possibleConstructorReturn(this, (Navbar.__proto__ || Object.getPrototypeOf(Navbar)).apply(this, arguments));
-	    }
-	
-	    _createClass(Navbar, [{
-	        key: "render",
-	        value: function render() {
-	            return _react2.default.createElement(
-	                "nav",
-	                { className: "navbar navbar-inverse navbar-fixed-top" },
-	                _react2.default.createElement(
-	                    "div",
-	                    { className: "container-fluid" },
-	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "navbar-header" },
-	                        _react2.default.createElement(
-	                            "button",
-	                            { type: "button", className: "navbar-toggle collapsed", "data-toggle": "collapse", "data-target": "#bs-example-navbar-collapse-1", "aria-expanded": "false" },
-	                            _react2.default.createElement(
-	                                "span",
-	                                { className: "sr-only" },
-	                                "Toggle navigation"
-	                            ),
-	                            _react2.default.createElement("span", { className: "icon-bar" }),
-	                            _react2.default.createElement("span", { className: "icon-bar" }),
-	                            _react2.default.createElement("span", { className: "icon-bar" })
-	                        ),
-	                        _react2.default.createElement(
-	                            "p",
-	                            { className: "navbar-brand" },
-	                            this.props.username
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "collapse navbar-collapse", id: "bs-example-navbar-collapse-1" },
-	                        _react2.default.createElement(
-	                            "ul",
-	                            { className: "nav navbar-nav" },
-	                            _react2.default.createElement(
-	                                "li",
-	                                null,
-	                                _react2.default.createElement(
-	                                    "a",
-	                                    { href: "#" },
-	                                    "Dashboard"
-	                                )
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            "ul",
-	                            { className: "nav navbar-nav navbar-right" },
-	                            _react2.default.createElement(
-	                                "li",
-	                                { className: "dropdown" },
-	                                _react2.default.createElement(
-	                                    "a",
-	                                    { href: "#", className: "dropdown-toggle", "data-toggle": "dropdown", role: "button", "aria-haspopup": "true", "aria-expanded": "false" },
-	                                    _react2.default.createElement("i", { className: "fa fa-cogs", "aria-hidden": "true" }),
-	                                    _react2.default.createElement("span", { className: "caret" })
-	                                ),
-	                                _react2.default.createElement(
-	                                    "ul",
-	                                    { className: "dropdown-menu" },
-	                                    _react2.default.createElement(
-	                                        "li",
-	                                        null,
-	                                        _react2.default.createElement(
-	                                            "a",
-	                                            { href: "#" },
-	                                            "Settings"
-	                                        )
-	                                    ),
-	                                    _react2.default.createElement("li", { role: "separator", className: "divider" }),
-	                                    _react2.default.createElement(
-	                                        "li",
-	                                        null,
-	                                        _react2.default.createElement(
-	                                            "a",
-	                                            { href: "#" },
-	                                            "Sign Out"
-	                                        )
-	                                    )
-	                                )
-	                            )
-	                        )
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return Navbar;
-	}(_react2.default.Component);
-	
-	exports.default = Navbar;
 
 /***/ },
 /* 520 */
@@ -49593,15 +49656,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _NewChallengeButton = __webpack_require__(/*! ../components/NewChallengeButton.jsx */ 521);
-	
-	var _NewChallengeButton2 = _interopRequireDefault(_NewChallengeButton);
-	
-	var _UserDashboardChallenges = __webpack_require__(/*! ./UserDashboardChallenges.jsx */ 522);
+	var _UserDashboardChallenges = __webpack_require__(/*! ./UserDashboardChallenges.jsx */ 521);
 	
 	var _UserDashboardChallenges2 = _interopRequireDefault(_UserDashboardChallenges);
 	
-	var _ModalForm = __webpack_require__(/*! ./ModalForm.jsx */ 516);
+	var _ModalForm = __webpack_require__(/*! ./ModalForm.jsx */ 517);
 	
 	var _ModalForm2 = _interopRequireDefault(_ModalForm);
 	
@@ -49618,113 +49677,30 @@
 	var UserDashboardBody = function (_React$Component) {
 	    _inherits(UserDashboardBody, _React$Component);
 	
-	    function UserDashboardBody(props) {
+	    function UserDashboardBody() {
 	        _classCallCheck(this, UserDashboardBody);
 	
-	        var _this = _possibleConstructorReturn(this, (UserDashboardBody.__proto__ || Object.getPrototypeOf(UserDashboardBody)).call(this, props));
-	
-	        _this.newChallenge = _this.newChallenge.bind(_this);
-	        _this.modalClose = _this.modalClose.bind(_this);
-	
-	        _this.state = {
-	            newChallenge: false
-	        };
-	        return _this;
+	        return _possibleConstructorReturn(this, (UserDashboardBody.__proto__ || Object.getPrototypeOf(UserDashboardBody)).apply(this, arguments));
 	    }
 	
 	    _createClass(UserDashboardBody, [{
-	        key: "newChallenge",
-	        value: function newChallenge() {
-	            console.log("New Challenge Button Clicked!");
-	            this.setState({ newChallenge: true });
-	        }
-	    }, {
-	        key: "modalClose",
-	        value: function modalClose() {
-	            this.setState({ newChallenge: false });
-	        }
-	    }, {
 	        key: "render",
 	        value: function render() {
 	            return _react2.default.createElement(
 	                _reactBootstrap.Row,
 	                null,
-	                _react2.default.createElement(
-	                    _reactBootstrap.Button,
-	                    { bsStyle: "success", onClick: this.newChallenge },
-	                    "Create a New Challenge"
-	                ),
-	                _react2.default.createElement(_ModalForm2.default, {
-	                    modalOpen: this.state.newChallenge,
-	                    onClose: this.modalClose })
+	                _react2.default.createElement(_UserDashboardChallenges2.default, null)
 	            );
 	        }
 	    }]);
 	
 	    return UserDashboardBody;
 	}(_react2.default.Component);
-	// <UserDashboardChallenges />
 	
 	exports.default = UserDashboardBody;
 
 /***/ },
 /* 521 */
-/*!**********************************************************!*\
-  !*** ./src/client/app/components/NewChallengeButton.jsx ***!
-  \**********************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactBootstrap = __webpack_require__(/*! react-bootstrap */ 266);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var NewChallengeButton = function (_React$Component) {
-	    _inherits(NewChallengeButton, _React$Component);
-	
-	    function NewChallengeButton() {
-	        _classCallCheck(this, NewChallengeButton);
-	
-	        return _possibleConstructorReturn(this, (NewChallengeButton.__proto__ || Object.getPrototypeOf(NewChallengeButton)).apply(this, arguments));
-	    }
-	
-	    _createClass(NewChallengeButton, [{
-	        key: "render",
-	        value: function render() {
-	            return _react2.default.createElement(
-	                _reactBootstrap.Button,
-	                _extends({}, this.props, { bsStyle: "success" }),
-	                "Create a New Challenge"
-	            );
-	        }
-	    }]);
-	
-	    return NewChallengeButton;
-	}(_react2.default.Component);
-	
-	exports.default = NewChallengeButton;
-
-/***/ },
-/* 522 */
 /*!**************************************************************!*\
   !*** ./src/client/app/container/UserDashboardChallenges.jsx ***!
   \**************************************************************/
@@ -49742,7 +49718,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _UserChallengeContainer = __webpack_require__(/*! ./UserChallengeContainer.jsx */ 523);
+	var _UserChallengeContainer = __webpack_require__(/*! ./UserChallengeContainer.jsx */ 522);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -49768,22 +49744,27 @@
 	        return _this;
 	    }
 	
-	    // buildChallenges() {
-	    //     return this.state.challenges.map((challenge, i) => {
-	    //         return <UserChallengeContainer
-	    //             key={i}
-	    //             id={challenge.id}
-	    //             title={challenge.title}
-	    //             numDays={challenge.numDays}
-	    //             completedDays={challenge.completedDays}
-	    //         />;
-	    //     });
-	    // }
-	
 	    _createClass(UserDashboardChallenges, [{
+	        key: "buildChallenges",
+	        value: function buildChallenges() {
+	            return this.state.challenges.map(function (challenge, i) {
+	                return _react2.default.createElement(_UserChallengeContainer.UserChallengeContainer, {
+	                    key: i,
+	                    id: challenge.id,
+	                    title: challenge.title,
+	                    numDays: challenge.numDays,
+	                    completedDays: challenge.completedDays
+	                });
+	            });
+	        }
+	    }, {
 	        key: "render",
 	        value: function render() {
-	            return _react2.default.createElement("div", null);
+	            return _react2.default.createElement(
+	                "div",
+	                null,
+	                this.buildChallenges()
+	            );
 	        }
 	    }]);
 	
@@ -49797,7 +49778,7 @@
 	exports.default = UserDashboardChallenges;
 
 /***/ },
-/* 523 */
+/* 522 */
 /*!*************************************************************!*\
   !*** ./src/client/app/container/UserChallengeContainer.jsx ***!
   \*************************************************************/
