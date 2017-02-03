@@ -13,7 +13,6 @@ class UserHeader extends React.Component {
         
         this.state = {
             newChallenge: false,
-            currentState: 1
         }
     }
 
@@ -24,11 +23,7 @@ class UserHeader extends React.Component {
 
     modalClose() {
         this.setState({newChallenge: false});
-        this.setState({ currentState: this.state.currentState + 1 })
-    }
-
-    componentWillUnmount() {
-        this.refs.modalForm.modalClose();
+        this.setState({currentState: this.state.currentState + 1})
     }
 
     render() {
@@ -48,7 +43,6 @@ class UserHeader extends React.Component {
                     <Row>
                         <ModalForm 
                             key={this.state.currentState}
-                            ref="modalForm"
                             modalOpen={this.state.newChallenge}
                             onClose={this.modalClose} />
                     </Row>

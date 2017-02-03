@@ -125,7 +125,7 @@ class ChallengeDataInput extends React.Component {
                                 componentClass="textarea"
                     />
                     <FormControl.Feedback />
-                    <HelpBlock className="form-text text-muted">
+                    <HelpBlock>
                         Write a little bit about what you hope to
                         accomplish.
                     </HelpBlock>
@@ -143,7 +143,7 @@ class ChallengeDataInput extends React.Component {
                             type="text"
                     />
                     <FormControl.Feedback />
-                    <HelpBlock className="form-text text-muted">
+                    <HelpBlock>
                         Why is accomplishing this important to you?
                     </HelpBlock>
                 </FormGroup>

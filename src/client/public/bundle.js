@@ -48947,8 +48947,7 @@
 	        _this.modalClose = _this.modalClose.bind(_this);
 	
 	        _this.state = {
-	            newChallenge: false,
-	            currentState: 1
+	            newChallenge: false
 	        };
 	        return _this;
 	    }
@@ -48964,11 +48963,6 @@
 	        value: function modalClose() {
 	            this.setState({ newChallenge: false });
 	            this.setState({ currentState: this.state.currentState + 1 });
-	        }
-	    }, {
-	        key: "componentWillUnmount",
-	        value: function componentWillUnmount() {
-	            this.refs.modalForm.modalClose();
 	        }
 	    }, {
 	        key: "render",
@@ -49010,7 +49004,6 @@
 	                        null,
 	                        _react2.default.createElement(_ModalForm2.default, {
 	                            key: this.state.currentState,
-	                            ref: "modalForm",
 	                            modalOpen: this.state.newChallenge,
 	                            onClose: this.modalClose })
 	                    )
@@ -49046,10 +49039,6 @@
 	var _react = __webpack_require__(/*! react */ 1);
 	
 	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(/*! react-dom */ 32);
-	
-	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
 	var _reactBootstrap = __webpack_require__(/*! react-bootstrap */ 266);
 	
@@ -49100,50 +49089,39 @@
 	            var updatedChallenge = this.state.newChallenge;
 	            updatedChallenge.title = formValues.challengeTitle;
 	            updatedChallenge.description = formValues.challengeDescription;
-	            updatedChallenge.purpsoe = formValues.challengePurpse;
+	            updatedChallenge.purpose = formValues.challengePurpose;
 	            this.setState({ newChallenge: updatedChallenge });
 	            this.setState({ currentForm: this.state.currentForm + 1 });
 	        }
 	    }, {
 	        key: "onTaskDataSubmit",
 	        value: function onTaskDataSubmit(formValues) {
-	            console.log("Submitting Task Data...");
+	            console.log("Submitting Task Data...", formValues);
 	            var updatedChallenge = this.state.newChallenge;
-	
-	            if (!updatedChallenge.weeks) {
-	                updatedChallenge.weeks = [];
-	            }
-	            updatedChallenge.weeks.push({
-	                week: formValues.currentWeek,
-	                task: formValues.taskTitle,
-	                days: formValues.numDays
-	            });
+	            updatedChallenge.weeks = formValues;
 	            this.setState({ newChallenge: updatedChallenge });
-	            this.setState({ currentForm: this.state.currentFrom + 1 });
-	            this.setState({ currentWeek: this.state.currentWeek });
+	            this.setState({ currentForm: this.state.currentForm + 1 });
 	        }
 	    }, {
 	        key: "postData",
 	        value: function postData() {
-	            /* POST NEW CHALLENGE TO DATABASE */
+	            console.log("Your New Challenge is: ", this.state.newChallenge);
+	
 	            this.closeModal();
 	        }
 	    }, {
 	        key: "getModalFormComponent",
 	        value: function getModalFormComponent() {
+	            console.log("Current Page: ", this.state.currentForm);
 	            switch (this.state.currentForm) {
 	                case 1:
-	                    return _react2.default.createElement(_ChallengeDataInput2.default, { key: this.state.currentForm, onSubmit: this.onChallengeDataSubmit });
+	                    return _react2.default.createElement(_ChallengeDataInput2.default, { onSubmit: this.onChallengeDataSubmit });
 	                case 2:
-	                    return _react2.default.createElement(_TaskDataInput2.default, { currentWeek: this.state.currentWeek, key: this.state.currentWeek, onSubmit: this.onTaskDataSubmit });
+	                    return _react2.default.createElement(_TaskDataInput2.default, { onSubmit: this.onTaskDataSubmit });
 	                case 3:
-	                    return _react2.default.createElement(_TaskDataInput2.default, { currentWeek: this.state.currentWeek, key: this.state.currentWeek, onSubmit: this.onTaskDataSubmit });
-	                case 4:
-	                    return _react2.default.createElement(_TaskDataInput2.default, { currentWeek: this.state.currentWeek, key: this.state.currentWeek, onSubmit: this.onTaskDataSubmit });
-	                case 5:
-	                    return _react2.default.createElement(_TaskDataInput2.default, { currentWeek: this.state.currentWeek, key: this.state.currentWeek, onSubmit: this.onTaskDataSubmit });
-	                case 6:
-	                    return this.postData();
+	                    {
+	                        this.postData();
+	                    };
 	            }
 	            return null;
 	        }
@@ -49363,7 +49341,7 @@
 	                    _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null),
 	                    _react2.default.createElement(
 	                        _reactBootstrap.HelpBlock,
-	                        { className: "form-text text-muted" },
+	                        null,
 	                        "Write a little bit about what you hope to accomplish."
 	                    )
 	                ),
@@ -49385,7 +49363,7 @@
 	                    _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null),
 	                    _react2.default.createElement(
 	                        _reactBootstrap.HelpBlock,
-	                        { className: "form-text text-muted" },
+	                        null,
 	                        "Why is accomplishing this important to you?"
 	                    )
 	                ),
@@ -49457,7 +49435,8 @@
 	        _this.getTitleValidationState = _this.getTitleValidationState.bind(_this);
 	
 	        _this.state = {
-	            currentWeek: _this.props.currentWeek,
+	            tasks: [],
+	            currentWeek: 1,
 	            titleValue: "",
 	            numDaysValue: 1,
 	            titleValid: false,
@@ -49467,12 +49446,31 @@
 	    }
 	
 	    _createClass(TaskDataInput, [{
+	        key: "resetForm",
+	        value: function resetForm() {
+	            this.state = {
+	                titleValue: "",
+	                numDaysValue: 1,
+	                titleValid: false,
+	                numDaysValid: true
+	            };
+	        }
+	    }, {
 	        key: "onFormSubmit",
 	        value: function onFormSubmit() {
-	            this.props.onSubmit({
-	                taskTitle: this.state.taskTitle,
+	            var tasks = this.state.tasks;
+	            tasks.push({
+	                week: this.state.currentWeek,
+	                task: this.state.titleValue,
 	                numDays: this.state.numDaysValue
 	            });
+	            this.setState({ tasks: tasks });
+	            if (this.state.currentWeek < 4) {
+	                this.setState({ currentWeek: this.state.currentWeek + 1 });
+	                this.resetForm();
+	            } else {
+	                this.props.onSubmit(tasks);
+	            }
 	        }
 	    }, {
 	        key: "handleTitleChange",
@@ -49512,7 +49510,7 @@
 	                    "legend",
 	                    null,
 	                    "Week ",
-	                    this.props.currentWeek
+	                    this.state.currentWeek
 	                ),
 	                _react2.default.createElement(
 	                    _reactBootstrap.FormGroup,
@@ -49536,7 +49534,7 @@
 	                        this.state.currentWeek === 1 && "i.e. Cook Breakfast",
 	                        this.state.currentWeek === 2 && "i.e. Do 20 Push-ups",
 	                        this.state.currentWeek === 3 && "i.e. Write in my journal",
-	                        this.state.currentWeek === 4 && "i.e. Don't smoke cigarettes"
+	                        this.state.currentWeek === 4 && "i.e. No cigarettes"
 	                    )
 	                ),
 	                _react2.default.createElement(
@@ -49603,8 +49601,9 @@
 	                        { onClick: this.onFormSubmit,
 	                            disabled: this.state.titleValid ? false : true,
 	                            bsStyle: this.state.titleValid ? "success" : "danger"
+	
 	                        },
-	                        "Next"
+	                        this.state.currentWeek < 4 ? "Next" : "Submit"
 	                    )
 	                )
 	            );
@@ -49728,22 +49727,27 @@
 	        return _this;
 	    }
 	
-	    // buildChallenges() {
-	    //     return this.state.challenges.map((challenge, i) => {
-	    //         return <UserChallengeContainer
-	    //             key={i}
-	    //             id={challenge.id}
-	    //             title={challenge.title}
-	    //             numDays={challenge.numDays}
-	    //             completedDays={challenge.completedDays}
-	    //         />;
-	    //     });
-	    // }
-	
 	    _createClass(UserDashboardChallenges, [{
+	        key: "buildChallenges",
+	        value: function buildChallenges() {
+	            return this.state.challenges.map(function (challenge, i) {
+	                return _react2.default.createElement(_UserChallengeContainer.UserChallengeContainer, {
+	                    key: i,
+	                    id: challenge.id,
+	                    title: challenge.title,
+	                    numDays: challenge.numDays,
+	                    completedDays: challenge.completedDays
+	                });
+	            });
+	        }
+	    }, {
 	        key: "render",
 	        value: function render() {
-	            return _react2.default.createElement("div", null);
+	            return _react2.default.createElement(
+	                "div",
+	                null,
+	                this.buildChallenges()
+	            );
 	        }
 	    }]);
 	

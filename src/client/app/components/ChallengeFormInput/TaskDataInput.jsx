@@ -12,7 +12,17 @@ class TaskDataInput extends React.Component {
         this.getTitleValidationState = this.getTitleValidationState.bind(this);
 
         this.state = {
-            currentWeek: this.props.currentWeek,
+            tasks: [],
+            currentWeek: 1,
+            titleValue: "",
+            numDaysValue: 1,
+            titleValid: false,
+            numDaysValid: true
+        }
+    }
+
+    resetForm() {
+        this.state = {
             titleValue: "",
             numDaysValue: 1,
             titleValid: false,
@@ -21,10 +31,19 @@ class TaskDataInput extends React.Component {
     }
 
     onFormSubmit() {
-        this.props.onSubmit({
-            taskTitle: this.state.taskTitle,
+        var tasks = this.state.tasks
+        tasks.push({
+            week: this.state.currentWeek,
+            task: this.state.titleValue,
             numDays: this.state.numDaysValue
         });
+        this.setState({tasks: tasks})
+        if (this.state.currentWeek < 4) {
+            this.setState({currentWeek: this.state.currentWeek + 1});
+            this.resetForm();
+        } else {
+            this.props.onSubmit(tasks);
+        }
     }
 
     handleTitleChange(e) {
@@ -56,7 +75,7 @@ class TaskDataInput extends React.Component {
         return (
             <form>
                 <legend>
-                    Week {this.props.currentWeek}
+                    Week {this.state.currentWeek}
                 </legend>
                 <FormGroup
                     validationState={this.getTitleValidationState()}
@@ -74,7 +93,7 @@ class TaskDataInput extends React.Component {
                         {this.state.currentWeek === 1 && `i.e. Cook Breakfast`}
                         {this.state.currentWeek === 2 && `i.e. Do 20 Push-ups`}
                         {this.state.currentWeek === 3 && `i.e. Write in my journal`}
-                        {this.state.currentWeek === 4 && `i.e. Don't smoke cigarettes`}
+                        {this.state.currentWeek === 4 && `i.e. No cigarettes`}
                     </HelpBlock>
                 </FormGroup>
                 <FormGroup>
@@ -104,8 +123,10 @@ class TaskDataInput extends React.Component {
                                 false : true}
                             bsStyle={this.state.titleValid ?
                                 "success" : "danger"}
+                            
                     >
-                        Next
+                        {this.state.currentWeek < 4 ?
+                            `Next` : `Submit`}
                     </Button>
                 </FormGroup>
             </form>
