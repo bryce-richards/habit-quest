@@ -49150,7 +49150,8 @@
 	                description: this.state.newChallenge.description,
 	                purpose: this.state.newChallenge.purpose
 	            }).then(function (returnedChallenge) {
-	                var challengeId = returnedChallenge.data.id;
+	                var challengeId = returnedChallenge.data.data.id;
+	                console.log("tasks: ", _this2.state.newChallenge.tasks);
 	                for (var i = 0; i < _this2.state.newChallenge.tasks.length; i++) {
 	                    axios.post('/api/task/' + challengeId, {
 	                        challengeId: challengeId,

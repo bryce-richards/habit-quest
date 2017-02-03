@@ -15,7 +15,7 @@ class ModalForm extends React.Component {
         this.getModalFormComponent = this.getModalFormComponent.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.postData = this.postData.bind(this);
-        
+
         this.state = {
             currentForm: 1,
             newChallenge: {},
@@ -40,19 +40,20 @@ class ModalForm extends React.Component {
         this.setState({newChallenge: updatedChallenge});
         this.setState({currentForm: this.state.currentForm + 1});
     }
-    
+
     postData() {
         console.log("Your New Challenge is: ", this.state.newChallenge);
         var that = this;
 
-        axios.post('/api/challenge', 
+        axios.post('/api/challenge',
         {
             title: this.state.newChallenge.title,
             description: this.state.newChallenge.description,
             purpose: this.state.newChallenge.purpose
         })
         .then((returnedChallenge) => {
-            var challengeId = returnedChallenge.data.id;
+            var challengeId = returnedChallenge.data.data.id;
+            console.log("tasks: ", this.state.newChallenge.tasks);
             for (var i = 0; i < this.state.newChallenge.tasks.length; i++) {
                 axios.post('/api/task/' + challengeId, {
                     challengeId: challengeId,
@@ -71,7 +72,7 @@ class ModalForm extends React.Component {
             return e
         });
     }
-    
+
     getModalFormComponent() {
         console.log("Current Page: ", this.state.currentForm);
         switch(this.state.currentForm) {
