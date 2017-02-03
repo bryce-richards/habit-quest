@@ -12,22 +12,22 @@ class UserDashboardChallenges extends React.Component {
         }
     }
 
-    // buildChallenges() {
-    //     return this.state.challenges.map((challenge, i) => {
-    //         return <UserChallengeContainer
-    //             key={i}
-    //             id={challenge.id}
-    //             title={challenge.title}
-    //             numDays={challenge.numDays}
-    //             completedDays={challenge.completedDays}
-    //         />;
-    //     });
-    // }
+    buildChallenges() {
+        return this.state.challenges.map((challenge, i) => {
+            return <UserChallengeContainer
+                key={i}
+                id={challenge.id}
+                title={challenge.title}
+                numDays={challenge.numDays}
+                completedDays={challenge.completedDays}
+            />;
+        });
+    }
 
     render() {
         return (
             <div>
-                {/*this.buildChallenges()*/}
+                {this.buildChallenges()}
             </div>
         );
     }
