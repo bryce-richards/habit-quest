@@ -49075,6 +49075,8 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
+	var axios = __webpack_require__(/*! axios */ 236);
+	
 	var ModalForm = function (_React$Component) {
 	    _inherits(ModalForm, _React$Component);
 	
@@ -49122,9 +49124,32 @@
 	    }, {
 	        key: "postData",
 	        value: function postData() {
-	            console.log("Your New Challenge is: ", this.state.newChallenge);
+	            var _this2 = this;
 	
-	            this.closeModal();
+	            console.log("Your New Challenge is: ", this.state.newChallenge);
+	            var that = this;
+	
+	            axios.post('/api/challenge', {
+	                title: this.state.newChallenge.title,
+	                description: this.state.newChallenge.description,
+	                purpose: this.state.newChallenge.purpose
+	            }).then(function (returnedChallenge) {
+	                var challengeId = returnedChallenge.data.id;
+	                for (var i = 0; i < _this2.state.newChallenge.tasks.length; i++) {
+	                    axios.post('/api/task/' + challengeId, {
+	                        challengeId: challengeId,
+	                        taskName: _this2.state.newChallenge.tasks[i].task,
+	                        targetComplete: _this2.state.newChallenge.tasks[i].numDays,
+	                        weekNum: _this2.state.newChallenge.tasks[i].week
+	                    }).catch(function (e) {
+	                        return e;
+	                    });
+	                }
+	            }).then(function () {
+	                _this2.closeModal();
+	            }).catch(function (e) {
+	                return e;
+	            });
 	        }
 	    }, {
 	        key: "getModalFormComponent",

@@ -12,7 +12,7 @@ class UserHeader extends React.Component {
         this.modalClose = this.modalClose.bind(this);
         
         this.state = {
-            newChallenge: false,
+            newChallenge: false
         }
     }
 
