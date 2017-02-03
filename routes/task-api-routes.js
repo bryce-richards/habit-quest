@@ -65,6 +65,26 @@ module.exports = function(app) {
         error: e
       });
     });
-
   });
+
+  // route to update the tasks' checked
+  app.post("/api/update/task", (req, res) => {
+    db.Task.update({
+    countComplete: req.body.countComplete,
+    where: {
+      id: req.body.id
+    }
+  }).then((data) => {
+        res.json({
+          success: true,
+          data: data
+        });
+      }).catch((e) => {
+        res.json({
+          success: false,
+          error: e
+        });
+      });
+    });
+
 };
