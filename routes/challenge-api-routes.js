@@ -5,7 +5,7 @@ var db = require('../models');
 module.exports = function(app) {
 
   // route to fetch all challenges using logged in user's id
-  app.get('/api/challenge', (req, res) => {
+  app.get('/api/challenges', (req, res) => {
     var id = req.user.id;
 
     db.Challenge.findAll({
