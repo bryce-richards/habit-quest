@@ -48923,6 +48923,10 @@
 	
 	var _ModalForm2 = _interopRequireDefault(_ModalForm);
 	
+	var _reactDom = __webpack_require__(/*! react-dom */ 32);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -48943,7 +48947,8 @@
 	        _this.modalClose = _this.modalClose.bind(_this);
 	
 	        _this.state = {
-	            newChallenge: false
+	            newChallenge: false,
+	            currentState: 1
 	        };
 	        return _this;
 	    }
@@ -48958,6 +48963,12 @@
 	        key: "modalClose",
 	        value: function modalClose() {
 	            this.setState({ newChallenge: false });
+	            this.setState({ currentState: this.state.currentState + 1 });
+	        }
+	    }, {
+	        key: "componentWillUnmount",
+	        value: function componentWillUnmount() {
+	            this.refs.modalForm.modalClose();
 	        }
 	    }, {
 	        key: "render",
@@ -48998,6 +49009,8 @@
 	                        _reactBootstrap.Row,
 	                        null,
 	                        _react2.default.createElement(_ModalForm2.default, {
+	                            key: this.state.currentState,
+	                            ref: "modalForm",
 	                            modalOpen: this.state.newChallenge,
 	                            onClose: this.modalClose })
 	                    )
@@ -49034,6 +49047,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _reactDom = __webpack_require__(/*! react-dom */ 32);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
 	var _reactBootstrap = __webpack_require__(/*! react-bootstrap */ 266);
 	
 	var _ChallengeDataInput = __webpack_require__(/*! ../components/ChallengeFormInput/ChallengeDataInput.jsx */ 518);
@@ -49061,14 +49078,15 @@
 	        var _this = _possibleConstructorReturn(this, (ModalForm.__proto__ || Object.getPrototypeOf(ModalForm)).call(this, props));
 	
 	        _this.onChallengeDataSubmit = _this.onChallengeDataSubmit.bind(_this);
-	        _this.onWeekDataSubmit = _this.onWeekDataSubmit.bind(_this);
+	        _this.onTaskDataSubmit = _this.onTaskDataSubmit.bind(_this);
 	        _this.getModalFormComponent = _this.getModalFormComponent.bind(_this);
 	        _this.closeModal = _this.closeModal.bind(_this);
 	        _this.postData = _this.postData.bind(_this);
 	
 	        _this.state = {
 	            currentForm: 1,
-	            newChallenge: {}
+	            newChallenge: {},
+	            currentWeek: 1
 	        };
 	        return _this;
 	    }
@@ -49087,8 +49105,9 @@
 	            this.setState({ currentForm: this.state.currentForm + 1 });
 	        }
 	    }, {
-	        key: "onWeekDataSubmit",
-	        value: function onWeekDataSubmit(formValues) {
+	        key: "onTaskDataSubmit",
+	        value: function onTaskDataSubmit(formValues) {
+	            console.log("Submitting Task Data...");
 	            var updatedChallenge = this.state.newChallenge;
 	
 	            if (!updatedChallenge.weeks) {
@@ -49101,27 +49120,28 @@
 	            });
 	            this.setState({ newChallenge: updatedChallenge });
 	            this.setState({ currentForm: this.state.currentFrom + 1 });
+	            this.setState({ currentWeek: this.state.currentWeek });
 	        }
 	    }, {
 	        key: "postData",
 	        value: function postData() {
 	            /* POST NEW CHALLENGE TO DATABASE */
-	            return this.closeModal();
+	            this.closeModal();
 	        }
 	    }, {
 	        key: "getModalFormComponent",
 	        value: function getModalFormComponent() {
 	            switch (this.state.currentForm) {
 	                case 1:
-	                    return _react2.default.createElement(_ChallengeDataInput2.default, { onSubmit: this.onChallengeDataSubmit });
+	                    return _react2.default.createElement(_ChallengeDataInput2.default, { key: this.state.currentForm, onSubmit: this.onChallengeDataSubmit });
 	                case 2:
-	                    return _react2.default.createElement(_TaskDataInput2.default, { onSubmit: this.onChallengeWeekSubmit });
+	                    return _react2.default.createElement(_TaskDataInput2.default, { currentWeek: this.state.currentWeek, key: this.state.currentWeek, onSubmit: this.onTaskDataSubmit });
 	                case 3:
-	                    return _react2.default.createElement(_TaskDataInput2.default, { onSubmit: this.onChallengeWeekSubmit });
+	                    return _react2.default.createElement(_TaskDataInput2.default, { currentWeek: this.state.currentWeek, key: this.state.currentWeek, onSubmit: this.onTaskDataSubmit });
 	                case 4:
-	                    return _react2.default.createElement(_TaskDataInput2.default, { onSubmit: this.onChallengeWeekSubmit });
+	                    return _react2.default.createElement(_TaskDataInput2.default, { currentWeek: this.state.currentWeek, key: this.state.currentWeek, onSubmit: this.onTaskDataSubmit });
 	                case 5:
-	                    return _react2.default.createElement(_TaskDataInput2.default, { onSubmit: this.onChallengeWeekSubmit });
+	                    return _react2.default.createElement(_TaskDataInput2.default, { currentWeek: this.state.currentWeek, key: this.state.currentWeek, onSubmit: this.onTaskDataSubmit });
 	                case 6:
 	                    return this.postData();
 	            }
@@ -49130,7 +49150,7 @@
 	    }, {
 	        key: "closeModal",
 	        value: function closeModal() {
-	            return this.props.onClose();
+	            this.props.onClose();
 	        }
 	    }, {
 	        key: "render",
@@ -49306,16 +49326,14 @@
 	                _react2.default.createElement(
 	                    _reactBootstrap.FormGroup,
 	                    {
-	                        controlId: "challengeTitle",
 	                        validationState: this.getTitleValidationState()
 	                    },
 	                    _react2.default.createElement(
 	                        _reactBootstrap.ControlLabel,
-	                        { htmlFor: "challengeTitle" },
+	                        null,
 	                        "Challenge Title"
 	                    ),
 	                    _react2.default.createElement(_reactBootstrap.FormControl, {
-	                        ref: "challengeTitle",
 	                        onChange: this.handleTitleChange,
 	                        value: this.state.titleValue,
 	                        type: "text"
@@ -49330,17 +49348,16 @@
 	                _react2.default.createElement(
 	                    _reactBootstrap.FormGroup,
 	                    {
-	                        controlId: "challengeDescription",
 	                        validationState: this.getDescriptionValidationState()
 	                    },
 	                    _react2.default.createElement(
 	                        _reactBootstrap.ControlLabel,
-	                        { htmlFor: "challengeDescription" },
+	                        null,
 	                        "Challenge Description"
 	                    ),
 	                    _react2.default.createElement(_reactBootstrap.FormControl, {
 	                        onChange: this.handleDescriptionChange,
-	                        className: this.state.descriptionValue,
+	                        value: this.state.descriptionValue,
 	                        componentClass: "textarea"
 	                    }),
 	                    _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null),
@@ -49353,12 +49370,11 @@
 	                _react2.default.createElement(
 	                    _reactBootstrap.FormGroup,
 	                    {
-	                        controlId: "challengePurpose",
 	                        validationState: this.getPurposeValidationState()
 	                    },
 	                    _react2.default.createElement(
 	                        _reactBootstrap.ControlLabel,
-	                        { htmlFor: "challengePurpose" },
+	                        null,
 	                        "Challenge Purpose"
 	                    ),
 	                    _react2.default.createElement(_reactBootstrap.FormControl, {
@@ -49380,7 +49396,8 @@
 	                        _reactBootstrap.Button,
 	                        { onClick: this.onFormSubmit,
 	                            disabled: this.state.titleValid && this.state.descriptionValid && this.state.purposeValid ? false : true,
-	                            bsStyle: this.state.titleValid && this.state.descriptionValid && this.state.purposeValid ? "success" : "danger" },
+	                            bsStyle: this.state.titleValid && this.state.descriptionValid && this.state.purposeValid ? "success" : "danger"
+	                        },
 	                        "Next"
 	                    )
 	                )
@@ -49412,8 +49429,6 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _templateObject = _taggedTemplateLiteral(["btn"], ["btn"]);
-	
 	var _react = __webpack_require__(/*! react */ 1);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -49422,15 +49437,11 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	// var validate = require("validate");
 	
 	var TaskDataInput = function (_React$Component) {
 	    _inherits(TaskDataInput, _React$Component);
@@ -49441,9 +49452,12 @@
 	        var _this = _possibleConstructorReturn(this, (TaskDataInput.__proto__ || Object.getPrototypeOf(TaskDataInput)).call(this, props));
 	
 	        _this.onFormSubmit = _this.onFormSubmit.bind(_this);
+	        _this.handleTitleChange = _this.handleTitleChange.bind(_this);
+	        _this.handleDaysChange = _this.handleDaysChange.bind(_this);
+	        _this.getTitleValidationState = _this.getTitleValidationState.bind(_this);
 	
 	        _this.state = {
-	            currentWeek: 1,
+	            currentWeek: _this.props.currentWeek,
 	            titleValue: "",
 	            numDaysValue: 1,
 	            titleValid: false,
@@ -49456,10 +49470,36 @@
 	        key: "onFormSubmit",
 	        value: function onFormSubmit() {
 	            this.props.onSubmit({
-	                currentWeek: this.state.currentWeek,
-	                taskTitle: this.refs.taskTitle,
-	                numDays: this.refs.numDays
+	                taskTitle: this.state.taskTitle,
+	                numDays: this.state.numDaysValue
 	            });
+	        }
+	    }, {
+	        key: "handleTitleChange",
+	        value: function handleTitleChange(e) {
+	            this.setState({ titleValue: e.target.value });
+	            if (e.target.value.length >= 6) {
+	                this.setState({ titleValid: true });
+	            } else {
+	                this.setState({ titleValid: false });
+	            }
+	        }
+	    }, {
+	        key: "handleDaysChange",
+	        value: function handleDaysChange(e) {
+	            this.setState({ numDaysValue: e.target.value });
+	        }
+	    }, {
+	        key: "getTitleValidationState",
+	        value: function getTitleValidationState() {
+	            var length = this.state.titleValue.length;
+	            if (length > 6) {
+	                return "success";
+	            } else if (length > 3) {
+	                return "warning";
+	            } else if (length > 0) {
+	                return "error";
+	            }
 	        }
 	    }, {
 	        key: "render",
@@ -49469,103 +49509,102 @@
 	                "form",
 	                null,
 	                _react2.default.createElement(
-	                    "fieldset",
+	                    "legend",
 	                    null,
-	                    _react2.default.createElement("legend", null),
+	                    "Week ",
+	                    this.props.currentWeek
+	                ),
+	                _react2.default.createElement(
+	                    _reactBootstrap.FormGroup,
+	                    {
+	                        validationState: this.getTitleValidationState()
+	                    },
 	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "form-group" },
-	                        _react2.default.createElement(
-	                            "label",
-	                            null,
-	                            "Week ",
-	                            this.state.currentWeek
-	                        )
+	                        _reactBootstrap.ControlLabel,
+	                        null,
+	                        "What do you want to accomplish this week?"
+	                    ),
+	                    _react2.default.createElement(_reactBootstrap.FormControl, {
+	                        onChange: this.handleTitleChange,
+	                        value: this.state.titleValue,
+	                        type: "text"
+	                    }),
+	                    _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.HelpBlock,
+	                        null,
+	                        this.state.currentWeek === 1 && "i.e. Cook Breakfast",
+	                        this.state.currentWeek === 2 && "i.e. Do 20 Push-ups",
+	                        this.state.currentWeek === 3 && "i.e. Write in my journal",
+	                        this.state.currentWeek === 4 && "i.e. Don't smoke cigarettes"
 	                    )
 	                ),
 	                _react2.default.createElement(
-	                    "div",
-	                    { className: "form-group" },
+	                    _reactBootstrap.FormGroup,
+	                    null,
 	                    _react2.default.createElement(
-	                        "div",
+	                        _reactBootstrap.ControlLabel,
 	                        null,
-	                        _react2.default.createElement(
-	                            "label",
-	                            null,
-	                            "What do you want to accomplish this week?"
-	                        ),
-	                        _react2.default.createElement("input", {
-	                            className: "form-control",
-	                            ref: "taskTitle",
-	                            onBlur: this.onBlurTitle
-	                        })
+	                        "Days of The Week"
 	                    ),
 	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "form-group" },
+	                        _reactBootstrap.FormControl,
+	                        {
+	                            componentClass: "select",
+	                            onChange: this.handleDaysChange
+	                        },
 	                        _react2.default.createElement(
-	                            "label",
-	                            null,
-	                            "Days of The Week"
+	                            "option",
+	                            { value: "1" },
+	                            "1"
 	                        ),
 	                        _react2.default.createElement(
-	                            "select",
-	                            {
-	                                onBlur: this.addDays,
-	                                className: "form-control",
-	                                ref: "numDays" },
-	                            _react2.default.createElement(
-	                                "option",
-	                                null,
-	                                "1"
-	                            ),
-	                            _react2.default.createElement(
-	                                "option",
-	                                null,
-	                                "2"
-	                            ),
-	                            _react2.default.createElement(
-	                                "option",
-	                                null,
-	                                "3"
-	                            ),
-	                            _react2.default.createElement(
-	                                "option",
-	                                null,
-	                                "4"
-	                            ),
-	                            _react2.default.createElement(
-	                                "option",
-	                                null,
-	                                "5"
-	                            ),
-	                            _react2.default.createElement(
-	                                "option",
-	                                null,
-	                                "6"
-	                            ),
-	                            _react2.default.createElement(
-	                                "option",
-	                                null,
-	                                "7"
-	                            )
+	                            "option",
+	                            { value: "2" },
+	                            "2"
 	                        ),
 	                        _react2.default.createElement(
-	                            "small",
-	                            { className: "form-text text-muted" },
-	                            "Select How Many Days You Want To Complete This Task This Week"
+	                            "option",
+	                            { value: "3" },
+	                            "3"
+	                        ),
+	                        _react2.default.createElement(
+	                            "option",
+	                            { value: "4" },
+	                            "4"
+	                        ),
+	                        _react2.default.createElement(
+	                            "option",
+	                            { value: "5" },
+	                            "5"
+	                        ),
+	                        _react2.default.createElement(
+	                            "option",
+	                            { value: "6" },
+	                            "6"
+	                        ),
+	                        _react2.default.createElement(
+	                            "option",
+	                            { value: "7" },
+	                            "7"
 	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.HelpBlock,
+	                        { className: "form-text text-muted" },
+	                        "Select How Many Days You Want To Complete This Task This Week"
 	                    )
 	                ),
 	                _react2.default.createElement(
-	                    "div",
-	                    { className: "modal-footer" },
+	                    _reactBootstrap.FormGroup,
+	                    null,
 	                    _react2.default.createElement(
 	                        _reactBootstrap.Button,
 	                        { onClick: this.onFormSubmit,
-	                            disabled: this.state.nextButtonDisabled,
-	                            className: this.state.nextButtonClass(_templateObject) },
-	                        this.state.currentWeek === 4 ? "Submit" : "Next"
+	                            disabled: this.state.titleValid ? false : true,
+	                            bsStyle: this.state.titleValid ? "success" : "danger"
+	                        },
+	                        "Next"
 	                    )
 	                )
 	            );
@@ -49576,7 +49615,8 @@
 	}(_react2.default.Component);
 	
 	TaskDataInput.propTypes = {
-	    onSubmit: _react.PropTypes.func
+	    onSubmit: _react.PropTypes.func,
+	    currentWeek: _react.PropTypes.string
 	};
 	
 	exports.default = TaskDataInput;

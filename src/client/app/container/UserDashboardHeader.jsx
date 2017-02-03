@@ -1,6 +1,7 @@
 import React, { PropTypes } from "react";
 import { Grid, Row, Col, Clearfix, Jumbotron } from "react-bootstrap";
 import ModalForm from "../container/ModalForm.jsx";
+import ReactDOM from "react-dom";
 
 class UserHeader extends React.Component {
 
@@ -11,7 +12,8 @@ class UserHeader extends React.Component {
         this.modalClose = this.modalClose.bind(this);
         
         this.state = {
-            newChallenge: false
+            newChallenge: false,
+            currentState: 1
         }
     }
 
@@ -22,6 +24,11 @@ class UserHeader extends React.Component {
 
     modalClose() {
         this.setState({newChallenge: false});
+        this.setState({ currentState: this.state.currentState + 1 })
+    }
+
+    componentWillUnmount() {
+        this.refs.modalForm.modalClose();
     }
 
     render() {
@@ -40,6 +47,8 @@ class UserHeader extends React.Component {
                     </Jumbotron>
                     <Row>
                         <ModalForm 
+                            key={this.state.currentState}
+                            ref="modalForm"
                             modalOpen={this.state.newChallenge}
                             onClose={this.modalClose} />
                     </Row>

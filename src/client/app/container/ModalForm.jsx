@@ -1,4 +1,5 @@
 import React, { PropTypes } from "react";
+import ReactDOM from "react-dom";
 import { Modal, Button } from "react-bootstrap";
 
 import ChallengeDataInput from "../components/ChallengeFormInput/ChallengeDataInput.jsx";
@@ -10,7 +11,7 @@ class ModalForm extends React.Component {
         super(props);
 
         this.onChallengeDataSubmit = this.onChallengeDataSubmit.bind(this);
-        this.onWeekDataSubmit = this.onWeekDataSubmit.bind(this);
+        this.onTaskDataSubmit = this.onTaskDataSubmit.bind(this);
         this.getModalFormComponent = this.getModalFormComponent.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.postData = this.postData.bind(this);
@@ -18,6 +19,7 @@ class ModalForm extends React.Component {
         this.state = {
             currentForm: 1,
             newChallenge: {},
+            currentWeek: 1
         }
     }
 
@@ -31,7 +33,8 @@ class ModalForm extends React.Component {
         this.setState({currentForm: this.state.currentForm + 1});
     }
 
-    onWeekDataSubmit(formValues) {
+    onTaskDataSubmit(formValues) {
+        console.log("Submitting Task Data...");
         var updatedChallenge = this.state.newChallenge;
 
         if(!updatedChallenge.weeks) {
@@ -44,25 +47,26 @@ class ModalForm extends React.Component {
         });
         this.setState({newChallenge: updatedChallenge});
         this.setState({currentForm: this.state.currentFrom + 1});
+        this.setState({currentWeek: this.state.currentWeek});
     }
     
     postData() {
         /* POST NEW CHALLENGE TO DATABASE */
-        return this.closeModal();
+        this.closeModal();
     }
     
     getModalFormComponent() {
         switch(this.state.currentForm) {
             case 1:
-                return <ChallengeDataInput onSubmit={this.onChallengeDataSubmit} />;
+                return <ChallengeDataInput key={this.state.currentForm} onSubmit={this.onChallengeDataSubmit} />;
             case 2:
-                return <TaskDataInput onSubmit={this.onChallengeWeekSubmit} />;
+                return <TaskDataInput currentWeek={this.state.currentWeek} key={this.state.currentWeek} onSubmit={this.onTaskDataSubmit} />;
             case 3:
-                return <TaskDataInput onSubmit={this.onChallengeWeekSubmit} />;
+                return <TaskDataInput currentWeek={this.state.currentWeek} key={this.state.currentWeek} onSubmit={this.onTaskDataSubmit} />;
             case 4:
-                return <TaskDataInput onSubmit={this.onChallengeWeekSubmit} />;
+                return <TaskDataInput currentWeek={this.state.currentWeek} key={this.state.currentWeek} onSubmit={this.onTaskDataSubmit} />;
             case 5:
-                return <TaskDataInput onSubmit={this.onChallengeWeekSubmit} />;
+                return <TaskDataInput currentWeek={this.state.currentWeek} key={this.state.currentWeek} onSubmit={this.onTaskDataSubmit} />;
             case 6:
                 return this.postData();
         }
@@ -70,7 +74,8 @@ class ModalForm extends React.Component {
     }
 
     closeModal() {
-        return this.props.onClose();
+        this.props.onClose();
+
     }
 
     render() {

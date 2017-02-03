@@ -1,5 +1,5 @@
 import React, {PropTypes} from "react";
-import { FormGroup, FormControl, ControlLabel, HelpBlock, Button} from "react-bootstrap";
+import { FormGroup, FormControl, ControlLabel, HelpBlock, Button } from "react-bootstrap";
 
 class ChallengeDataInput extends React.Component {
 
@@ -96,14 +96,12 @@ class ChallengeDataInput extends React.Component {
         return (
             <form>
                 <FormGroup
-                    controlId="challengeTitle"
                     validationState={this.getTitleValidationState()}
                 >
-                    <ControlLabel htmlFor="challengeTitle">
+                    <ControlLabel>
                         Challenge Title
                     </ControlLabel>
                     <FormControl
-                            ref="challengeTitle"
                             onChange={this.handleTitleChange}
                             value={this.state.titleValue}
                             type="text"
@@ -116,15 +114,14 @@ class ChallengeDataInput extends React.Component {
                 </FormGroup>
 
                 <FormGroup
-                    controlId="challengeDescription"
                     validationState={this.getDescriptionValidationState()}
                 >
-                    <ControlLabel htmlFor="challengeDescription">
+                    <ControlLabel>
                         Challenge Description
                     </ControlLabel>
                     <FormControl
                                 onChange={this.handleDescriptionChange}
-                                className={this.state.descriptionValue}
+                                value={this.state.descriptionValue}
                                 componentClass="textarea"
                     />
                     <FormControl.Feedback />
@@ -135,10 +132,9 @@ class ChallengeDataInput extends React.Component {
                 </FormGroup>
 
                 <FormGroup
-                    controlId="challengePurpose"
                     validationState={this.getPurposeValidationState()}
                 >
-                    <ControlLabel htmlFor="challengePurpose">
+                    <ControlLabel>
                         Challenge Purpose
                     </ControlLabel>
                         <FormControl
@@ -156,7 +152,8 @@ class ChallengeDataInput extends React.Component {
                             disabled={this.state.titleValid && this.state.descriptionValid && this.state.purposeValid ?
                                 false : true}
                             bsStyle={this.state.titleValid && this.state.descriptionValid && this.state.purposeValid ?
-                                "success" : "danger"}>
+                                "success" : "danger"}
+                    >
                         Next
                     </Button>
                 </FormGroup>
