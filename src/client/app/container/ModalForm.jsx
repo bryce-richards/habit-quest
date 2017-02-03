@@ -3,6 +3,7 @@ import { Modal, Button } from "react-bootstrap";
 import ChallengeDataInput from "../components/ChallengeFormInput/ChallengeDataInput.jsx";
 import TaskDataInput from "../components/ChallengeFormInput/TaskDataInput.jsx";
 
+var axios = require("axios");
 
 class ModalForm extends React.Component {
 
@@ -42,8 +43,33 @@ class ModalForm extends React.Component {
     
     postData() {
         console.log("Your New Challenge is: ", this.state.newChallenge);
-        
-        this.closeModal();
+        var that = this;
+
+        axios.post('/api/challenge', 
+        {
+            title: this.state.newChallenge.title,
+            description: this.state.newChallenge.description,
+            purpose: this.state.newChallenge.purpose
+        })
+        .then((returnedChallenge) => {
+            var challengeId = returnedChallenge.data.id;
+            for (var i = 0; i < this.state.newChallenge.tasks.length; i++) {
+                axios.post('/api/task/' + challengeId, {
+                    challengeId: challengeId,
+                    taskName: this.state.newChallenge.tasks[i].task,
+                    targetComplete: this.state.newChallenge.tasks[i].numDays,
+                    weekNum: this.state.newChallenge.tasks[i].week
+                })
+                .catch((e) => {
+                    return e;
+                });
+            }
+        })
+        .then(()  => {
+            this.closeModal();
+        }).catch((e) => {
+            return e
+        });
     }
     
     getModalFormComponent() {
