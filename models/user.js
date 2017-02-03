@@ -1,3 +1,4 @@
+/*jshint esversion: 6*/
 const bcrypt = require('bcrypt');
 // User table model
 module.exports = function (sequelize, DataTypes) {
