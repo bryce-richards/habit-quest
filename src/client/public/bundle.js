@@ -75,6 +75,10 @@
 	
 	var _UserDashboardView2 = _interopRequireDefault(_UserDashboardView);
 	
+	var _ChallengeDetail = __webpack_require__(/*! ./components/ChallengeDetail.jsx */ 523);
+	
+	var _ChallengeDetail2 = _interopRequireDefault(_ChallengeDetail);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -118,7 +122,7 @@
 	    _react2.default.createElement(_reactRouter.Route, { path: 'signup', component: _signup2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: 'signin', component: _signin2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: 'profile', component: _profile2.default }),
-	    ' // route that should require auth'
+	    _react2.default.createElement(_reactRouter.Route, { path: '/challenge/:id', component: _ChallengeDetail2.default })
 	  )
 	), document.getElementById('app'));
 
@@ -49863,6 +49867,40 @@
 	}(_react2.default.Component);
 	
 	exports.default = UserChallengeContainer;
+
+/***/ },
+/* 523 */
+/*!*******************************************************!*\
+  !*** ./src/client/app/components/ChallengeDetail.jsx ***!
+  \*******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var ChallengeDetail = function ChallengeDetail(props) {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'h2',
+	      null,
+	      'Challenge id: ',
+	      props.params.id
+	    )
+	  );
+	};
+	
+	exports.default = ChallengeDetail;
 
 /***/ }
 /******/ ]);
