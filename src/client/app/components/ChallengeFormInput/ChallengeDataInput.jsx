@@ -1,6 +1,5 @@
 import React, {PropTypes} from "react";
-import {Button} from "react-bootstrap";
-
+import { FormGroup, FormControl, ControlLabel, HelpBlock, Button } from "react-bootstrap";
 
 class ChallengeDataInput extends React.Component {
 
@@ -8,178 +7,156 @@ class ChallengeDataInput extends React.Component {
         super(props);
 
         this.onFormSubmit = this.onFormSubmit.bind(this);
-        this.getStatus = this.getStatus.bind(this);
-        this.onBlurTitle = this.onBlurTitle.bind(this);
-        this.onBlurDescription = this.onBlurDescription.bind(this);
-        this.onBlurPurpose = this.onBlurPurpose.bind(this);
+        this.getTitleValidationState = this.getTitleValidationState.bind(this);
+        this.getDescriptionValidationState = this.getDescriptionValidationState.bind(this);
+        this.getPurposeValidationState = this.getPurposeValidationState.bind(this);
+        this.handleTitleChange = this.handleTitleChange.bind(this);
+        this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+        this.handlePurposeChange = this.handlePurposeChange.bind(this);
 
         this.state = {
-            errors: [],
-            backButtonDisabled: true,
-            nextButtonClass: "btn-default",
-            nextButtonDisabled: true,
-            titleClass: "has-default",
-            titleStatus: false,
-            descriptionClass: "has-default",
-            descriptionStatus: false,
-            purposeClass: "has-default",
-            purposeStatus: false
+            titleValue: "",
+            descriptionValue: "",
+            purposeValue: "",
+            titleValid: false,
+            descriptionValid: false,
+            purposeValid: false
         }
     }
 
     onFormSubmit() {
         this.props.onSubmit({
-            challengeTitle: this.refs.challengeTitle.value,
-            challengeDescription: this.refs.challengeDescription.value,
-            challengePurpose: this.refs.challengePurpose.value
+            challengeTitle: this.state.titleValue,
+            challengeDescription: this.state.descriptionValue,
+            challengePurpose: this.state.purposeValue
         });
     }
 
-    getStatus() {
-        (this.state.titleStatus && this.state.descriptionStatus && this.state.purposeStatus) ?
-            this.setState(
-                {
-                    nextButtonClass: "btn-success"
-                }, {
-                    nextButtonDisabled: false
-                })
-
-            :
-
-            this.setState(
-                {
-                    nextButtonClass: "btn-default"
-                }, {
-                    nextButtonDisabled: true
-                });
+    getTitleValidationState() {
+        var length = this.state.titleValue.length;
+        if (length > 6) {
+            return "success";
+        } else if (length > 3) {
+            return "warning";
+        } else if (length > 0) {
+            return "error";
+        }
     }
 
-    onBlurTitle() {
-        // VALIDATE TITLE ENTRY
-        // if title is good to go, make status green
-        // if title is not good to go, make status red
-        this.refs.challengeTitle.value ?
-            this.setClass(
-                {
-                    titleClass: "has-success"
-                }, {
-                    titleStatus: true
-                })
-
-            :
-
-            this.setState(
-                {
-                    titleClass: "has-danger"
-                }, {
-                    titleStatus: false
-        });
-            this.getStatus();
+    getDescriptionValidationState() {
+        var length = this.state.descriptionValue.length;
+        if (length > 10) {
+            return "success";
+        } else if (length > 5) {
+            return "warning";
+        } else if (length > 0) {
+            return "error";
+        }
     }
 
-    onBlurDescription() {
-        // VALIDATE TITLE ENTRY
-        // if title is good to go, make status green
-        // if title is not good to go, make status red
-        this.refs.challengeDescription.value ? this.setClass(
-                {
-                    descriptionClass: "has-success"
-                }, {
-                    descriptionStatus: true
-                })
-
-            :
-
-            this.setState(
-                {
-                    descriptionClass: "has-danger"
-                }, {
-                    descriptionStatus: false
-        });
-        this.getStatus();
+    getPurposeValidationState() {
+        var length = this.state.purposeValue.length;
+        if (length > 10) {
+            return "success";
+        } else if (length > 5) {
+            return "warning";
+        } else if (length > 0) {
+            return "error";
+        }
     }
 
-    onBlurPurpose() {
-        // VALIDATE TITLE ENTRY
-        // if title is good to go, make status green
-        // if title is not good to go, make status red
-        this.refs.challengePurpose.value ?
-            this.setClass(
-                {
-                    purposeClass: "has-success"
-                }, {
-                    purposeStatus: true
-                })
+    handleTitleChange(e) {
+        this.setState({ titleValue: e.target.value })
+        if (e.target.value.length >= 6) {
+            this.setState({ titleValid: true})
+        } else {
+            this.setState({ titleValid: false });
+        }
+    }
 
-            :
+    handleDescriptionChange(e) {
+        this.setState({ descriptionValue: e.target.value });
+        if (e.target.value.length >= 10) {
+            this.setState({ descriptionValid: true})
+        } else {
+            this.setState({ descriptionValid: false });
+        }
+    }
 
-            this.setState(
-                {
-                    purposeClass: "has-danger"
-                }, {
-                    purposeStatus: false
-        });
-        this.getStatus();
+    handlePurposeChange(e) {
+        this.setState({ purposeValue: e.target.value });
+        if (e.target.value.length >= 10) {
+            this.setState({ purposeValid: true})
+        } else {
+            this.setState({ purposeValid: false });
+        }
     }
 
     render() {
         return (
             <form>
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="challengeTitle">
-                            Challenge Title
-                        </label>
-                        <input ref="challengeTitle"
-                               onBlur={this.onBlurTitle}
-                               type="text"
-                               className={this.state.titleClass + " form-control"}
-                        />
-                        <small className="form-text text-muted">
-                            i.e. "Live Healthy", "Explore the Outdoors",
-                            "Write a Story"
-                        </small>
-                    </div>
+                <FormGroup
+                    validationState={this.getTitleValidationState()}
+                >
+                    <ControlLabel>
+                        Challenge Title
+                    </ControlLabel>
+                    <FormControl
+                            onChange={this.handleTitleChange}
+                            value={this.state.titleValue}
+                            type="text"
+                    />
+                    <FormControl.Feedback />
+                    <HelpBlock>
+                        i.e. "Live Healthy", "Explore the Outdoors",
+                        "Write a Story"
+                    </HelpBlock>
+                </FormGroup>
 
-                    <div className="form-group">
-                        <label htmlFor="challengeDescription">
-                            Challenge Description
-                        </label>
-                        <textarea ref="challengeDescription"
-                                  onBlur={this.onBlurDescription}
-                                  className={this.state.descriptionClass + " form-control"}>
-                        </textarea>
-                        <small className="form-text text-muted">
-                            Write a little bit about what you hope to
-                            accomplish.
-                        </small>
-                    </div>
+                <FormGroup
+                    validationState={this.getDescriptionValidationState()}
+                >
+                    <ControlLabel>
+                        Challenge Description
+                    </ControlLabel>
+                    <FormControl
+                                onChange={this.handleDescriptionChange}
+                                value={this.state.descriptionValue}
+                                componentClass="textarea"
+                    />
+                    <FormControl.Feedback />
+                    <HelpBlock>
+                        Write a little bit about what you hope to
+                        accomplish.
+                    </HelpBlock>
+                </FormGroup>
 
-                    <div className="form-group">
-                        <label htmlFor="challengePurpose">
-                            Challenge Purpose
-                        </label>
-                        <input ref="challengePurpose"
-                               onBlur={this.onBlurPurpose}
-                               type="text"
-                               className={this.state.purposeClass + "form-control"}
-                        />
-                        <small className="form-text text-muted">
-                            Write a little bit about what you hope to
-                            accomplish.
-                        </small>
-                    </div>
-                </fieldset>
-                <div className="modal-footer">
-                    <Button className="btn btn-primary disabled">
-                        Back
-                    </Button>
+                <FormGroup
+                    validationState={this.getPurposeValidationState()}
+                >
+                    <ControlLabel>
+                        Challenge Purpose
+                    </ControlLabel>
+                        <FormControl
+                            onChange={this.handlePurposeChange}
+                            value={this.state.purposeValue}
+                            type="text"
+                    />
+                    <FormControl.Feedback />
+                    <HelpBlock>
+                        Why is accomplishing this important to you?
+                    </HelpBlock>
+                </FormGroup>
+                <FormGroup>
                     <Button onClick={this.onFormSubmit}
-                            disabled={this.state.nextButtonDisabled}
-                            className={this.state.nextButtonClass}>
+                            disabled={this.state.titleValid && this.state.descriptionValid && this.state.purposeValid ?
+                                false : true}
+                            bsStyle={this.state.titleValid && this.state.descriptionValid && this.state.purposeValid ?
+                                "success" : "danger"}
+                    >
                         Next
                     </Button>
-                </div>
+                </FormGroup>
             </form>
         );
     }
