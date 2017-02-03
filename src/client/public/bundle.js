@@ -29229,7 +29229,7 @@
 	
 	  return _react2.default.createElement(
 	    "div",
-	    { className: "list-group-item" },
+	    { className: "list-group-item", "data-challengeId": challenge.id },
 	    _react2.default.createElement(
 	      "h3",
 	      null,
