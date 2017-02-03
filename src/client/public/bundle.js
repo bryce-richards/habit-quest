@@ -29184,14 +29184,22 @@
 	  var challengeListItems = props.challenges.map(function (challenge) {
 	    return _react2.default.createElement(_challengeListItem2.default, {
 	      key: challenge.id,
-	      challenge: challenge
-	    });
+	      challenge: challenge });
 	  });
 	
 	  return _react2.default.createElement(
-	    'ul',
+	    'div',
 	    null,
-	    challengeListItems
+	    _react2.default.createElement(
+	      'h2',
+	      null,
+	      'Challenges'
+	    ),
+	    _react2.default.createElement(
+	      'ul',
+	      { className: 'list-group' },
+	      challengeListItems
+	    )
 	  );
 	};
 	
@@ -29204,7 +29212,7 @@
   \***********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -29220,9 +29228,18 @@
 	  var challenge = _ref.challenge;
 	
 	  return _react2.default.createElement(
-	    'li',
-	    null,
-	    challenge.title
+	    "div",
+	    { className: "list-group-item", "data-challengeId": challenge.id },
+	    _react2.default.createElement(
+	      "h3",
+	      null,
+	      challenge.title
+	    ),
+	    _react2.default.createElement(
+	      "p",
+	      null,
+	      challenge.description
+	    )
 	  );
 	};
 	

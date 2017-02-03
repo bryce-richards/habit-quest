@@ -4,17 +4,19 @@ import ChallengeListItem from './challenge-list-item.jsx';
 const ChallengeList = (props) => {
   const challengeListItems = props.challenges.map((challenge) => {
     return (
-      <ChallengeListItem
-        key={challenge.id}
-        challenge={challenge}
-      />
+        <ChallengeListItem
+          key={challenge.id}
+          challenge={challenge} />
     )
   });
 
   return (
-      <ul>
-        {challengeListItems}
-      </ul>
+      <div>
+        <h2>Challenges</h2>
+        <ul className="list-group">
+          {challengeListItems}
+        </ul>
+      </div>
   );
 }
 
