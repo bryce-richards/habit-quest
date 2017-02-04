@@ -1,5 +1,5 @@
 import React from "react";
-import { UserChallengeContainer } from "./UserChallengeContainer.jsx";
+import { UserChallengePanel } from "./UserChallengePanel.jsx";
 // var request = require("request");
 
 class UserDashboardChallenges extends React.Component {
@@ -14,7 +14,7 @@ class UserDashboardChallenges extends React.Component {
 
     buildChallenges() {
         return this.state.challenges.map((challenge, i) => {
-            return <UserChallengeContainer
+            return <UserChallengePanel
                 key={i}
                 id={challenge.id}
                 title={challenge.title}

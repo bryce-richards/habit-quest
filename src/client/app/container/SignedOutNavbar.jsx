@@ -8,13 +8,13 @@ class SignedInNavbar extends React.Component {
             <Navbar inverse collapseOnSelect className="navbar-fixed-top">
                 <Navbar.Header>
                     <Navbar.Brand>
-                        {this.props.user.firstName} {this.props.user.lastName}
+                        4 Week Challenge
                     </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav pullRight>
-                        <NavItem eventKey={1} href="#">Sign Out</NavItem>
+                        <NavItem eventKey={1} href="#">Sign In</NavItem>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

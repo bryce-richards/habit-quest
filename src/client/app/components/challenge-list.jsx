@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
-import ChallengeListItem from './challenge-list-item.jsx';
+import React, { Component } from "react";
+import UserChallengePanel from "../container/UserChallengePanel.jsx";
 
 const ChallengeList = (props) => {
   const challengeListItems = props.challenges.map((challenge) => {
     return (
-        <ChallengeListItem
+        <UserChallengePanel
           key={challenge.id}
-          challenge={challenge} />
+          challenge={challenge} 
+        />
     )
   });
 

@@ -1,5 +1,6 @@
 import React from "react";
-import { Grid, Row, Col, Clearfix, Panel, ProgressBar } from "react-bootstrap";
+import { PanelGroup } from "react-bootstrap";
+import { UserTaskContainer } from "../components/UserTaskContainer.jsx";
 
 /*CONTAINS DATA FOR INDIVIDUAL CHALLENGE*/
 
@@ -10,8 +11,13 @@ class UserChallengePanel extends React.Component {
 
         this.state = {
             target: this.props.challenge,
-            tasks: []
+            tasks: [],
+            activeKey: this.props.challenge.id
         }
+    }
+
+    handleSelect(activeKey) {
+        this.setState({ activeKey });
     }
 
     buildTasks() {
@@ -29,10 +35,18 @@ class UserChallengePanel extends React.Component {
     render() {
 
         return (
-            <Panel>
-            </Panel>
+            <PanelGroup activeKey={this.state.activeKey} onSelect={this.handleSelect} accordion>
+                <h3>{this.props.challenge.title}</h3>
+                <p>{this.props.challenge.description}</p> 
+                {this.build.Tasks()}
+            </PanelGroup>
         );
     }
+}
+
+UserChallengePanel.propTypes = {
+    activeKey: PropTypes.integer,
+    challenge: PropTypes.object
 }
 
 export default UserChallengePanel;
