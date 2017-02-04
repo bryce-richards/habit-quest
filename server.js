@@ -9,7 +9,7 @@ const authMiddleware = require('./middleware/auth.js');
 const bcrypt = require('bcrypt');
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8000;
 
 // Requiring our models for syncing; commenting out until we have sequelize models
 var db = require("./models");
