@@ -8,11 +8,14 @@ import Profile from './components/profile.jsx';
 // import Header from './components/header.jsx';
 import UserDashboardView from './container/UserDashboardView.jsx';
 import ChallengeDetail from './components/ChallengeDetail.jsx';
+// import Header from './container/Header.jsx';
 
 class App extends React.Component {
   render () {
     return (
       <div>
+        {/*
+          */}
         <UserDashboardView />
         {this.props.children}
       </div>
@@ -20,16 +23,20 @@ class App extends React.Component {
   }
 }
 
+
 render(
   <Router history={browserHistory}>
+    {/* Logged out routes */}
     <Route path="/" component={App}>
-      <Route path="signup" component={SignupForm}/>
-      <Route path="signin" component={Signin}/>
-      <Route path="profile" component={Profile }/> 
+      <Route path="/signup" component={SignupForm}/>
+      <Route path="/signin" component={Signin}/>
+      <Route path="/profile" component={Profile}/>
       <Route path="/challenge/:id" component={ChallengeDetail} />
+    </Route>
+    {/* Logged in routes */}
+
       {/*
         */}
-    </Route>
   </Router>,
   document.getElementById('app')
 );

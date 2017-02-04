@@ -89,6 +89,8 @@
 	// import Header from './components/header.jsx';
 	
 	
+	// import Header from './container/Header.jsx';
+	
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
 	
@@ -119,9 +121,9 @@
 	  _react2.default.createElement(
 	    _reactRouter.Route,
 	    { path: '/', component: App },
-	    _react2.default.createElement(_reactRouter.Route, { path: 'signup', component: _signup2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'signin', component: _signin2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'profile', component: _profile2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _signup2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/signin', component: _signin2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/profile', component: _profile2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/challenge/:id', component: _ChallengeDetail2.default })
 	  )
 	), document.getElementById('app'));
@@ -27586,7 +27588,6 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_greeting2.default, { user: this.state.user }),
 	        _react2.default.createElement(_challengeList2.default, { challenges: this.state.challenges })
 	      );
 	    }
@@ -29284,9 +29285,9 @@
 	  var user = _ref.user;
 	
 	  return _react2.default.createElement(
-	    'p',
+	    'h2',
 	    null,
-	    'Hello, ',
+	    'Welcome Back, ',
 	    user.firstName,
 	    '!'
 	  );
@@ -29334,6 +29335,7 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	// import Greeting from "../components/greeting.jsx";
 	
 	var axios = __webpack_require__(/*! axios */ 236);
 	
@@ -29381,11 +29383,6 @@
 	            return _react2.default.createElement(
 	                _reactBootstrap.Grid,
 	                null,
-	                _react2.default.createElement(
-	                    _reactBootstrap.Row,
-	                    null,
-	                    _react2.default.createElement(_SignedInNavbar2.default, null)
-	                ),
 	                _react2.default.createElement(
 	                    _reactBootstrap.Row,
 	                    null,
@@ -48960,6 +48957,10 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
+	var _greeting = __webpack_require__(/*! ../components/greeting.jsx */ 263);
+	
+	var _greeting2 = _interopRequireDefault(_greeting);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -49007,28 +49008,15 @@
 	                    _reactBootstrap.Col,
 	                    { lg: 12 },
 	                    _react2.default.createElement(
-	                        _reactBootstrap.Jumbotron,
+	                        _reactBootstrap.Row,
 	                        null,
 	                        _react2.default.createElement(
-	                            _reactBootstrap.Row,
-	                            null,
+	                            _reactBootstrap.Col,
+	                            { lg: 2, lgOffset: 5, md: 4, mdOffset: 4, sm: 8, smOffset: 2, xs: 12 },
 	                            _react2.default.createElement(
-	                                _reactBootstrap.Col,
-	                                { lg: 12 },
-	                                _react2.default.createElement(
-	                                    "h1",
-	                                    { className: "text-center" },
-	                                    "Welcome Back!"
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                _reactBootstrap.Col,
-	                                { lg: 2, lgOffset: 5, md: 4, mdOffset: 4, sm: 8, smOffset: 2, xs: 12 },
-	                                _react2.default.createElement(
-	                                    "button",
-	                                    { type: "button", className: "text-center btn btn-success btn-block", onClick: this.modalOpen },
-	                                    "Create a Challenge"
-	                                )
+	                                "button",
+	                                { type: "button", className: "text-center btn btn-success btn-block", onClick: this.modalOpen },
+	                                "Create a Challenge"
 	                            )
 	                        )
 	                    ),
@@ -49140,8 +49128,6 @@
 	    }, {
 	        key: "postData",
 	        value: function postData() {
-	            var _this2 = this;
-	
 	            console.log("Your New Challenge is: ", this.state.newChallenge);
 	            var that = this;
 	
@@ -49164,7 +49150,8 @@
 	                    });
 	                }
 	            }).then(function () {
-	                _this2.closeModal();
+	                // this.closeModal();
+	
 	            }).catch(function (e) {
 	                return e;
 	            });
@@ -49889,6 +49876,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _taskList = __webpack_require__(/*! ./task-list.jsx */ 524);
+	
+	var _taskList2 = _interopRequireDefault(_taskList);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -49943,7 +49934,7 @@
 	          'Challenge id: ',
 	          this.props.params.id
 	        ),
-	        console.log(this.state.tasks)
+	        _react2.default.createElement(_taskList2.default, { tasks: this.state.tasks })
 	      );
 	    }
 	  }]);
@@ -49952,6 +49943,80 @@
 	}(_react.Component);
 	
 	exports.default = ChallengeDetail;
+
+/***/ },
+/* 524 */
+/*!*************************************************!*\
+  !*** ./src/client/app/components/task-list.jsx ***!
+  \*************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _taskListItem = __webpack_require__(/*! ./task-list-item.jsx */ 525);
+	
+	var _taskListItem2 = _interopRequireDefault(_taskListItem);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var TaskList = function TaskList(props) {
+	  var TaskListItems = props.tasks.map(function (task) {
+	    return _react2.default.createElement(_taskListItem2.default, { key: task.id, task: task });
+	  });
+	
+	  return _react2.default.createElement(
+	    'div',
+	    { id: 'task-container', className: 'row' },
+	    _react2.default.createElement(
+	      'h2',
+	      null,
+	      'Tasks'
+	    ),
+	    TaskListItems
+	  );
+	};
+	
+	exports.default = TaskList;
+
+/***/ },
+/* 525 */
+/*!******************************************************!*\
+  !*** ./src/client/app/components/task-list-item.jsx ***!
+  \******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var TaskListItem = function TaskListItem(_ref) {
+	  var task = _ref.task;
+	
+	
+	  return _react2.default.createElement(
+	    'li',
+	    null,
+	    task.taskName
+	  );
+	};
+	
+	exports.default = TaskListItem;
 
 /***/ }
 /******/ ]);

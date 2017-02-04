@@ -68,7 +68,8 @@ class ModalForm extends React.Component {
             }
         })
         .then(()  => {
-            this.closeModal();
+            // this.closeModal();
+            
         }).catch((e) => {
             return e
         });
