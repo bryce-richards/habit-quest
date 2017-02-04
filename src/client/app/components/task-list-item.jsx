@@ -55,7 +55,7 @@ class TaskListItem extends Component {
                       <Col lg={8}>
                           <ProgressBar  
                               active 
-                              bsStyle="info"
+                              bsStyle={this.state.countComplete < this.state.targetComplete ? "info" : "success"}
                               min={0} 
                               max={100} 
                               now={Math.round((this.state.countComplete / this.state.targetComplete) * 100)} 
