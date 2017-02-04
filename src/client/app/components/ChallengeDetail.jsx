@@ -44,8 +44,7 @@ class ChallengeDetail extends Component {
       return (
         <div>
           <SignedInNavbar />
-          <h2 className="text-center">{this.state.challengeTitle}</h2>
-          <TaskList tasks={this.state.tasks} />
+          <TaskList tasks={this.state.tasks} challengeTitle={this.state.challengeTitle} />
         </div>
       );
     }

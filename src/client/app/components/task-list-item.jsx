@@ -6,7 +6,7 @@ class TaskListItem extends Component {
 
     this.subtractDay = this.subtractDay.bind(this);
     this.addDay = this.addDay.bind(this);
-    
+
     this.state = {
       weekNum: this.props.task.weekNum,
       taskName: this.props.task.taskName,
@@ -27,23 +27,23 @@ class TaskListItem extends Component {
 
   render() {
     return (
-       <Panel header={<h2 className="text-center" style={{ "color": "black" }}>{this.state.taskName}</h2>} bsStyle={this.state.countComplete < this.state.targetComplete ? "default" : "success"}>
+       <Panel header={<h2 className="task-title text-center dosis">{this.state.taskName}</h2>} bsStyle={this.state.countComplete < this.state.targetComplete ? "default" : "success"}>
           <Row>
               <Col lg={12}>
                   <Row>
                       <Col lg={4}>
-                        <h4>Week: {this.state.weekNum}</h4>
+                        <h4 className="text-center arsenal">Week: {this.state.weekNum}</h4>
                       </Col>
                       <Col lg={4}>
-                        <h4>Completed: {this.state.countComplete}</h4>
+                        <h4 className="text-center arsenal">Completed: {this.state.countComplete}</h4>
                       </Col>
                        <Col lg={4}>
-                        <h4>Target: {this.state.targetComplete}</h4>
+                        <h4 className="text-center arsenal">Target: {this.state.targetComplete}</h4>
                       </Col>
-                  </Row>   
+                  </Row>
                   <Row>
                       <Col lg={1} lgOffset={1}>
-                          <Button onClick={this.subtractDay} 
+                          <Button onClick={this.subtractDay}
                                   bsSize="small"
                                   bsStyle="danger"
                                   disabled={this.state.countComplete > 0 ? false : true}
@@ -51,19 +51,19 @@ class TaskListItem extends Component {
                               <i className="fa fa-minus-circle fa-3x" aria-hidden="true"></i>
                           </Button>
                       </Col>
-                          
+
                       <Col lg={8}>
-                          <ProgressBar  
-                              active 
+                          <ProgressBar
+                              active
                               bsStyle={this.state.countComplete < this.state.targetComplete ? "info" : "success"}
-                              min={0} 
-                              max={100} 
-                              now={Math.round((this.state.countComplete / this.state.targetComplete) * 100)} 
+                              min={0}
+                              max={100}
+                              now={Math.round((this.state.countComplete / this.state.targetComplete) * 100)}
                               label={`${Math.round((this.state.countComplete / this.state.targetComplete) * 100)}%`}
                           />
                       </Col>
                       <Col lg={2}>
-                          <Button onClick={this.addDay} 
+                          <Button onClick={this.addDay}
                                   bsSize="small"
                                   bsStyle={this.state.countComplete < this.state.targetComplete ? "primary" : "success"}
                                   disabled={this.state.countComplete < this.state.targetComplete ? false : true}
@@ -74,8 +74,8 @@ class TaskListItem extends Component {
                   </Row>
               </Col>
           </Row>
-       </Panel> 
-      
+       </Panel>
+
     )
   }
 }

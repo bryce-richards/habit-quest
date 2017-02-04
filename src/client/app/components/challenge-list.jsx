@@ -9,8 +9,8 @@ const ChallengeList = (props) => {
   });
 
   return (
-      <div className="col-lg-2 col-lg-offset-5 dosis text-center" id="challenge-container" className="row">
-        <h2>Challenges</h2>
+      <div className="col-lg-2 col-lg-offset-5" id="challenge-container" className="row">
+        <h2 className="text-center dosis">CHALLENGES</h2>
         {challengeListItems}
       </div>
   );

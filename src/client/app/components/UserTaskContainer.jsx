@@ -41,9 +41,9 @@ class UserTaskContainer extends React.Component {
                     </Row>
                     <Row>
                         <Col lg={2}>
-                            <Button onClick={this.subtractDay} 
+                            <Button onClick={this.subtractDay}
                                     sStyle={this.state.completedDays > 0 ?
-                                        "warning" : "danger"} 
+                                        "warning" : "danger"}
                                     bsSize="small"
                                     disabled={this.state.completedDays > 0 ?
                                         "false" : "true"}
@@ -52,13 +52,13 @@ class UserTaskContainer extends React.Component {
                             </Button>
                         </Col>
                         <Col lg={8}>
-                            <ProgressBar id="progressBar" active min={0} max={this.state.target} now={this.state.completedDays} />
+                            <ProgressBar active min={0} max={this.state.target} now={this.state.completedDays} />
                         </Col>
                         <Col lg={2}>
-                            <Button onClick={this.addDay} 
+                            <Button onClick={this.addDay}
                                     bsStyle={this.state.completedDays < this.state.target ?
                                         "primary" : "success"}
-                                    bsSize="small" 
+                                    bsSize="small"
                                     disabled={this.state.completedDays < 7 ?
                                         "false" : "true"}
                             >

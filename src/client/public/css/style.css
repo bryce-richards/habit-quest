@@ -69,14 +69,18 @@ a.navbar-brand>img {
 }
 
 #greeting-text {
-    font-size: 40px;
+    font-size: 66px;
     text-align: center;
 }
 
-#progressBar {
+.progress {
     height: 51px;
-    font-size: 22px;
-    line-height: 2;
+}
+
+.progress-bar {
+  line-height: 2;
+  font-size: 22px;
+  vertical-align: middle;
 }
 
 #signup-form {
@@ -89,4 +93,36 @@ a.navbar-brand>img {
     background: #fff;
     padding: 20px;
     width: 350px;
+}
+
+.challenge-card {
+  height: 220px !important;
+  border-radius: 3px;
+}
+
+.card-contents {
+  height: 100%;
+}
+
+#task-list {
+  background: #29809F;
+  border: none;
+}
+
+#task-list > h3 {
+  color: #fff;
+  font-size: 42px;
+  margin: 0 0 20px 0;
+  padding: 10px 0;
+}
+
+.task-title {
+  color: black;
+  padding: 10px 0;
+  font-size: 22px;
+}
+
+#create-challenge-btn {
+  font-size: 22px;
+  padding: 25px;
 }

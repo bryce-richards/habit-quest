@@ -13,8 +13,8 @@ const TaskList = (props) => {
     <Grid>
       <Row>
         <Col lg={10} lgOffset={1}>
-          <Well>
-            <h3 className="text-center">Weekly Tasks</h3>
+          <Well id="task-list">
+            <h3 className="text-center bahiana">{props.challengeTitle}</h3>
             {TaskListItems}
           </Well>
         </Col>

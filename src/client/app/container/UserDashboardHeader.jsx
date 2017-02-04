@@ -34,11 +34,11 @@ class UserHeader extends React.Component {
 
 
                         <Row>
-                            <Col lg={2} lgOffset={5} md={4} mdOffset={4} sm={8} smOffset={2} xs={12}>
-                                <button type="button" className="text-center btn btn-success btn-block" onClick={this.modalOpen}>Create a Challenge</button>
+                            <Col className="text-center">
+                                <button id="create-challenge-btn" type="button" className="text-center btn btn-success btn-lg" onClick={this.modalOpen}>Create a Challenge</button>
                             </Col>
                         </Row>
-                    
+
                     <Row>
                         <ModalForm
                             key={this.state.currentState}
