@@ -48945,7 +48945,7 @@
 	              { className: "dosis nav navbar-nav navbar-right", id: "navbar-right" },
 	              _react2.default.createElement(
 	                "li",
-	                { className: "dosis" },
+	                null,
 	                _react2.default.createElement(
 	                  "a",
 	                  { href: "/signup" },
@@ -48959,6 +48959,15 @@
 	                  "a",
 	                  { href: "/signin" },
 	                  "Log In"
+	                )
+	              ),
+	              _react2.default.createElement(
+	                "li",
+	                null,
+	                _react2.default.createElement(
+	                  "a",
+	                  { href: "/logout" },
+	                  "Log Out"
 	                )
 	              )
 	            )

@@ -16,8 +16,9 @@ class SignedInNavbar extends React.Component {
                 </div>
                 <div className="collapse navbar-collapse">
                   <ul className="dosis nav navbar-nav navbar-right" id="navbar-right">
-                    <li className="dosis"><a href="/signup">Sign Up</a></li>
+                    <li><a href="/signup">Sign Up</a></li>
                     <li><a href="/signin">Log In</a></li>
+                    <li><a href="/logout">Log Out</a></li>
                   </ul>
                 </div>
               </div>
