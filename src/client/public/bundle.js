@@ -50082,10 +50082,10 @@
   \******************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -50096,6 +50096,10 @@
 	
 	var _reactBootstrap = __webpack_require__(/*! react-bootstrap */ 261);
 	
+	var _axios = __webpack_require__(/*! axios */ 236);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -50105,136 +50109,150 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var TaskListItem = function (_Component) {
-	    _inherits(TaskListItem, _Component);
+	  _inherits(TaskListItem, _Component);
 	
-	    function TaskListItem(props) {
-	        _classCallCheck(this, TaskListItem);
+	  function TaskListItem(props) {
+	    _classCallCheck(this, TaskListItem);
 	
-	        var _this = _possibleConstructorReturn(this, (TaskListItem.__proto__ || Object.getPrototypeOf(TaskListItem)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (TaskListItem.__proto__ || Object.getPrototypeOf(TaskListItem)).call(this, props));
 	
-	        _this.subtractDay = _this.subtractDay.bind(_this);
-	        _this.addDay = _this.addDay.bind(_this);
+	    _this.subtractDay = _this.subtractDay.bind(_this);
+	    _this.addDay = _this.addDay.bind(_this);
 	
-	        _this.state = {
-	            weekNum: _this.props.task.weekNum,
-	            taskName: _this.props.task.taskName,
-	            countComplete: _this.props.task.countComplete,
-	            targetComplete: _this.props.task.targetComplete
-	        };
-	        return _this;
+	    _this.state = {
+	      weekNum: _this.props.task.weekNum,
+	      taskName: _this.props.task.taskName,
+	      countComplete: _this.props.task.countComplete,
+	      targetComplete: _this.props.task.targetComplete
+	    };
+	    return _this;
+	  }
+	
+	  _createClass(TaskListItem, [{
+	    key: 'subtractDay',
+	    value: function subtractDay() {
+	      this.setState({ countComplete: this.state.countComplete - 1 });
+	      // api route to update task
+	      var url = "/api/update/task/" + this.props.task.id;
+	
+	      _axios2.default.put(url, { countComplete: this.state.countComplete - 1 }).then(function (data) {
+	        return data;
+	      }).catch(function (e) {
+	        return e;
+	      });
 	    }
+	  }, {
+	    key: 'addDay',
+	    value: function addDay() {
+	      this.setState({ countComplete: this.state.countComplete + 1 });
+	      // api route to update task
+	      var url = "/api/update/task/" + this.props.task.id;
 	
-	    _createClass(TaskListItem, [{
-	        key: "subtractDay",
-	        value: function subtractDay() {
-	            this.setState({ countComplete: this.state.countComplete - 1 });
-	            // api route to update task
-	        }
-	    }, {
-	        key: "addDay",
-	        value: function addDay() {
-	            this.setState({ countComplete: this.state.countComplete + 1 });
-	            // api route to update task
-	        }
-	    }, {
-	        key: "render",
-	        value: function render() {
-	            return _react2.default.createElement(
-	                _reactBootstrap.Panel,
-	                { header: _react2.default.createElement(
-	                        "h2",
-	                        { className: "task-title text-center dosis" },
-	                        this.state.taskName
-	                    ), bsStyle: this.state.countComplete < this.state.targetComplete ? "default" : "success" },
+	      _axios2.default.put(url, { countComplete: this.state.countComplete + 1 }).then(function (data) {
+	        return data;
+	      }).catch(function (e) {
+	        return e;
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        _reactBootstrap.Panel,
+	        { header: _react2.default.createElement(
+	            'h2',
+	            { className: 'task-title text-center dosis' },
+	            this.state.taskName
+	          ), bsStyle: this.state.countComplete < this.state.targetComplete ? "default" : "success" },
+	        _react2.default.createElement(
+	          _reactBootstrap.Row,
+	          null,
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { lg: 12 },
+	            _react2.default.createElement(
+	              _reactBootstrap.Row,
+	              null,
+	              _react2.default.createElement(
+	                _reactBootstrap.Col,
+	                { lg: 4 },
 	                _react2.default.createElement(
-	                    _reactBootstrap.Row,
-	                    null,
-	                    _react2.default.createElement(
-	                        _reactBootstrap.Col,
-	                        { lg: 12 },
-	                        _react2.default.createElement(
-	                            _reactBootstrap.Row,
-	                            null,
-	                            _react2.default.createElement(
-	                                _reactBootstrap.Col,
-	                                { lg: 4 },
-	                                _react2.default.createElement(
-	                                    "h4",
-	                                    { className: "text-center arsenal" },
-	                                    "Week: ",
-	                                    this.state.weekNum
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                _reactBootstrap.Col,
-	                                { lg: 4 },
-	                                _react2.default.createElement(
-	                                    "h4",
-	                                    { className: "text-center arsenal" },
-	                                    "Completed: ",
-	                                    this.state.countComplete
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                _reactBootstrap.Col,
-	                                { lg: 4 },
-	                                _react2.default.createElement(
-	                                    "h4",
-	                                    { className: "text-center arsenal" },
-	                                    "Target: ",
-	                                    this.state.targetComplete
-	                                )
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            _reactBootstrap.Row,
-	                            null,
-	                            _react2.default.createElement(
-	                                _reactBootstrap.Col,
-	                                { lg: 1, lgOffset: 1 },
-	                                _react2.default.createElement(
-	                                    _reactBootstrap.Button,
-	                                    { onClick: this.subtractDay,
-	                                        bsSize: "small",
-	                                        bsStyle: "danger",
-	                                        disabled: this.state.countComplete > 0 ? false : true
-	                                    },
-	                                    _react2.default.createElement("i", { className: "fa fa-minus-circle fa-3x", "aria-hidden": "true" })
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                _reactBootstrap.Col,
-	                                { lg: 8 },
-	                                _react2.default.createElement(_reactBootstrap.ProgressBar, {
-	                                    active: true,
-	                                    bsStyle: this.state.countComplete < this.state.targetComplete ? "info" : "success",
-	                                    min: 0,
-	                                    max: 100,
-	                                    now: Math.round(this.state.countComplete / this.state.targetComplete * 100),
-	                                    label: Math.round(this.state.countComplete / this.state.targetComplete * 100) + "%"
-	                                })
-	                            ),
-	                            _react2.default.createElement(
-	                                _reactBootstrap.Col,
-	                                { lg: 2 },
-	                                _react2.default.createElement(
-	                                    _reactBootstrap.Button,
-	                                    { onClick: this.addDay,
-	                                        bsSize: "small",
-	                                        bsStyle: this.state.countComplete < this.state.targetComplete ? "primary" : "success",
-	                                        disabled: this.state.countComplete < this.state.targetComplete ? false : true
-	                                    },
-	                                    _react2.default.createElement("i", { className: "fa fa-plus-circle fa-3x", "aria-hidden": "true" })
-	                                )
-	                            )
-	                        )
-	                    )
+	                  'h4',
+	                  { className: 'text-center arsenal' },
+	                  'Week: ',
+	                  this.state.weekNum
 	                )
-	            );
-	        }
-	    }]);
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Col,
+	                { lg: 4 },
+	                _react2.default.createElement(
+	                  'h4',
+	                  { className: 'text-center arsenal' },
+	                  'Completed: ',
+	                  this.state.countComplete
+	                )
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Col,
+	                { lg: 4 },
+	                _react2.default.createElement(
+	                  'h4',
+	                  { className: 'text-center arsenal' },
+	                  'Target: ',
+	                  this.state.targetComplete
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.Row,
+	              null,
+	              _react2.default.createElement(
+	                _reactBootstrap.Col,
+	                { lg: 1, lgOffset: 1 },
+	                _react2.default.createElement(
+	                  _reactBootstrap.Button,
+	                  { onClick: this.subtractDay,
+	                    bsSize: 'small',
+	                    bsStyle: 'danger',
+	                    disabled: this.state.countComplete > 0 ? false : true
+	                  },
+	                  _react2.default.createElement('i', { className: 'fa fa-minus-circle fa-3x', 'aria-hidden': 'true' })
+	                )
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Col,
+	                { lg: 8 },
+	                _react2.default.createElement(_reactBootstrap.ProgressBar, {
+	                  active: true,
+	                  bsStyle: this.state.countComplete < this.state.targetComplete ? "info" : "success",
+	                  min: 0,
+	                  max: 100,
+	                  now: Math.round(this.state.countComplete / this.state.targetComplete * 100),
+	                  label: Math.round(this.state.countComplete / this.state.targetComplete * 100) + '%'
+	                })
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Col,
+	                { lg: 2 },
+	                _react2.default.createElement(
+	                  _reactBootstrap.Button,
+	                  { onClick: this.addDay,
+	                    bsSize: 'small',
+	                    bsStyle: this.state.countComplete < this.state.targetComplete ? "primary" : "success",
+	                    disabled: this.state.countComplete < this.state.targetComplete ? false : true
+	                  },
+	                  _react2.default.createElement('i', { className: 'fa fa-plus-circle fa-3x', 'aria-hidden': 'true' })
+	                )
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
 	
-	    return TaskListItem;
+	  return TaskListItem;
 	}(_react.Component);
 	
 	exports.default = TaskListItem;
