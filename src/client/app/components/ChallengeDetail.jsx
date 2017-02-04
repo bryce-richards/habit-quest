@@ -7,11 +7,24 @@ class ChallengeDetail extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        tasks: []
+        tasks: [],
+        challengeTitle: null
       };
     }
     componentWillMount() {
-      this.fetchTasks()
+      this.fetchChallenge();
+      this.fetchTasks();
+    }
+
+    fetchChallenge() {
+      var url = "/api/challenge/" + this.props.params.id;
+      var that = this;
+      axios.get(url).then((res) => {
+        console.log("Title: ", res.data.data.title);
+        that.setState({challengeTitle: res.data.data.title})
+      }).catch((e) => {
+        return e
+      })
     }
 
     fetchTasks() {
@@ -30,10 +43,8 @@ class ChallengeDetail extends Component {
     render() {
       return (
         <div>
-
           <SignedInNavbar />
-          <h2>Challenge id: {this.props.params.id}</h2>
-          <h2 className="text-center">Challenge id: {this.props.params.id}</h2>
+          <h2 className="text-center">{this.state.challengeTitle}</h2>
           <TaskList tasks={this.state.tasks} />
         </div>
       );
