@@ -30,8 +30,10 @@ class ChallengeDetail extends Component {
     render() {
       return (
         <div>
+
           <SignedInNavbar />
           <h2>Challenge id: {this.props.params.id}</h2>
+          <h2 className="text-center">Challenge id: {this.props.params.id}</h2>
           <TaskList tasks={this.state.tasks} />
         </div>
       );
