@@ -5,31 +5,41 @@ import { Router, Route, Link, browserHistory } from 'react-router';
 import Signin from './components/signin.jsx';
 import SignupForm from './components/signup.jsx';
 import Profile from './components/profile.jsx';
-// import Header from './components/header.jsx';
-import UserDashboardView from './container/UserDashboardView.jsx';
+
+// import UserDashboardView from './container/UserDashboardView.jsx';
 import ChallengeDetail from './components/ChallengeDetail.jsx';
+import SignedInNavbar from "./container/SignedInNavbar.jsx";
+import HomeCarousel from "./components/Carousel.jsx";
 
 class App extends React.Component {
   render () {
     return (
       <div>
-        <UserDashboardView />
+        {/*
+          <UserDashboardView />
+          <HomeCarousel />
+          */}
+        <SignedInNavbar />
         {this.props.children}
       </div>
     )
   }
 }
 
+
 render(
   <Router history={browserHistory}>
+    {/* Logged out routes */}
     <Route path="/" component={App}>
-      <Route path="signup" component={SignupForm}/>
-      <Route path="signin" component={Signin}/>
-      <Route path="profile" component={Profile }/> 
-      <Route path="/challenge/:id" component={ChallengeDetail} />
+      <Route path="/signup" component={SignupForm}/>
+      <Route path="/signin" component={Signin}/>
+    </Route>
+    <Route path="/profile" component={Profile}/>
+    <Route path="/challenge/:id" component={ChallengeDetail} />
+    {/* Logged in routes */}
+
       {/*
         */}
-    </Route>
   </Router>,
   document.getElementById('app')
 );

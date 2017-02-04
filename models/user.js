@@ -23,11 +23,7 @@ module.exports = function (sequelize, DataTypes) {
   email: {
     type: DataTypes.STRING,
     allowNull: false
-  },
-  imageUrl: {
-    type: DataTypes.STRING,
-    allowNull: false
-    }
+  }
 },{
       // We're saying that we want our User to have Challenges
       classMethods: {

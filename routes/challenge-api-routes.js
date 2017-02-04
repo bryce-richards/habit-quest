@@ -92,7 +92,6 @@ module.exports = function(app) {
       title: req.body.title,
       description: req.body.description,
       purpose: req.body.purpose,
-      imageUrl: req.body.challengeImageUrl,
       UserId: id
     }).then((data) => {
       res.json({
@@ -128,27 +127,4 @@ module.exports = function(app) {
           });
         });
       });
-
-// route to update if the challenge is currently active
-  app.put("/api/challenge/:challenge_id", (req,res) => {
-    db.Challenge.update({
-      activeChallenge: true
-    }, {
-      where: {
-        id: req.params.challenge_id
-      }
-    }).then((data) => {
-      res.json({
-        success: true,
-        data: data
-      });
-    }).catch((e) => {
-      res.json({
-        success: false,
-        error: e
-      });
-    });
-  });
-
-
 };

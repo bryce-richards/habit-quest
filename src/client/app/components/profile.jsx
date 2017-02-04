@@ -4,7 +4,8 @@ import axios from 'axios';
 
 import ChallengeList from './challenge-list.jsx';
 import Greeting from './greeting.jsx';
-
+import UserDashboardView from '../container/UserDashboardView.jsx';
+import SignedInNavbar from "../container/SignedInNavbar.jsx";
 
 class Profile extends Component {
 
@@ -52,7 +53,11 @@ class Profile extends Component {
   render() {
     return (
       <div>
+        {/*
+          */}
+        <SignedInNavbar />  
         <Greeting user={this.state.user} />
+        <UserDashboardView />
         <ChallengeList challenges={this.state.challenges} />
       </div>
 

@@ -71,13 +71,17 @@
 	
 	var _profile2 = _interopRequireDefault(_profile);
 	
-	var _UserDashboardView = __webpack_require__(/*! ./container/UserDashboardView.jsx */ 264);
-	
-	var _UserDashboardView2 = _interopRequireDefault(_UserDashboardView);
-	
 	var _ChallengeDetail = __webpack_require__(/*! ./components/ChallengeDetail.jsx */ 523);
 	
 	var _ChallengeDetail2 = _interopRequireDefault(_ChallengeDetail);
+	
+	var _SignedInNavbar = __webpack_require__(/*! ./container/SignedInNavbar.jsx */ 265);
+	
+	var _SignedInNavbar2 = _interopRequireDefault(_SignedInNavbar);
+	
+	var _Carousel = __webpack_require__(/*! ./components/Carousel.jsx */ 526);
+	
+	var _Carousel2 = _interopRequireDefault(_Carousel);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -86,7 +90,8 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	// import Header from './components/header.jsx';
+	
+	// import UserDashboardView from './container/UserDashboardView.jsx';
 	
 	
 	var App = function (_React$Component) {
@@ -104,7 +109,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_UserDashboardView2.default, null),
+	        _react2.default.createElement(_SignedInNavbar2.default, null),
 	        this.props.children
 	      );
 	    }
@@ -119,11 +124,11 @@
 	  _react2.default.createElement(
 	    _reactRouter.Route,
 	    { path: '/', component: App },
-	    _react2.default.createElement(_reactRouter.Route, { path: 'signup', component: _signup2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'signin', component: _signin2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'profile', component: _profile2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/challenge/:id', component: _ChallengeDetail2.default })
-	  )
+	    _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _signup2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/signin', component: _signin2.default })
+	  ),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/profile', component: _profile2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/challenge/:id', component: _ChallengeDetail2.default })
 	), document.getElementById('app'));
 
 /***/ },
@@ -27331,32 +27336,32 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'form',
-	        { action: '/signin', method: 'post' },
+	        { id: 'signin-form', action: '/signin', method: 'post' },
 	        _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'form-group' },
 	          _react2.default.createElement(
 	            'label',
 	            null,
-	            'Username:'
+	            'Email:'
 	          ),
-	          _react2.default.createElement('input', { type: 'text', name: 'email' }),
+	          _react2.default.createElement('input', { type: 'text', className: 'form-control', name: 'email' }),
 	          _react2.default.createElement('br', null)
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'form-group' },
 	          _react2.default.createElement(
 	            'label',
 	            null,
 	            'Password:'
 	          ),
-	          _react2.default.createElement('input', { type: 'password', name: 'password' })
+	          _react2.default.createElement('input', { type: 'password', className: 'form-control', name: 'password' })
 	        ),
 	        _react2.default.createElement(
-	          'div',
-	          null,
-	          _react2.default.createElement('input', { type: 'submit', value: 'Submit' })
+	          'button',
+	          { type: 'submit', className: 'btn btn-default' },
+	          'Submit'
 	        )
 	      );
 	    }
@@ -27410,75 +27415,65 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'form',
-	        { action: '/signup', method: 'post' },
+	        { id: 'signup-form', action: '/signup', method: 'post' },
 	        _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'form-group' },
 	          _react2.default.createElement(
 	            'label',
 	            null,
 	            'First Name:'
 	          ),
-	          _react2.default.createElement('input', { type: 'text', name: 'firstName' }),
+	          _react2.default.createElement('input', { type: 'text', name: 'firstName', className: 'form-control' }),
 	          _react2.default.createElement('br', null)
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'form-group' },
 	          _react2.default.createElement(
 	            'label',
 	            null,
 	            'Last Name:'
 	          ),
-	          _react2.default.createElement('input', { type: 'text', name: 'lastName' }),
+	          _react2.default.createElement('input', { type: 'text', name: 'lastName', className: 'form-control' }),
 	          _react2.default.createElement('br', null)
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'form-group' },
 	          _react2.default.createElement(
 	            'label',
 	            null,
 	            'Username:'
 	          ),
-	          _react2.default.createElement('input', { type: 'text', name: 'userName' }),
+	          _react2.default.createElement('input', { type: 'text', name: 'userName', className: 'form-control' }),
 	          _react2.default.createElement('br', null)
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'form-group' },
 	          _react2.default.createElement(
 	            'label',
 	            null,
 	            'Email:'
 	          ),
-	          _react2.default.createElement('input', { type: 'text', name: 'email' }),
+	          _react2.default.createElement('input', { type: 'text', name: 'email', className: 'form-control' }),
 	          _react2.default.createElement('br', null)
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'form-group' },
 	          _react2.default.createElement(
 	            'label',
 	            null,
 	            'Password:'
 	          ),
-	          _react2.default.createElement('input', { type: 'password', name: 'password' })
+	          _react2.default.createElement('input', { type: 'password', name: 'password', className: 'form-control' })
 	        ),
 	        _react2.default.createElement(
-	          'div',
-	          null,
-	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'Image Link:'
-	          ),
-	          _react2.default.createElement('input', { type: 'text', name: 'imageUrl' })
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          _react2.default.createElement('input', { type: 'submit', value: 'Submit' })
+	          'button',
+	          { type: 'submit', className: 'btn btn-default' },
+	          'Submit'
 	        )
 	      );
 	    }
@@ -27521,6 +27516,14 @@
 	var _greeting = __webpack_require__(/*! ./greeting.jsx */ 263);
 	
 	var _greeting2 = _interopRequireDefault(_greeting);
+	
+	var _UserDashboardView = __webpack_require__(/*! ../container/UserDashboardView.jsx */ 264);
+	
+	var _UserDashboardView2 = _interopRequireDefault(_UserDashboardView);
+	
+	var _SignedInNavbar = __webpack_require__(/*! ../container/SignedInNavbar.jsx */ 265);
+	
+	var _SignedInNavbar2 = _interopRequireDefault(_SignedInNavbar);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -27586,7 +27589,9 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
+	        _react2.default.createElement(_SignedInNavbar2.default, null),
 	        _react2.default.createElement(_greeting2.default, { user: this.state.user }),
+	        _react2.default.createElement(_UserDashboardView2.default, null),
 	        _react2.default.createElement(_challengeList2.default, { challenges: this.state.challenges })
 	      );
 	    }
@@ -29284,9 +29289,9 @@
 	  var user = _ref.user;
 	
 	  return _react2.default.createElement(
-	    'p',
+	    'h2',
 	    null,
-	    'Hello, ',
+	    'Welcome Back, ',
 	    user.firstName,
 	    '!'
 	  );
@@ -29334,6 +29339,7 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	// import Greeting from "../components/greeting.jsx";
 	
 	var axios = __webpack_require__(/*! axios */ 236);
 	
@@ -29384,17 +29390,7 @@
 	                _react2.default.createElement(
 	                    _reactBootstrap.Row,
 	                    null,
-	                    _react2.default.createElement(_SignedInNavbar2.default, null)
-	                ),
-	                _react2.default.createElement(
-	                    _reactBootstrap.Row,
-	                    null,
 	                    _react2.default.createElement(_UserDashboardHeader2.default, null)
-	                ),
-	                _react2.default.createElement(
-	                    _reactBootstrap.Row,
-	                    null,
-	                    _react2.default.createElement(_UserDashboardBody2.default, null)
 	                )
 	            );
 	        }
@@ -29415,7 +29411,7 @@
 	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -29435,48 +29431,69 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var SignedInNavbar = function (_React$Component) {
-	    _inherits(SignedInNavbar, _React$Component);
+	  _inherits(SignedInNavbar, _React$Component);
 	
-	    function SignedInNavbar() {
-	        _classCallCheck(this, SignedInNavbar);
+	  function SignedInNavbar() {
+	    _classCallCheck(this, SignedInNavbar);
 	
-	        return _possibleConstructorReturn(this, (SignedInNavbar.__proto__ || Object.getPrototypeOf(SignedInNavbar)).apply(this, arguments));
-	    }
+	    return _possibleConstructorReturn(this, (SignedInNavbar.__proto__ || Object.getPrototypeOf(SignedInNavbar)).apply(this, arguments));
+	  }
 	
-	    _createClass(SignedInNavbar, [{
-	        key: "render",
-	        value: function render() {
-	            return _react2.default.createElement(
-	                _reactBootstrap.Navbar,
-	                { inverse: true, collapseOnSelect: true, className: "navbar-fixed-top" },
+	  _createClass(SignedInNavbar, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "nav",
+	        { id: "main-nav", className: "navbar navbar-default" },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "container" },
+	          _react2.default.createElement(
+	            "div",
+	            { className: "navbar-header" },
+	            _react2.default.createElement(
+	              "a",
+	              { className: "navbar-brand", href: "#" },
+	              "Brand"
+	            ),
+	            _react2.default.createElement("span", { id: "navbar-toggle", type: "button", className: "navbar-toggle collapsed fa fa-chevron-up rotate", "data-toggle": "collapse", "data-target": "#bs-example-navbar-collapse-1", "aria-expanded": "false" })
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "collapse navbar-collapse", id: "bs-example-navbar-collapse-1" },
+	            _react2.default.createElement(
+	              "ul",
+	              { className: "nav navbar-nav navbar-right" },
+	              _react2.default.createElement(
+	                "li",
+	                null,
 	                _react2.default.createElement(
-	                    _reactBootstrap.Navbar.Header,
-	                    null,
-	                    _react2.default.createElement(_reactBootstrap.Navbar.Brand, null),
-	                    _react2.default.createElement(_reactBootstrap.Navbar.Toggle, null)
-	                ),
-	                _react2.default.createElement(
-	                    _reactBootstrap.Navbar.Collapse,
-	                    null,
-	                    _react2.default.createElement(
-	                        _reactBootstrap.Nav,
-	                        { pullRight: true },
-	                        _react2.default.createElement(
-	                            _reactBootstrap.NavItem,
-	                            { eventKey: 1, href: "#" },
-	                            "Sign Out"
-	                        )
-	                    )
+	                  "a",
+	                  { href: "/signup" },
+	                  "Sign Up"
 	                )
-	            );
-	        }
-	    }]);
+	              ),
+	              _react2.default.createElement(
+	                "li",
+	                null,
+	                _react2.default.createElement(
+	                  "a",
+	                  { href: "/signin" },
+	                  "Log In"
+	                )
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
 	
-	    return SignedInNavbar;
+	  return SignedInNavbar;
 	}(_react2.default.Component);
 	
 	SignedInNavbar.propTypes = {
-	    user: _react.PropTypes.array
+	  user: _react.PropTypes.array
 	};
 	
 	exports.default = SignedInNavbar;
@@ -48960,6 +48977,10 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
+	var _greeting = __webpack_require__(/*! ../components/greeting.jsx */ 263);
+	
+	var _greeting2 = _interopRequireDefault(_greeting);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -49007,28 +49028,15 @@
 	                    _reactBootstrap.Col,
 	                    { lg: 12 },
 	                    _react2.default.createElement(
-	                        _reactBootstrap.Jumbotron,
+	                        _reactBootstrap.Row,
 	                        null,
 	                        _react2.default.createElement(
-	                            _reactBootstrap.Row,
-	                            null,
+	                            _reactBootstrap.Col,
+	                            { lg: 2, lgOffset: 5, md: 4, mdOffset: 4, sm: 8, smOffset: 2, xs: 12 },
 	                            _react2.default.createElement(
-	                                _reactBootstrap.Col,
-	                                { lg: 12 },
-	                                _react2.default.createElement(
-	                                    "h1",
-	                                    { className: "text-center" },
-	                                    "Welcome Back!"
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                _reactBootstrap.Col,
-	                                { lg: 2, lgOffset: 5, md: 4, mdOffset: 4, sm: 8, smOffset: 2, xs: 12 },
-	                                _react2.default.createElement(
-	                                    "button",
-	                                    { type: "button", className: "text-center btn btn-success btn-block", onClick: this.modalOpen },
-	                                    "Create a Challenge"
-	                                )
+	                                "button",
+	                                { type: "button", className: "text-center btn btn-success btn-block", onClick: this.modalOpen },
+	                                "Create a Challenge"
 	                            )
 	                        )
 	                    ),
@@ -49140,8 +49148,6 @@
 	    }, {
 	        key: "postData",
 	        value: function postData() {
-	            var _this2 = this;
-	
 	            console.log("Your New Challenge is: ", this.state.newChallenge);
 	            var that = this;
 	
@@ -49164,7 +49170,8 @@
 	                    });
 	                }
 	            }).then(function () {
-	                _this2.closeModal();
+	                // this.closeModal();
+	
 	            }).catch(function (e) {
 	                return e;
 	            });
@@ -49889,6 +49896,14 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _taskList = __webpack_require__(/*! ./task-list.jsx */ 524);
+	
+	var _taskList2 = _interopRequireDefault(_taskList);
+	
+	var _SignedInNavbar = __webpack_require__(/*! ../container/SignedInNavbar.jsx */ 265);
+	
+	var _SignedInNavbar2 = _interopRequireDefault(_SignedInNavbar);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -49908,7 +49923,8 @@
 	    var _this = _possibleConstructorReturn(this, (ChallengeDetail.__proto__ || Object.getPrototypeOf(ChallengeDetail)).call(this, props));
 	
 	    _this.state = {
-	      tasks: []
+	      tasks: [],
+	      challengeTitle: null
 	    };
 	    return _this;
 	  }
@@ -49916,7 +49932,20 @@
 	  _createClass(ChallengeDetail, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
+	      this.fetchChallenge();
 	      this.fetchTasks();
+	    }
+	  }, {
+	    key: 'fetchChallenge',
+	    value: function fetchChallenge() {
+	      var url = "/api/challenge/" + this.props.params.id;
+	      var that = this;
+	      axios.get(url).then(function (res) {
+	        console.log("Title: ", res.data.data.title);
+	        that.setState({ challengeTitle: res.data.data.title });
+	      }).catch(function (e) {
+	        return e;
+	      });
 	    }
 	  }, {
 	    key: 'fetchTasks',
@@ -49937,12 +49966,20 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
+	        _react2.default.createElement(_SignedInNavbar2.default, null),
 	        _react2.default.createElement(
 	          'h2',
+<<<<<<< HEAD
 	          null,
 	          'Challenge id: ',
 	          this.props.params.id
 	        )
+=======
+	          { className: 'text-center' },
+	          this.state.challengeTitle
+	        ),
+	        _react2.default.createElement(_taskList2.default, { tasks: this.state.tasks })
+>>>>>>> c0597fe0f7664382bb751ccd2d285b170d4bf992
 	      );
 	    }
 	  }]);
@@ -49951,6 +49988,342 @@
 	}(_react.Component);
 	
 	exports.default = ChallengeDetail;
+
+/***/ },
+/* 524 */
+/*!*************************************************!*\
+  !*** ./src/client/app/components/task-list.jsx ***!
+  \*************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _taskListItem = __webpack_require__(/*! ./task-list-item.jsx */ 525);
+	
+	var _taskListItem2 = _interopRequireDefault(_taskListItem);
+	
+	var _reactBootstrap = __webpack_require__(/*! react-bootstrap */ 266);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var TaskList = function TaskList(props) {
+	  var TaskListItems = props.tasks.map(function (task) {
+	    return _react2.default.createElement(_taskListItem2.default, { key: task.id, task: task });
+	  });
+	
+	  return _react2.default.createElement(
+	    _reactBootstrap.Grid,
+	    null,
+	    _react2.default.createElement(
+	      _reactBootstrap.Row,
+	      null,
+	      _react2.default.createElement(
+	        _reactBootstrap.Col,
+	        { lg: 10, lgOffset: 1 },
+	        _react2.default.createElement(
+	          _reactBootstrap.Well,
+	          null,
+	          _react2.default.createElement(
+	            'h3',
+	            { className: 'text-center' },
+	            'Weekly Tasks'
+	          ),
+	          TaskListItems
+	        )
+	      )
+	    )
+	  );
+	};
+	
+	TaskList.propTypes = {
+	  tasks: _react.PropTypes.array
+	};
+	
+	exports.default = TaskList;
+
+/***/ },
+/* 525 */
+/*!******************************************************!*\
+  !*** ./src/client/app/components/task-list-item.jsx ***!
+  \******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactBootstrap = __webpack_require__(/*! react-bootstrap */ 266);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var TaskListItem = function (_Component) {
+	    _inherits(TaskListItem, _Component);
+	
+	    function TaskListItem(props) {
+	        _classCallCheck(this, TaskListItem);
+	
+	        var _this = _possibleConstructorReturn(this, (TaskListItem.__proto__ || Object.getPrototypeOf(TaskListItem)).call(this, props));
+	
+	        _this.subtractDay = _this.subtractDay.bind(_this);
+	        _this.addDay = _this.addDay.bind(_this);
+	
+	        _this.state = {
+	            weekNum: _this.props.task.weekNum,
+	            taskName: _this.props.task.taskName,
+	            countComplete: _this.props.task.countComplete,
+	            targetComplete: _this.props.task.targetComplete
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(TaskListItem, [{
+	        key: "subtractDay",
+	        value: function subtractDay() {
+	            this.setState({ countComplete: this.state.countComplete - 1 });
+	            // api route to update task
+	        }
+	    }, {
+	        key: "addDay",
+	        value: function addDay() {
+	            this.setState({ countComplete: this.state.countComplete + 1 });
+	            // api route to update task
+	        }
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                _reactBootstrap.Panel,
+	                { header: _react2.default.createElement(
+	                        "h2",
+	                        { className: "text-center", style: { "color": "black" } },
+	                        this.state.taskName
+	                    ), bsStyle: this.state.countComplete < this.state.targetComplete ? "default" : "success" },
+	                _react2.default.createElement(
+	                    _reactBootstrap.Row,
+	                    null,
+	                    _react2.default.createElement(
+	                        _reactBootstrap.Col,
+	                        { lg: 12 },
+	                        _react2.default.createElement(
+	                            _reactBootstrap.Row,
+	                            null,
+	                            _react2.default.createElement(
+	                                _reactBootstrap.Col,
+	                                { lg: 4 },
+	                                _react2.default.createElement(
+	                                    "h4",
+	                                    null,
+	                                    "Week: ",
+	                                    this.state.weekNum
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                _reactBootstrap.Col,
+	                                { lg: 4 },
+	                                _react2.default.createElement(
+	                                    "h4",
+	                                    null,
+	                                    "Completed: ",
+	                                    this.state.countComplete
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                _reactBootstrap.Col,
+	                                { lg: 4 },
+	                                _react2.default.createElement(
+	                                    "h4",
+	                                    null,
+	                                    "Target: ",
+	                                    this.state.targetComplete
+	                                )
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            _reactBootstrap.Row,
+	                            null,
+	                            _react2.default.createElement(
+	                                _reactBootstrap.Col,
+	                                { lg: 1, lgOffset: 1 },
+	                                _react2.default.createElement(
+	                                    _reactBootstrap.Button,
+	                                    { onClick: this.subtractDay,
+	                                        bsSize: "small",
+	                                        bsStyle: "danger",
+	                                        disabled: this.state.countComplete > 0 ? false : true
+	                                    },
+	                                    _react2.default.createElement("i", { className: "fa fa-minus-circle fa-3x", "aria-hidden": "true" })
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                _reactBootstrap.Col,
+	                                { lg: 8 },
+	                                _react2.default.createElement(_reactBootstrap.ProgressBar, {
+	                                    active: true,
+	                                    bsStyle: this.state.countComplete < this.state.targetComplete ? "info" : "success",
+	                                    min: 0,
+	                                    max: 100,
+	                                    now: Math.round(this.state.countComplete / this.state.targetComplete * 100),
+	                                    label: Math.round(this.state.countComplete / this.state.targetComplete * 100) + "%"
+	                                })
+	                            ),
+	                            _react2.default.createElement(
+	                                _reactBootstrap.Col,
+	                                { lg: 2 },
+	                                _react2.default.createElement(
+	                                    _reactBootstrap.Button,
+	                                    { onClick: this.addDay,
+	                                        bsSize: "small",
+	                                        bsStyle: this.state.countComplete < this.state.targetComplete ? "primary" : "success",
+	                                        disabled: this.state.countComplete < this.state.targetComplete ? false : true
+	                                    },
+	                                    _react2.default.createElement("i", { className: "fa fa-plus-circle fa-3x", "aria-hidden": "true" })
+	                                )
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return TaskListItem;
+	}(_react.Component);
+	
+	exports.default = TaskListItem;
+
+/***/ },
+/* 526 */
+/*!************************************************!*\
+  !*** ./src/client/app/components/Carousel.jsx ***!
+  \************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 32);
+	
+	var _reactBootstrap = __webpack_require__(/*! react-bootstrap */ 266);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var HomeCarousel = function (_React$Component) {
+	    _inherits(HomeCarousel, _React$Component);
+	
+	    function HomeCarousel() {
+	        _classCallCheck(this, HomeCarousel);
+	
+	        return _possibleConstructorReturn(this, (HomeCarousel.__proto__ || Object.getPrototypeOf(HomeCarousel)).apply(this, arguments));
+	    }
+	
+	    _createClass(HomeCarousel, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                _reactBootstrap.Carousel,
+	                null,
+	                _react2.default.createElement(
+	                    _reactBootstrap.Carousel.Item,
+	                    null,
+	                    _react2.default.createElement("img", { width: 900, height: 500, alt: "900x500", src: "http://wallpapers-and-backgrounds.net/wp-content/uploads/2016/02/travel-hd-background_1.jpg" }),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.Carousel.Caption,
+	                        null,
+	                        _react2.default.createElement(
+	                            "h3",
+	                            null,
+	                            "First slide label"
+	                        ),
+	                        _react2.default.createElement(
+	                            "p",
+	                            null,
+	                            "Nulla vitae elit libero, a pharetra augue mollis interdum."
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactBootstrap.Carousel.Item,
+	                    null,
+	                    _react2.default.createElement("img", { width: 900, height: 500, alt: "900x500", src: "http://wallpapers-and-backgrounds.net/wp-content/uploads/2016/02/travel-hd-background_1.jpg" }),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.Carousel.Caption,
+	                        null,
+	                        _react2.default.createElement(
+	                            "h3",
+	                            null,
+	                            "Second slide label"
+	                        ),
+	                        _react2.default.createElement(
+	                            "p",
+	                            null,
+	                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactBootstrap.Carousel.Item,
+	                    null,
+	                    _react2.default.createElement("img", { width: 900, height: 500, alt: "900x500", src: "http://wallpapers-and-backgrounds.net/wp-content/uploads/2016/02/travel-hd-background_1.jpg" }),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.Carousel.Caption,
+	                        null,
+	                        _react2.default.createElement(
+	                            "h3",
+	                            null,
+	                            "Third slide label"
+	                        ),
+	                        _react2.default.createElement(
+	                            "p",
+	                            null,
+	                            "Praesent commodo cursus magna, vel scelerisque nisl consectetur."
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return HomeCarousel;
+	}(_react2.default.Component);
+	
+	exports.default = HomeCarousel;
 
 /***/ }
 /******/ ]);
