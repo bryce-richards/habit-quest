@@ -25,7 +25,7 @@ class UserTaskContainer extends React.Component {
     render() {
 
         return (
-             <Panel header={task.taskName} eventKey={this.props.key}>
+             <Panel header={task.taskName}>
                 <Col lg={12}>
                     <Row>
                         <Col lg={6}>
@@ -59,7 +59,7 @@ class UserTaskContainer extends React.Component {
                                     bsStyle={this.state.completedDays < this.state.target ?
                                         "primary" : "success"}
                                     bsSize="small" 
-                                    disabled={this.state.completedDays < this.state.target ?
+                                    disabled={this.state.completedDays < 7 ?
                                         "false" : "true"}
                             >
                                 <i class="fa fa-plus-circle" aria-hidden="true"></i>

@@ -36,7 +36,7 @@ class ModalForm extends React.Component {
     onTaskDataSubmit(formValues) {
         console.log("Submitting Task Data...", formValues);
         var updatedChallenge = this.state.newChallenge;
-        updatedChallenge.weeks = formValues;
+        updatedChallenge.tasks = formValues;
         this.setState({newChallenge: updatedChallenge});
         this.setState({currentForm: this.state.currentForm + 1});
     }
