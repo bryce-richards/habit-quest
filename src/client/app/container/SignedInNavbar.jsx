@@ -5,7 +5,7 @@ class SignedInNavbar extends React.Component {
 
     render() {
         return (
-            <Navbar inverse collapseOnSelect className="navbar-fixed-top">
+            <Navbar id="main-nav" inverse collapseOnSelect>
                 <Navbar.Header>
                     <Navbar.Brand>
                         {/*{this.props.user.firstName} {this.props.user.lastName}*/}

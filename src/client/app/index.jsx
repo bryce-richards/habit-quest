@@ -5,18 +5,19 @@ import { Router, Route, Link, browserHistory } from 'react-router';
 import Signin from './components/signin.jsx';
 import SignupForm from './components/signup.jsx';
 import Profile from './components/profile.jsx';
-// import Header from './components/header.jsx';
-import UserDashboardView from './container/UserDashboardView.jsx';
+
+// import UserDashboardView from './container/UserDashboardView.jsx';
 import ChallengeDetail from './components/ChallengeDetail.jsx';
-// import Header from './container/Header.jsx';
+import SignedInNavbar from "./container/SignedInNavbar.jsx";
 
 class App extends React.Component {
   render () {
     return (
       <div>
         {/*
+          <UserDashboardView />
           */}
-        <UserDashboardView />
+        <SignedInNavbar />
         {this.props.children}
       </div>
     )
