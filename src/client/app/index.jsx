@@ -9,6 +9,7 @@ import Profile from './components/profile.jsx';
 // import UserDashboardView from './container/UserDashboardView.jsx';
 import ChallengeDetail from './components/ChallengeDetail.jsx';
 import SignedInNavbar from "./container/SignedInNavbar.jsx";
+import HomeCarousel from "./components/Carousel.jsx";
 
 class App extends React.Component {
   render () {
@@ -16,6 +17,7 @@ class App extends React.Component {
       <div>
         {/*
           <UserDashboardView />
+          <HomeCarousel />
           */}
         <SignedInNavbar />
         {this.props.children}
@@ -31,9 +33,9 @@ render(
     <Route path="/" component={App}>
       <Route path="/signup" component={SignupForm}/>
       <Route path="/signin" component={Signin}/>
-      <Route path="/profile" component={Profile}/>
-      <Route path="/challenge/:id" component={ChallengeDetail} />
     </Route>
+    <Route path="/profile" component={Profile}/>
+    <Route path="/challenge/:id" component={ChallengeDetail} />
     {/* Logged in routes */}
 
       {/*

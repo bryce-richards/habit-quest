@@ -4,34 +4,31 @@ import {render} from 'react-dom';
 class SignupForm extends Component {
   render() {
     return (
-      <form action="/signup" method="post">
-      	<div>
+      <form id="signup-form" action="/signup" method="post">
+      	<div className="form-group">
         	<label>First Name:</label>
-        	<input type="text" name="firstName"/><br/>
+        	<input type="text" name="firstName" className="form-control"/><br/>
       	</div>
-      	<div>
+      	<div className="form-group">
         	<label>Last Name:</label>
-        	<input type="text" name="lastName"/><br/>
+        	<input type="text" name="lastName" className="form-control"/><br/>
       	</div>
-        <div>
+        <div className="form-group">
           <label>Username:</label>
-          <input type="text" name="userName"/><br/>
+          <input type="text" name="userName" className="form-control"/><br/>
         </div>
-      	<div>
+      	<div className="form-group">
         	<label>Email:</label>
-        	<input type="text" name="email"/><br/>
+        	<input type="text" name="email" className="form-control"/><br/>
       	</div>
-      	<div>
+      	<div className="form-group">
         	<label>Password:</label>
-        	<input type="password" name="password"/>
+        	<input type="password" name="password" className="form-control"/>
       	</div>
-      	<div>
-        	<label>Image Link:</label>
-        	<input type="text" name="imageUrl"/>
-      	</div>
-      	<div>
-        	<input type="submit" value="Submit"/>
-      	</div>
+
+
+        <button type="submit" className="btn btn-default">Submit</button>
+
       </form>
     )
   }
