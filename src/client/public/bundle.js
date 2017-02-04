@@ -71,13 +71,13 @@
 	
 	var _profile2 = _interopRequireDefault(_profile);
 	
-	var _UserDashboardView = __webpack_require__(/*! ./container/UserDashboardView.jsx */ 264);
-	
-	var _UserDashboardView2 = _interopRequireDefault(_UserDashboardView);
-	
 	var _ChallengeDetail = __webpack_require__(/*! ./components/ChallengeDetail.jsx */ 523);
 	
 	var _ChallengeDetail2 = _interopRequireDefault(_ChallengeDetail);
+	
+	var _SignedInNavbar = __webpack_require__(/*! ./container/SignedInNavbar.jsx */ 265);
+	
+	var _SignedInNavbar2 = _interopRequireDefault(_SignedInNavbar);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -86,10 +86,9 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	// import Header from './components/header.jsx';
 	
+	// import UserDashboardView from './container/UserDashboardView.jsx';
 	
-	// import Header from './container/Header.jsx';
 	
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -106,7 +105,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_UserDashboardView2.default, null),
+	        _react2.default.createElement(_SignedInNavbar2.default, null),
 	        this.props.children
 	      );
 	    }
@@ -27524,6 +27523,10 @@
 	
 	var _greeting2 = _interopRequireDefault(_greeting);
 	
+	var _UserDashboardView = __webpack_require__(/*! ../container/UserDashboardView.jsx */ 264);
+	
+	var _UserDashboardView2 = _interopRequireDefault(_UserDashboardView);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27588,6 +27591,8 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
+	        _react2.default.createElement(_greeting2.default, { user: this.state.user }),
+	        _react2.default.createElement(_UserDashboardView2.default, null),
 	        _react2.default.createElement(_challengeList2.default, { challenges: this.state.challenges })
 	      );
 	    }
@@ -29387,11 +29392,6 @@
 	                    _reactBootstrap.Row,
 	                    null,
 	                    _react2.default.createElement(_UserDashboardHeader2.default, null)
-	                ),
-	                _react2.default.createElement(
-	                    _reactBootstrap.Row,
-	                    null,
-	                    _react2.default.createElement(_UserDashboardBody2.default, null)
 	                )
 	            );
 	        }
@@ -29445,7 +29445,7 @@
 	        value: function render() {
 	            return _react2.default.createElement(
 	                _reactBootstrap.Navbar,
-	                { inverse: true, collapseOnSelect: true, className: "navbar-fixed-top" },
+	                { id: "main-nav", inverse: true, collapseOnSelect: true },
 	                _react2.default.createElement(
 	                    _reactBootstrap.Navbar.Header,
 	                    null,

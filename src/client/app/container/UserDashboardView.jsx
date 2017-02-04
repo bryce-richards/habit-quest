@@ -48,10 +48,10 @@ class UserDashboardView extends React.Component {
                 <Row>
                     <UserDashboardHeader />
                 </Row>
-                <Row>
-                    <UserDashboardBody />
-                </Row>
                 {/*
+                  <Row>
+                  <UserDashboardBody />
+                  </Row>
                   <h1>User Dashboard View Component</h1>
                   */}
             </Grid>
