@@ -17,9 +17,6 @@ module.exports = function (sequelize, DataTypes) {
     activeChallenge: {
         type: DataTypes.BOOLEAN,
         defaultValue: false
-    },
-    imageUrl: {
-        type: DataTypes.STRING
     }
  }, {
       // We're saying that we want our Task to be part of many

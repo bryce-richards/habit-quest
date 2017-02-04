@@ -66,8 +66,7 @@ module.exports = function(app) {
           lastName: user.lastName,
           userName: user.userName,
           email: user.email,
-          password: hash,
-          imageUrl: user.imageUrl
+          password: hash
         }).then((data) => {
           res.redirect('/signin');
         }).catch((e) => {
