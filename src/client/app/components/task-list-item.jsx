@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Panel, Grid, Col, Row, Button, ProgressBar } from "react-bootstrap";
+
+import axios from 'axios';
+
 class TaskListItem extends Component {
   constructor(props) {
     super(props);
@@ -18,11 +21,26 @@ class TaskListItem extends Component {
   subtractDay() {
     this.setState({countComplete: this.state.countComplete - 1});
     // api route to update task
+    var url = "/api/update/task/" + this.props.task.id;
+
+    axios.put(url, {countComplete: this.state.countComplete - 1}).then((data) => {
+      return data
+    }).catch((e) => {
+      return e
+    });
+
   }
 
   addDay() {
     this.setState({countComplete: this.state.countComplete + 1});
     // api route to update task
+    var url = "/api/update/task/" + this.props.task.id;
+
+    axios.put(url, {countComplete: this.state.countComplete + 1}).then((data) => {
+      return data
+    }).catch((e) => {
+      return e
+    });
   }
 
   render() {
