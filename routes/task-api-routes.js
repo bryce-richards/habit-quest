@@ -66,11 +66,12 @@ module.exports = function(app) {
     });
 
     // route to update the tasks' checked
-    app.post("/api/update/task", (req, res) => {
+    app.put("/api/update/task/:task_id", (req, res) => {
         db.Task.update({
-            countComplete: req.body.countComplete,
+            countComplete: req.body.countComplete
+        }, {
             where: {
-                id: req.body.id
+                id: req.params.task_id
             }
         }).then((data) => {
             res.json({
@@ -84,5 +85,7 @@ module.exports = function(app) {
             });
         });
     });
+
+
 
 };
