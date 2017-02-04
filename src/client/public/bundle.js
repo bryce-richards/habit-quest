@@ -27336,32 +27336,32 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'form',
-	        { action: '/signin', method: 'post' },
+	        { id: 'signin-form', action: '/signin', method: 'post' },
 	        _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'form-group' },
 	          _react2.default.createElement(
 	            'label',
 	            null,
-	            'Username:'
+	            'Email:'
 	          ),
-	          _react2.default.createElement('input', { type: 'text', name: 'email' }),
+	          _react2.default.createElement('input', { type: 'text', className: 'form-control', name: 'email' }),
 	          _react2.default.createElement('br', null)
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'form-group' },
 	          _react2.default.createElement(
 	            'label',
 	            null,
 	            'Password:'
 	          ),
-	          _react2.default.createElement('input', { type: 'password', name: 'password' })
+	          _react2.default.createElement('input', { type: 'password', className: 'form-control', name: 'password' })
 	        ),
 	        _react2.default.createElement(
-	          'div',
-	          null,
-	          _react2.default.createElement('input', { type: 'submit', value: 'Submit' })
+	          'button',
+	          { type: 'submit', className: 'btn btn-default' },
+	          'Submit'
 	        )
 	      );
 	    }
@@ -27415,75 +27415,65 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'form',
-	        { action: '/signup', method: 'post' },
+	        { id: 'signup-form', action: '/signup', method: 'post' },
 	        _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'form-group' },
 	          _react2.default.createElement(
 	            'label',
 	            null,
 	            'First Name:'
 	          ),
-	          _react2.default.createElement('input', { type: 'text', name: 'firstName' }),
+	          _react2.default.createElement('input', { type: 'text', name: 'firstName', className: 'form-control' }),
 	          _react2.default.createElement('br', null)
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'form-group' },
 	          _react2.default.createElement(
 	            'label',
 	            null,
 	            'Last Name:'
 	          ),
-	          _react2.default.createElement('input', { type: 'text', name: 'lastName' }),
+	          _react2.default.createElement('input', { type: 'text', name: 'lastName', className: 'form-control' }),
 	          _react2.default.createElement('br', null)
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'form-group' },
 	          _react2.default.createElement(
 	            'label',
 	            null,
 	            'Username:'
 	          ),
-	          _react2.default.createElement('input', { type: 'text', name: 'userName' }),
+	          _react2.default.createElement('input', { type: 'text', name: 'userName', className: 'form-control' }),
 	          _react2.default.createElement('br', null)
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'form-group' },
 	          _react2.default.createElement(
 	            'label',
 	            null,
 	            'Email:'
 	          ),
-	          _react2.default.createElement('input', { type: 'text', name: 'email' }),
+	          _react2.default.createElement('input', { type: 'text', name: 'email', className: 'form-control' }),
 	          _react2.default.createElement('br', null)
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'form-group' },
 	          _react2.default.createElement(
 	            'label',
 	            null,
 	            'Password:'
 	          ),
-	          _react2.default.createElement('input', { type: 'password', name: 'password' })
+	          _react2.default.createElement('input', { type: 'password', name: 'password', className: 'form-control' })
 	        ),
 	        _react2.default.createElement(
-	          'div',
-	          null,
-	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'Image Link:'
-	          ),
-	          _react2.default.createElement('input', { type: 'text', name: 'imageUrl' })
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          _react2.default.createElement('input', { type: 'submit', value: 'Submit' })
+	          'button',
+	          { type: 'submit', className: 'btn btn-default' },
+	          'Submit'
 	        )
 	      );
 	    }
@@ -27530,6 +27520,10 @@
 	var _UserDashboardView = __webpack_require__(/*! ../container/UserDashboardView.jsx */ 264);
 	
 	var _UserDashboardView2 = _interopRequireDefault(_UserDashboardView);
+	
+	var _SignedInNavbar = __webpack_require__(/*! ../container/SignedInNavbar.jsx */ 265);
+	
+	var _SignedInNavbar2 = _interopRequireDefault(_SignedInNavbar);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -27595,6 +27589,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
+	        _react2.default.createElement(_SignedInNavbar2.default, null),
 	        _react2.default.createElement(_greeting2.default, { user: this.state.user }),
 	        _react2.default.createElement(_UserDashboardView2.default, null),
 	        _react2.default.createElement(_challengeList2.default, { challenges: this.state.challenges })
@@ -29416,7 +29411,7 @@
 	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -29436,49 +29431,69 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var SignedInNavbar = function (_React$Component) {
-	    _inherits(SignedInNavbar, _React$Component);
+	  _inherits(SignedInNavbar, _React$Component);
 	
-	    function SignedInNavbar() {
-	        _classCallCheck(this, SignedInNavbar);
+	  function SignedInNavbar() {
+	    _classCallCheck(this, SignedInNavbar);
 	
-	        return _possibleConstructorReturn(this, (SignedInNavbar.__proto__ || Object.getPrototypeOf(SignedInNavbar)).apply(this, arguments));
-	    }
+	    return _possibleConstructorReturn(this, (SignedInNavbar.__proto__ || Object.getPrototypeOf(SignedInNavbar)).apply(this, arguments));
+	  }
 	
-	    _createClass(SignedInNavbar, [{
-	        key: "render",
-	        value: function render() {
-	            return _react2.default.createElement(
-	                _reactBootstrap.Navbar,
-	                { id: "main-nav", inverse: true, collapseOnSelect: true },
+	  _createClass(SignedInNavbar, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "nav",
+	        { id: "main-nav", className: "navbar navbar-default" },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "container" },
+	          _react2.default.createElement(
+	            "div",
+	            { className: "navbar-header" },
+	            _react2.default.createElement(
+	              "a",
+	              { className: "navbar-brand", href: "#" },
+	              "Brand"
+	            ),
+	            _react2.default.createElement("span", { id: "navbar-toggle", type: "button", className: "navbar-toggle collapsed fa fa-chevron-up rotate", "data-toggle": "collapse", "data-target": "#bs-example-navbar-collapse-1", "aria-expanded": "false" })
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "collapse navbar-collapse", id: "bs-example-navbar-collapse-1" },
+	            _react2.default.createElement(
+	              "ul",
+	              { className: "nav navbar-nav navbar-right" },
+	              _react2.default.createElement(
+	                "li",
+	                null,
 	                _react2.default.createElement(
-	                    _reactBootstrap.Navbar.Header,
-	                    null,
-	                    _react2.default.createElement(_reactBootstrap.Navbar.Brand, null),
-	                    _react2.default.createElement(_reactBootstrap.Navbar.Toggle, null)
-	                ),
-	                _react2.default.createElement(
-	                    _reactBootstrap.Nav,
-	                    null,
-	                    _react2.default.createElement(
-	                        _reactBootstrap.NavItem,
-	                        { href: "/signin" },
-	                        "Sign In"
-	                    ),
-	                    _react2.default.createElement(
-	                        _reactBootstrap.NavItem,
-	                        { href: "/signup" },
-	                        "Sign up"
-	                    )
+	                  "a",
+	                  { href: "/signup" },
+	                  "Sign Up"
 	                )
-	            );
-	        }
-	    }]);
+	              ),
+	              _react2.default.createElement(
+	                "li",
+	                null,
+	                _react2.default.createElement(
+	                  "a",
+	                  { href: "/signin" },
+	                  "Log In"
+	                )
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
 	
-	    return SignedInNavbar;
+	  return SignedInNavbar;
 	}(_react2.default.Component);
 	
 	SignedInNavbar.propTypes = {
-	    user: _react.PropTypes.array
+	  user: _react.PropTypes.array
 	};
 	
 	exports.default = SignedInNavbar;
@@ -49885,6 +49900,10 @@
 	
 	var _taskList2 = _interopRequireDefault(_taskList);
 	
+	var _SignedInNavbar = __webpack_require__(/*! ../container/SignedInNavbar.jsx */ 265);
+	
+	var _SignedInNavbar2 = _interopRequireDefault(_SignedInNavbar);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -49933,6 +49952,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
+	        _react2.default.createElement(_SignedInNavbar2.default, null),
 	        _react2.default.createElement(
 	          'h2',
 	          null,

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TaskList from './task-list.jsx';
 const axios = require('axios');
+import SignedInNavbar from "../container/SignedInNavbar.jsx";
 
 class ChallengeDetail extends Component {
     constructor(props) {
@@ -29,6 +30,7 @@ class ChallengeDetail extends Component {
     render() {
       return (
         <div>
+          <SignedInNavbar />
           <h2>Challenge id: {this.props.params.id}</h2>
           <TaskList tasks={this.state.tasks} />
         </div>
