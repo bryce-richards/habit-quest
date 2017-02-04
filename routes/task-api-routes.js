@@ -25,7 +25,7 @@ module.exports = function(app) {
     // route to fetch task by challenge id
     app.get('/api/task/:challenge_id', (req, res) => {
 
-        db.Task.findOne({
+        db.Task.findAll({
             where: {
                 ChallengeId: req.params.challenge_id
             }

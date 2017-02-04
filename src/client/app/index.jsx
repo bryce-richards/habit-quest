@@ -7,6 +7,7 @@ import SignupForm from './components/signup.jsx';
 import Profile from './components/profile.jsx';
 // import Header from './components/header.jsx';
 import UserDashboardView from './container/UserDashboardView.jsx';
+import ChallengeDetail from './components/ChallengeDetail.jsx';
 
 class App extends React.Component {
   render () {
@@ -24,7 +25,8 @@ render(
     <Route path="/" component={App}>
       <Route path="signup" component={SignupForm}/>
       <Route path="signin" component={Signin}/>
-      <Route path="profile" component={Profile }/> // route that should require auth
+      <Route path="profile" component={Profile }/> 
+      <Route path="/challenge/:id" component={ChallengeDetail} />
       {/*
         */}
     </Route>

@@ -15,7 +15,7 @@ class ModalForm extends React.Component {
         this.getModalFormComponent = this.getModalFormComponent.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.postData = this.postData.bind(this);
-        
+
         this.state = {
             currentForm: 1,
             newChallenge: {},
@@ -36,29 +36,31 @@ class ModalForm extends React.Component {
     onTaskDataSubmit(formValues) {
         console.log("Submitting Task Data...", formValues);
         var updatedChallenge = this.state.newChallenge;
-        updatedChallenge.weeks = formValues;
+        updatedChallenge.tasks = formValues;
         this.setState({newChallenge: updatedChallenge});
         this.setState({currentForm: this.state.currentForm + 1});
     }
-    
+
     postData() {
         console.log("Your New Challenge is: ", this.state.newChallenge);
         var that = this;
 
-        axios.post('/api/challenge', 
+        axios.post('/api/challenge',
         {
             title: this.state.newChallenge.title,
             description: this.state.newChallenge.description,
             purpose: this.state.newChallenge.purpose
         })
         .then((returnedChallenge) => {
-            var challengeId = returnedChallenge.data.id;
-            for (var i = 0; i < this.state.newChallenge.tasks.length; i++) {
+            var challengeId = returnedChallenge.data.data.id;
+            var weeksData = that.state.newChallenge.tasks
+            console.log("tasks: ", weeksData);
+            for (var i = 0; i < weeksData.length; i++) {
                 axios.post('/api/task/' + challengeId, {
                     challengeId: challengeId,
-                    taskName: this.state.newChallenge.tasks[i].task,
-                    targetComplete: this.state.newChallenge.tasks[i].numDays,
-                    weekNum: this.state.newChallenge.tasks[i].week
+                    taskName: weeksData[i].task,
+                    targetComplete: weeksData[i].numDays,
+                    weekNum: weeksData[i].week
                 })
                 .catch((e) => {
                     return e;
@@ -71,7 +73,7 @@ class ModalForm extends React.Component {
             return e
         });
     }
-    
+
     getModalFormComponent() {
         console.log("Current Page: ", this.state.currentForm);
         switch(this.state.currentForm) {

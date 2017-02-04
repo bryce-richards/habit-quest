@@ -75,6 +75,10 @@
 	
 	var _UserDashboardView2 = _interopRequireDefault(_UserDashboardView);
 	
+	var _ChallengeDetail = __webpack_require__(/*! ./components/ChallengeDetail.jsx */ 523);
+	
+	var _ChallengeDetail2 = _interopRequireDefault(_ChallengeDetail);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -118,7 +122,7 @@
 	    _react2.default.createElement(_reactRouter.Route, { path: 'signup', component: _signup2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: 'signin', component: _signin2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: 'profile', component: _profile2.default }),
-	    ' // route that should require auth'
+	    _react2.default.createElement(_reactRouter.Route, { path: '/challenge/:id', component: _ChallengeDetail2.default })
 	  )
 	), document.getElementById('app'));
 
@@ -49129,7 +49133,7 @@
 	        value: function onTaskDataSubmit(formValues) {
 	            console.log("Submitting Task Data...", formValues);
 	            var updatedChallenge = this.state.newChallenge;
-	            updatedChallenge.weeks = formValues;
+	            updatedChallenge.tasks = formValues;
 	            this.setState({ newChallenge: updatedChallenge });
 	            this.setState({ currentForm: this.state.currentForm + 1 });
 	        }
@@ -49146,13 +49150,15 @@
 	                description: this.state.newChallenge.description,
 	                purpose: this.state.newChallenge.purpose
 	            }).then(function (returnedChallenge) {
-	                var challengeId = returnedChallenge.data.id;
-	                for (var i = 0; i < _this2.state.newChallenge.tasks.length; i++) {
+	                var challengeId = returnedChallenge.data.data.id;
+	                var weeksData = that.state.newChallenge.tasks;
+	                console.log("tasks: ", weeksData);
+	                for (var i = 0; i < weeksData.length; i++) {
 	                    axios.post('/api/task/' + challengeId, {
 	                        challengeId: challengeId,
-	                        taskName: _this2.state.newChallenge.tasks[i].task,
-	                        targetComplete: _this2.state.newChallenge.tasks[i].numDays,
-	                        weekNum: _this2.state.newChallenge.tasks[i].week
+	                        taskName: weeksData[i].task,
+	                        targetComplete: weeksData[i].numDays,
+	                        weekNum: weeksData[i].week
 	                    }).catch(function (e) {
 	                        return e;
 	                    });
@@ -49863,6 +49869,89 @@
 	}(_react2.default.Component);
 	
 	exports.default = UserChallengeContainer;
+
+/***/ },
+/* 523 */
+/*!*******************************************************!*\
+  !*** ./src/client/app/components/ChallengeDetail.jsx ***!
+  \*******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var axios = __webpack_require__(/*! axios */ 236);
+	
+	var ChallengeDetail = function (_Component) {
+	  _inherits(ChallengeDetail, _Component);
+	
+	  function ChallengeDetail(props) {
+	    _classCallCheck(this, ChallengeDetail);
+	
+	    var _this = _possibleConstructorReturn(this, (ChallengeDetail.__proto__ || Object.getPrototypeOf(ChallengeDetail)).call(this, props));
+	
+	    _this.state = {
+	      tasks: []
+	    };
+	    return _this;
+	  }
+	
+	  _createClass(ChallengeDetail, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.fetchTasks();
+	    }
+	  }, {
+	    key: 'fetchTasks',
+	    value: function fetchTasks() {
+	      var url = "/api/task/" + this.props.params.id;
+	
+	      var that = this;
+	
+	      axios.get(url).then(function (res) {
+	        that.setState({ tasks: res.data.data });
+	      }).catch(function (e) {
+	        return e;
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          'Challenge id: ',
+	          this.props.params.id
+	        ),
+	        console.log(this.state.tasks)
+	      );
+	    }
+	  }]);
+	
+	  return ChallengeDetail;
+	}(_react.Component);
+	
+	exports.default = ChallengeDetail;
 
 /***/ }
 /******/ ]);
