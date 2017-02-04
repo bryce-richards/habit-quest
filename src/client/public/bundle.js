@@ -49930,7 +49930,7 @@
 	        null,
 	        _react2.default.createElement(
 	          'h2',
-	          null,
+	          { className: 'text-center' },
 	          'Challenge id: ',
 	          this.props.params.id
 	        ),
@@ -49987,8 +49987,8 @@
 	          _reactBootstrap.Well,
 	          null,
 	          _react2.default.createElement(
-	            'h2',
-	            null,
+	            'h3',
+	            { className: 'text-center' },
 	            'Weekly Tasks'
 	          ),
 	          TaskListItems
@@ -50041,9 +50041,13 @@
 	
 	        var _this = _possibleConstructorReturn(this, (TaskListItem.__proto__ || Object.getPrototypeOf(TaskListItem)).call(this, props));
 	
+	        _this.subtractDay = _this.subtractDay.bind(_this);
+	        _this.addDay = _this.addDay.bind(_this);
+	
 	        _this.state = {
-	            task: _this.props.task,
-	            completedDays: _this.props.task.completedDays,
+	            weekNum: _this.props.task.weekNum,
+	            taskName: _this.props.task.taskName,
+	            countComplete: _this.props.task.countComplete,
 	            targetComplete: _this.props.task.targetComplete
 	        };
 	        return _this;
@@ -50052,13 +50056,13 @@
 	    _createClass(TaskListItem, [{
 	        key: "subtractDay",
 	        value: function subtractDay() {
-	            this.setState({ targetComplete: this.state.targetComplete - 1 });
+	            this.setState({ countComplete: this.state.countComplete - 1 });
 	            // api route to update task
 	        }
 	    }, {
 	        key: "addDay",
 	        value: function addDay() {
-	            this.setState({ targetComplete: this.state.targetComplete + 1 });
+	            this.setState({ countComplete: this.state.countComplete + 1 });
 	            // api route to update task
 	        }
 	    }, {
@@ -50066,87 +50070,90 @@
 	        value: function render() {
 	            return _react2.default.createElement(
 	                _reactBootstrap.Panel,
-	                { header: this.props.task.taskName,
-	                    bsStyle: this.state.completedDays < this.state.targetComplete ? "primary" : "success" },
+	                { header: _react2.default.createElement(
+	                        "h2",
+	                        { className: "text-center", style: { "color": "black" } },
+	                        this.state.taskName
+	                    ), bsStyle: this.state.countComplete < this.state.targetComplete ? "default" : "success" },
 	                _react2.default.createElement(
-	                    _reactBootstrap.Grid,
+	                    _reactBootstrap.Row,
 	                    null,
 	                    _react2.default.createElement(
-	                        _reactBootstrap.Row,
-	                        null,
+	                        _reactBootstrap.Col,
+	                        { lg: 12 },
 	                        _react2.default.createElement(
-	                            _reactBootstrap.Col,
-	                            { lg: 12 },
+	                            _reactBootstrap.Row,
+	                            null,
 	                            _react2.default.createElement(
-	                                _reactBootstrap.Row,
-	                                null,
+	                                _reactBootstrap.Col,
+	                                { lg: 4 },
 	                                _react2.default.createElement(
-	                                    _reactBootstrap.Col,
-	                                    { lg: 4 },
-	                                    _react2.default.createElement(
-	                                        "p",
-	                                        null,
-	                                        "Week: ",
-	                                        this.props.task.week
-	                                    )
-	                                ),
-	                                _react2.default.createElement(
-	                                    _reactBootstrap.Col,
-	                                    { lg: 4 },
-	                                    _react2.default.createElement(
-	                                        "p",
-	                                        null,
-	                                        "Target: ",
-	                                        this.props.task.targetComplete
-	                                    )
-	                                ),
-	                                _react2.default.createElement(
-	                                    _reactBootstrap.Col,
-	                                    { lg: 4 },
-	                                    _react2.default.createElement(
-	                                        "p",
-	                                        null,
-	                                        "Week ",
-	                                        this.props.task.countComplete
-	                                    )
+	                                    "h4",
+	                                    null,
+	                                    "Week: ",
+	                                    this.state.weekNum
 	                                )
 	                            ),
 	                            _react2.default.createElement(
-	                                _reactBootstrap.Row,
-	                                null,
+	                                _reactBootstrap.Col,
+	                                { lg: 4 },
 	                                _react2.default.createElement(
-	                                    _reactBootstrap.Col,
-	                                    { lg: 2 },
-	                                    _react2.default.createElement(
-	                                        _reactBootstrap.Button,
-	                                        { onClick: this.subtractDay,
-	                                            bsStyle: this.state.completedDays > 0 ? "warning" : "danger",
-	                                            disabled: this.state.completedDays > 0 ? "false" : "true"
-	                                        },
-	                                        _react2.default.createElement("i", { className: "fa fa-minus-circle fa-3x", "aria-hidden": "true" })
-	                                    )
-	                                ),
+	                                    "h4",
+	                                    null,
+	                                    "Completed: ",
+	                                    this.state.countComplete
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                _reactBootstrap.Col,
+	                                { lg: 4 },
 	                                _react2.default.createElement(
-	                                    _reactBootstrap.Col,
-	                                    { lg: 8 },
-	                                    _react2.default.createElement(_reactBootstrap.ProgressBar, { active: true,
-	                                        min: 0,
-	                                        max: this.state.targetComplete,
-	                                        now: this.state.completedDays,
-	                                        label: this.state.completedDays
-	                                    })
-	                                ),
+	                                    "h4",
+	                                    null,
+	                                    "Target: ",
+	                                    this.state.targetComplete
+	                                )
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            _reactBootstrap.Row,
+	                            null,
+	                            _react2.default.createElement(
+	                                _reactBootstrap.Col,
+	                                { lg: 1, lgOffset: 1 },
 	                                _react2.default.createElement(
-	                                    _reactBootstrap.Col,
-	                                    { lg: 2 },
-	                                    _react2.default.createElement(
-	                                        _reactBootstrap.Button,
-	                                        { onClick: this.addDay,
-	                                            bsStyle: this.state.completedDays < this.state.targetComplete ? "primary" : "success",
-	                                            disabled: this.state.completedDays < 7 ? "false" : "true"
-	                                        },
-	                                        _react2.default.createElement("i", { className: "fa fa-minus-circle fa-3x", "aria-hidden": "true" })
-	                                    )
+	                                    _reactBootstrap.Button,
+	                                    { onClick: this.subtractDay,
+	                                        bsSize: "small",
+	                                        bsStyle: "danger",
+	                                        disabled: this.state.countComplete > 0 ? false : true
+	                                    },
+	                                    _react2.default.createElement("i", { className: "fa fa-minus-circle fa-3x", "aria-hidden": "true" })
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                _reactBootstrap.Col,
+	                                { lg: 8 },
+	                                _react2.default.createElement(_reactBootstrap.ProgressBar, {
+	                                    active: true,
+	                                    bsStyle: "info",
+	                                    min: 0,
+	                                    max: 100,
+	                                    now: Math.round(this.state.countComplete / this.state.targetComplete * 100),
+	                                    label: Math.round(this.state.countComplete / this.state.targetComplete * 100) + "%"
+	                                })
+	                            ),
+	                            _react2.default.createElement(
+	                                _reactBootstrap.Col,
+	                                { lg: 2 },
+	                                _react2.default.createElement(
+	                                    _reactBootstrap.Button,
+	                                    { onClick: this.addDay,
+	                                        bsSize: "small",
+	                                        bsStyle: this.state.countComplete < this.state.targetComplete ? "primary" : "success",
+	                                        disabled: this.state.countComplete < this.state.targetComplete ? false : true
+	                                    },
+	                                    _react2.default.createElement("i", { className: "fa fa-plus-circle fa-3x", "aria-hidden": "true" })
 	                                )
 	                            )
 	                        )

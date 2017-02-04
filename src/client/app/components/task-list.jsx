@@ -14,7 +14,7 @@ const TaskList = (props) => {
       <Row>
         <Col lg={10} lgOffset={1}>
           <Well>
-            <h2>Weekly Tasks</h2>
+            <h3 className="text-center">Weekly Tasks</h3>
             {TaskListItems}
           </Well>
         </Col>
