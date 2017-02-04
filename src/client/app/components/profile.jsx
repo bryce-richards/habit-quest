@@ -52,7 +52,9 @@ class Profile extends Component {
   render() {
     return (
       <div>
-        <Greeting user={this.state.user} />
+        {/* 
+          <Greeting user={this.state.user} />
+          */}
         <ChallengeList challenges={this.state.challenges} />
       </div>
 

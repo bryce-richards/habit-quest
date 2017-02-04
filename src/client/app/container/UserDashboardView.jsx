@@ -2,6 +2,7 @@ import React from "react";
 import SignedInNavbar from "./SignedInNavbar.jsx";
 import UserDashboardHeader from "./UserDashboardHeader.jsx";
 import UserDashboardBody from "./UserDashboardBody.jsx";
+// import Greeting from "../components/greeting.jsx";
 
 import { Grid, Row, Col, Clearfix } from "react-bootstrap";
 var axios = require("axios");
@@ -39,9 +40,11 @@ class UserDashboardView extends React.Component {
     render() {
         return (
             <Grid>
-                <Row>
-                    <SignedInNavbar />
-                </Row>
+                {/*
+                  <Row>
+                  <SignedInNavbar />
+                  </Row>
+                  */}
                 <Row>
                     <UserDashboardHeader />
                 </Row>

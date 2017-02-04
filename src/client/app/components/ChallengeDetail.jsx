@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TaskList from './task-list.jsx';
 const axios = require('axios');
 
 class ChallengeDetail extends Component {
@@ -29,6 +30,7 @@ class ChallengeDetail extends Component {
       return (
         <div>
           <h2>Challenge id: {this.props.params.id}</h2>
+          <TaskList tasks={this.state.tasks} />
         </div>
       );
     }
