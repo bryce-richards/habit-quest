@@ -1,4 +1,3 @@
-/*jshint esversion: 6*/
 const passport = require('passport');
 const db = require("../models");
 const bcrypt = require('bcrypt');
