@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {render} from 'react-dom';
 import axios from 'axios';
-
+import { Grid, Col, Row } from "react-bootstrap";
 import ChallengeList from './challenge-list.jsx';
 import Greeting from './greeting.jsx';
 import UserDashboardView from '../container/UserDashboardView.jsx';
@@ -53,12 +53,22 @@ class Profile extends Component {
   render() {
     return (
       <div>
-        {/*
-          */}
-        <SignedInNavbar />  
-        <Greeting user={this.state.user} />
-        <UserDashboardView />
-        <ChallengeList challenges={this.state.challenges} />
+        <SignedInNavbar /> 
+        <Grid>
+          <Row>
+            <Col lg={10} lgOffset={1}>
+              <Greeting user={this.state.user} />
+              <br />
+              <br />
+              <br />
+              <UserDashboardView />
+              <br />
+              <br />
+              <br />
+              <ChallengeList challenges={this.state.challenges} />
+            </Col>
+          </Row>
+        </Grid>
       </div>
 
     )

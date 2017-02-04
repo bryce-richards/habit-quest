@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Well } from "react-bootstrap";
 
 const ChallengeListItem = ({challenge}) => {
 
@@ -11,13 +12,13 @@ const ChallengeListItem = ({challenge}) => {
   const challengeUrl = "challenge/" + challenge.id;
 
   return (
-    <div className="challenge-card col-sm-6 col-md-4 col-xs-12 col-lg-4" data-challengeId={challenge.id}>
+    <Well className="challenge-card drop-shadow col-sm-6 col-md-4 col-xs-12 col-lg-4" data-challengeId={challenge.id}>
       <div className="card-contents" style={cardContentStyles}>
-        <h3>{challenge.title}</h3>
-        <p>{challenge.description}</p>
-        <a href={challengeUrl} className="btn btn-primary">Challenge Details</a>
+        <h3 className="Bahiana">{challenge.title}</h3>
+        <p className="dosis">{challenge.description}</p>
+        <a href={challengeUrl} className="arsenal btn btn-info">Challenge Details</a>
       </div>
-    </div>
+    </Well>
   );
 }
 

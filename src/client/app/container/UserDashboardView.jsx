@@ -39,22 +39,11 @@ class UserDashboardView extends React.Component {
 
     render() {
         return (
-            <Grid>
-                {/*
-                  <Row>
-                  <SignedInNavbar />
-                  </Row>
-                  */}
+
                 <Row>
                     <UserDashboardHeader />
                 </Row>
-                {/*
-                  <Row>
-                  <UserDashboardBody />
-                  </Row>
-                  <h1>User Dashboard View Component</h1>
-                  */}
-            </Grid>
+
 
         );
     }

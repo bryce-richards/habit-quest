@@ -52,7 +52,7 @@ class UserTaskContainer extends React.Component {
                             </Button>
                         </Col>
                         <Col lg={8}>
-                            <ProgressBar ref="progressBar" active min={0} max={this.state.target} now={this.state.completedDays} />
+                            <ProgressBar id="progressBar" active min={0} max={this.state.target} now={this.state.completedDays} />
                         </Col>
                         <Col lg={2}>
                             <Button onClick={this.addDay} 

@@ -10,14 +10,13 @@ class SignedInNavbar extends React.Component {
               <div className="container">
 
                 <div className="navbar-header">
-                  <a className="navbar-brand" href="#">Brand</a>
+                  <h2 className="bahiana"><i className="fa fa-tasks" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4 Week Challenge</h2>
                   <span id="navbar-toggle" type="button" className="navbar-toggle collapsed fa fa-chevron-up rotate" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                   </span>
                 </div>
-
-                <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                  <ul className="nav navbar-nav navbar-right">
-                    <li><a href="/signup">Sign Up</a></li>
+                <div className="collapse navbar-collapse">
+                  <ul className="dosis nav navbar-nav navbar-right" id="navbar-right">
+                    <li className="dosis"><a href="/signup">Sign Up</a></li>
                     <li><a href="/signin">Log In</a></li>
                   </ul>
                 </div>
