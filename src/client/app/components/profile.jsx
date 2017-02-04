@@ -53,8 +53,8 @@ class Profile extends Component {
     return (
       <div>
         {/*
-          <Greeting user={this.state.user} />
           */}
+        <Greeting user={this.state.user} />
         <UserDashboardView />
         <ChallengeList challenges={this.state.challenges} />
       </div>

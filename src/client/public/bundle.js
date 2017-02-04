@@ -27591,6 +27591,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
+	        _react2.default.createElement(_greeting2.default, { user: this.state.user }),
 	        _react2.default.createElement(_UserDashboardView2.default, null),
 	        _react2.default.createElement(_challengeList2.default, { challenges: this.state.challenges })
 	      );
