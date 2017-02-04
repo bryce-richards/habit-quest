@@ -79,6 +79,10 @@
 	
 	var _SignedInNavbar2 = _interopRequireDefault(_SignedInNavbar);
 	
+	var _Carousel = __webpack_require__(/*! ./components/Carousel.jsx */ 526);
+	
+	var _Carousel2 = _interopRequireDefault(_Carousel);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -121,10 +125,10 @@
 	    _reactRouter.Route,
 	    { path: '/', component: App },
 	    _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _signup2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/signin', component: _signin2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/profile', component: _profile2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/challenge/:id', component: _ChallengeDetail2.default })
-	  )
+	    _react2.default.createElement(_reactRouter.Route, { path: '/signin', component: _signin2.default })
+	  ),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/profile', component: _profile2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/challenge/:id', component: _ChallengeDetail2.default })
 	), document.getElementById('app'));
 
 /***/ },
@@ -29453,16 +29457,17 @@
 	                    _react2.default.createElement(_reactBootstrap.Navbar.Toggle, null)
 	                ),
 	                _react2.default.createElement(
-	                    _reactBootstrap.Navbar.Collapse,
+	                    _reactBootstrap.Nav,
 	                    null,
 	                    _react2.default.createElement(
-	                        _reactBootstrap.Nav,
-	                        { pullRight: true },
-	                        _react2.default.createElement(
-	                            _reactBootstrap.NavItem,
-	                            { eventKey: 1, href: "#" },
-	                            "Sign Out"
-	                        )
+	                        _reactBootstrap.NavItem,
+	                        { href: "/signin" },
+	                        "Sign In"
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.NavItem,
+	                        { href: "/signup" },
+	                        "Sign up"
 	                    )
 	                )
 	            );
@@ -50017,6 +50022,118 @@
 	};
 	
 	exports.default = TaskListItem;
+
+/***/ },
+/* 526 */
+/*!************************************************!*\
+  !*** ./src/client/app/components/Carousel.jsx ***!
+  \************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 32);
+	
+	var _reactBootstrap = __webpack_require__(/*! react-bootstrap */ 266);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var HomeCarousel = function (_React$Component) {
+	    _inherits(HomeCarousel, _React$Component);
+	
+	    function HomeCarousel() {
+	        _classCallCheck(this, HomeCarousel);
+	
+	        return _possibleConstructorReturn(this, (HomeCarousel.__proto__ || Object.getPrototypeOf(HomeCarousel)).apply(this, arguments));
+	    }
+	
+	    _createClass(HomeCarousel, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                _reactBootstrap.Carousel,
+	                null,
+	                _react2.default.createElement(
+	                    _reactBootstrap.Carousel.Item,
+	                    null,
+	                    _react2.default.createElement("img", { width: 900, height: 500, alt: "900x500", src: "http://wallpapers-and-backgrounds.net/wp-content/uploads/2016/02/travel-hd-background_1.jpg" }),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.Carousel.Caption,
+	                        null,
+	                        _react2.default.createElement(
+	                            "h3",
+	                            null,
+	                            "First slide label"
+	                        ),
+	                        _react2.default.createElement(
+	                            "p",
+	                            null,
+	                            "Nulla vitae elit libero, a pharetra augue mollis interdum."
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactBootstrap.Carousel.Item,
+	                    null,
+	                    _react2.default.createElement("img", { width: 900, height: 500, alt: "900x500", src: "http://wallpapers-and-backgrounds.net/wp-content/uploads/2016/02/travel-hd-background_1.jpg" }),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.Carousel.Caption,
+	                        null,
+	                        _react2.default.createElement(
+	                            "h3",
+	                            null,
+	                            "Second slide label"
+	                        ),
+	                        _react2.default.createElement(
+	                            "p",
+	                            null,
+	                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactBootstrap.Carousel.Item,
+	                    null,
+	                    _react2.default.createElement("img", { width: 900, height: 500, alt: "900x500", src: "http://wallpapers-and-backgrounds.net/wp-content/uploads/2016/02/travel-hd-background_1.jpg" }),
+	                    _react2.default.createElement(
+	                        _reactBootstrap.Carousel.Caption,
+	                        null,
+	                        _react2.default.createElement(
+	                            "h3",
+	                            null,
+	                            "Third slide label"
+	                        ),
+	                        _react2.default.createElement(
+	                            "p",
+	                            null,
+	                            "Praesent commodo cursus magna, vel scelerisque nisl consectetur."
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return HomeCarousel;
+	}(_react2.default.Component);
+	
+	exports.default = HomeCarousel;
 
 /***/ }
 /******/ ]);

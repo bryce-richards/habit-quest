@@ -12,11 +12,17 @@ class SignedInNavbar extends React.Component {
                     </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>
-                <Navbar.Collapse>
-                    <Nav pullRight>
-                        <NavItem eventKey={1} href="#">Sign Out</NavItem>
-                    </Nav>
-                </Navbar.Collapse>
+                <Nav>
+                  <NavItem href="/signin">Sign In</NavItem>
+                  <NavItem href="/signup">Sign up</NavItem>
+                </Nav>
+                {/*
+                  <Navbar.Collapse>
+                  <Nav pullRight>
+                  <NavItem eventKey={1} href="#">Sign Out</NavItem>
+                  </Nav>
+                  </Navbar.Collapse>
+                  */}
             </Navbar>
         );
     }
