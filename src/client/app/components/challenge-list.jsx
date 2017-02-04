@@ -9,7 +9,7 @@ const ChallengeList = (props) => {
   });
 
   return (
-      <div id="challenge-container" className="row">
+      <div className="col-lg-2 col-lg-offset-5 dosis text-center" id="challenge-container" className="row">
         <h2>Challenges</h2>
         {challengeListItems}
       </div>

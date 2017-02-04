@@ -62,6 +62,9 @@ class Profile extends Component {
               <br />
               <br />
               <UserDashboardView />
+              <br />
+              <br />
+              <br />
               <ChallengeList challenges={this.state.challenges} />
             </Col>
           </Row>
