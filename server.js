@@ -11,6 +11,7 @@ const bcrypt = require('bcrypt');
 const app = express();
 const PORT = process.env.PORT || 8000;
 
+
 // Requiring our models for syncing; commenting out until we have sequelize models
 var db = require("./models");
 
@@ -67,7 +68,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 // Static directory
-app.use(express.static(__dirname + '/src/client/public'));
+// app.use(express.static(__dirname + '/src/client/public'));
+app.use(express.static(process.cwd() + "/src/client/public"));
 app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 
 

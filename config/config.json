@@ -2,7 +2,7 @@
 
     "development": {
         "username": "root",
-        "password": "password",
+        "password": "",
         "database": "habitQuest_db",
         "host": "127.0.0.1",
         "dialect": "mysql"
@@ -15,9 +15,9 @@
         "dialect": "mysql"
     },
     "production": {
-        "username": "ggxs2coo73op7kiw",
-        "password": "tfcapg8c0qlwx4v9",
-        "database": "dcpbttdtc3sh4vxm",
+        "username": "zzdgprf76f3vp3s7",
+        "password": "ldyqa6fpww7mkm96",
+        "database": "qlsosc786aeg1tdd",
         "host": "ryvdxs57afyjk41z.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
         "dialect": "mysql"
     }

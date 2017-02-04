@@ -27,10 +27,10 @@ module.exports = function(app) {
   });
 
   // route to fetch challenges by id
-  app.get('/api/challenge', (req, res) => {
+  app.get('/api/challenge/:challenge_id', (req, res) => {
     db.Challenge.findOne({
       where: {
-        id: req.body.id
+        id: req.params.challenge_id
       }
     }).then((data) => {
       res.json({
@@ -54,7 +54,6 @@ module.exports = function(app) {
       description: req.body.description,
       purpose: req.body.purpose,
       private: req.body.private,
-      imageUrl: req.body.challengeImageUrl,
       UserId: id
     }).then((data) => {
       res.json({

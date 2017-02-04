@@ -49951,7 +49951,8 @@
 	    var _this = _possibleConstructorReturn(this, (ChallengeDetail.__proto__ || Object.getPrototypeOf(ChallengeDetail)).call(this, props));
 	
 	    _this.state = {
-	      tasks: []
+	      tasks: [],
+	      challengeTitle: null
 	    };
 	    return _this;
 	  }
@@ -49959,7 +49960,20 @@
 	  _createClass(ChallengeDetail, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
+	      this.fetchChallenge();
 	      this.fetchTasks();
+	    }
+	  }, {
+	    key: 'fetchChallenge',
+	    value: function fetchChallenge() {
+	      var url = "/api/challenge/" + this.props.params.id;
+	      var that = this;
+	      axios.get(url).then(function (res) {
+	        console.log("Title: ", res.data.data.title);
+	        that.setState({ challengeTitle: res.data.data.title });
+	      }).catch(function (e) {
+	        return e;
+	      });
 	    }
 	  }, {
 	    key: 'fetchTasks',
@@ -49983,15 +49997,8 @@
 	        _react2.default.createElement(_SignedInNavbar2.default, null),
 	        _react2.default.createElement(
 	          'h2',
-	          null,
-	          'Challenge id: ',
-	          this.props.params.id
-	        ),
-	        _react2.default.createElement(
-	          'h2',
 	          { className: 'text-center' },
-	          'Challenge id: ',
-	          this.props.params.id
+	          this.state.challengeTitle
 	        ),
 	        _react2.default.createElement(_taskList2.default, { tasks: this.state.tasks })
 	      );
