@@ -8,10 +8,9 @@ const path = require('path');
 const authMiddleware = require('./middleware/auth.js');
 const bcrypt = require('bcrypt');
 
-// const app = express();
-// const PORT = process.env.PORT || 8000;
 const app = express();
-app.set('port', (process.env.PORT || 8000));
+const PORT = process.env.PORT || 8000;
+
 
 // Requiring our models for syncing; commenting out until we have sequelize models
 var db = require("./models");
@@ -101,7 +100,7 @@ app.get('*', function(request, response) {
 
 // Syncing our sequelize models and then starting our express app
 db.sequelize.sync({ force: false }).then(function() {
-    app.listen(app.get('port'), function() {
+    app.listen(PORT, function() {
         console.log("App listening on PORT " + PORT);
     });
 });
