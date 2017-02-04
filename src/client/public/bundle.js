@@ -49133,7 +49133,7 @@
 	        value: function onTaskDataSubmit(formValues) {
 	            console.log("Submitting Task Data...", formValues);
 	            var updatedChallenge = this.state.newChallenge;
-	            updatedChallenge.weeks = formValues;
+	            updatedChallenge.tasks = formValues;
 	            this.setState({ newChallenge: updatedChallenge });
 	            this.setState({ currentForm: this.state.currentForm + 1 });
 	        }
@@ -49151,8 +49151,8 @@
 	                purpose: this.state.newChallenge.purpose
 	            }).then(function (returnedChallenge) {
 	                var challengeId = returnedChallenge.data.data.id;
-	                var weeksData = that.state.newChallenge.weeks;
-	                console.log("tasks: ", that.state.newChallenge.weeks);
+	                var weeksData = that.state.newChallenge.tasks;
+	                console.log("tasks: ", weeksData);
 	                for (var i = 0; i < weeksData.length; i++) {
 	                    axios.post('/api/task/' + challengeId, {
 	                        challengeId: challengeId,
