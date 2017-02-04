@@ -4,7 +4,7 @@ import {render} from 'react-dom';
 class SignupForm extends Component {
   render() {
     return (
-      <form id="signup-form" action="/signup" method="post">
+      <form id="drop-shadow signup-form" action="/signup" method="post">
       	<div className="form-group">
         	<label>First Name:</label>
         	<input type="text" name="firstName" className="form-control"/><br/>

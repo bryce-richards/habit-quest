@@ -2,7 +2,7 @@ import React from 'react';
 
 const Greeting = ({user}) => {
   return (
-    <h2>Welcome Back, {user.firstName}!</h2>
+    <h1 className="bahiana text-center" id="greeting-text">Welcome Back, {user.firstName}!</h1>
   )
 }
 

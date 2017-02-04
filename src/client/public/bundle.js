@@ -27303,7 +27303,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+		value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -27323,51 +27323,58 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var Signin = function (_Component) {
-	  _inherits(Signin, _Component);
+		_inherits(Signin, _Component);
 	
-	  function Signin() {
-	    _classCallCheck(this, Signin);
+		function Signin() {
+			_classCallCheck(this, Signin);
 	
-	    return _possibleConstructorReturn(this, (Signin.__proto__ || Object.getPrototypeOf(Signin)).apply(this, arguments));
-	  }
+			return _possibleConstructorReturn(this, (Signin.__proto__ || Object.getPrototypeOf(Signin)).apply(this, arguments));
+		}
 	
-	  _createClass(Signin, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'form',
-	        { id: 'signin-form', action: '/signin', method: 'post' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'form-group' },
-	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'Email:'
-	          ),
-	          _react2.default.createElement('input', { type: 'text', className: 'form-control', name: 'email' }),
-	          _react2.default.createElement('br', null)
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'form-group' },
-	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'Password:'
-	          ),
-	          _react2.default.createElement('input', { type: 'password', className: 'form-control', name: 'password' })
-	        ),
-	        _react2.default.createElement(
-	          'button',
-	          { type: 'submit', className: 'btn btn-default' },
-	          'Submit'
-	        )
-	      );
-	    }
-	  }]);
+		_createClass(Signin, [{
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement('br', null),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement(
+						'form',
+						{ className: 'drop-shadow col-lg-4 col-lg-offset-4', id: 'signin-form', action: '/signin', method: 'post' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'form-group' },
+							_react2.default.createElement(
+								'label',
+								{ className: 'arsenal' },
+								'Email:'
+							),
+							_react2.default.createElement('input', { type: 'text', className: 'form-control', name: 'email' }),
+							_react2.default.createElement('br', null)
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'form-group' },
+							_react2.default.createElement(
+								'label',
+								{ className: 'arsenal' },
+								'Password:'
+							),
+							_react2.default.createElement('input', { type: 'password', className: 'form-control', name: 'password' })
+						),
+						_react2.default.createElement(
+							'button',
+							{ type: 'submit', className: 'btn btn-success' },
+							'Submit'
+						)
+					)
+				);
+			}
+		}]);
 	
-	  return Signin;
+		return Signin;
 	}(_react.Component);
 	
 	exports.default = Signin;
@@ -27415,7 +27422,7 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'form',
-	        { id: 'signup-form', action: '/signup', method: 'post' },
+	        { id: 'drop-shadow signup-form', action: '/signup', method: 'post' },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'form-group' },
@@ -27509,6 +27516,8 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
+	var _reactBootstrap = __webpack_require__(/*! react-bootstrap */ 266);
+	
 	var _challengeList = __webpack_require__(/*! ./challenge-list.jsx */ 261);
 	
 	var _challengeList2 = _interopRequireDefault(_challengeList);
@@ -27590,9 +27599,24 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(_SignedInNavbar2.default, null),
-	        _react2.default.createElement(_greeting2.default, { user: this.state.user }),
-	        _react2.default.createElement(_UserDashboardView2.default, null),
-	        _react2.default.createElement(_challengeList2.default, { challenges: this.state.challenges })
+	        _react2.default.createElement(
+	          _reactBootstrap.Grid,
+	          null,
+	          _react2.default.createElement(
+	            _reactBootstrap.Row,
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Col,
+	              { lg: 10, lgOffset: 1 },
+	              _react2.default.createElement(_greeting2.default, { user: this.state.user }),
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement(_UserDashboardView2.default, null),
+	              _react2.default.createElement(_challengeList2.default, { challenges: this.state.challenges })
+	            )
+	          )
+	        )
 	      );
 	    }
 	  }]);
@@ -29273,7 +29297,7 @@
   \************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -29289,11 +29313,11 @@
 	  var user = _ref.user;
 	
 	  return _react2.default.createElement(
-	    'h2',
-	    null,
-	    'Welcome Back, ',
+	    "h1",
+	    { className: "bahiana text-center", id: "greeting-text" },
+	    "Welcome Back, ",
 	    user.firstName,
-	    '!'
+	    "!"
 	  );
 	};
 	
@@ -29452,21 +29476,22 @@
 	            "div",
 	            { className: "navbar-header" },
 	            _react2.default.createElement(
-	              "a",
-	              { className: "navbar-brand", href: "#" },
-	              "Brand"
+	              "h2",
+	              { className: "bahiana" },
+	              _react2.default.createElement("i", { className: "fa fa-tasks", "aria-hidden": "true" }),
+	              "\xA0\xA0\xA0\xA0\xA04 Week Challenge"
 	            ),
 	            _react2.default.createElement("span", { id: "navbar-toggle", type: "button", className: "navbar-toggle collapsed fa fa-chevron-up rotate", "data-toggle": "collapse", "data-target": "#bs-example-navbar-collapse-1", "aria-expanded": "false" })
 	          ),
 	          _react2.default.createElement(
 	            "div",
-	            { className: "collapse navbar-collapse", id: "bs-example-navbar-collapse-1" },
+	            { className: "collapse navbar-collapse" },
 	            _react2.default.createElement(
 	              "ul",
-	              { className: "nav navbar-nav navbar-right" },
+	              { className: "dosis nav navbar-nav navbar-right", id: "navbar-right" },
 	              _react2.default.createElement(
 	                "li",
-	                null,
+	                { className: "dosis" },
 	                _react2.default.createElement(
 	                  "a",
 	                  { href: "/signup" },
@@ -49955,6 +49980,12 @@
 	        _react2.default.createElement(_SignedInNavbar2.default, null),
 	        _react2.default.createElement(
 	          'h2',
+	          null,
+	          'Challenge id: ',
+	          this.props.params.id
+	        ),
+	        _react2.default.createElement(
+	          'h2',
 	          { className: 'text-center' },
 	          'Challenge id: ',
 	          this.props.params.id
@@ -50161,7 +50192,7 @@
 	                                { lg: 8 },
 	                                _react2.default.createElement(_reactBootstrap.ProgressBar, {
 	                                    active: true,
-	                                    bsStyle: "info",
+	                                    bsStyle: this.state.countComplete < this.state.targetComplete ? "info" : "success",
 	                                    min: 0,
 	                                    max: 100,
 	                                    now: Math.round(this.state.countComplete / this.state.targetComplete * 100),

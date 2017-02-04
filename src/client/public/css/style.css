@@ -1,63 +1,92 @@
 body {
-  background: #c2e59c; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #c2e59c , #64b3f4); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #c2e59c , #64b3f4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #c2e59c;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #c2e59c, #64b3f4);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #c2e59c, #64b3f4);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+
 /*============== NAV ========================*/
+
 #main-nav {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.bahiana {
+    font-family: 'Bahiana', cursive;
+}
+
+.arsenal {
+    font-family: 'Arsenal', sans-serif;
+}
+
+.dosis {
+    font-family: 'Dosis', sans-serif;
 }
 
 .navbar {
-   background: #fff;
-   border-color: transparent;
+    background: #fff;
+    border-color: transparent;
 }
 
-a.navbar-brand > img {
-  width: 45px;
+a.navbar-brand>img {
+    width: 45px;
 }
 
 #navbar-toggle {
-  float: left;
-  border: none;
-  background: transparent;
+    float: left;
+    border: none;
+    background: transparent;
 }
 
 #navbar-toggle:hover {
-  border: none;
-  background: transparent;
+    border: none;
+    background: transparent;
 }
 
-.rotate{
+.rotate {
     -moz-transition: all 0.2s linear;
     -webkit-transition: all 0.2s linear;
     transition: all 0.2s linear;
 }
 
-.rotate.down{
-    -moz-transform:rotate(180deg);
-    -webkit-transform:rotate(180deg);
-    transform:rotate(180deg);
+.rotate.down {
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
 }
+
 
 /*============== NAV END ========================*/
 
-.carousel-inner > .item > img,
-.carousel-inner > .item > a > img {
+.carousel-inner>.item>img,
+.carousel-inner>.item>a>img {
     width: 70%;
     height: 400px;
     margin: auto;
 }
 
+#greeting-text {
+    font-size: 40px;
+    text-align: center;
+}
+
+#progressBar {
+    height: 51px;
+    font-size: 22px;
+    line-height: 2;
+}
+
 #signup-form {
-  background: #fff;
-  padding: 20px;
-  width: 350px;
+    background: #fff;
+    padding: 20px;
+    width: 350px;
 }
 
 #signin-form {
-  background: #fff;
-  padding: 20px;
-  width: 350px;
+    background: #fff;
+    padding: 20px;
+    width: 350px;
 }
