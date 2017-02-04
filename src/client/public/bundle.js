@@ -49942,8 +49942,7 @@
 	          null,
 	          'Challenge id: ',
 	          this.props.params.id
-	        ),
-	        console.log(this.state.tasks)
+	        )
 	      );
 	    }
 	  }]);
