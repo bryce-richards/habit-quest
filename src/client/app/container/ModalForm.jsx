@@ -36,7 +36,7 @@ class ModalForm extends React.Component {
     onTaskDataSubmit(formValues) {
         console.log("Submitting Task Data...", formValues);
         var updatedChallenge = this.state.newChallenge;
-        updatedChallenge.weeks = formValues;
+        updatedChallenge.tasks = formValues;
         this.setState({newChallenge: updatedChallenge});
         this.setState({currentForm: this.state.currentForm + 1});
     }
@@ -53,8 +53,8 @@ class ModalForm extends React.Component {
         })
         .then((returnedChallenge) => {
             var challengeId = returnedChallenge.data.data.id;
-            var weeksData = that.state.newChallenge.weeks
-            console.log("tasks: ", that.state.newChallenge.weeks);
+            var weeksData = that.state.newChallenge.tasks
+            console.log("tasks: ", weeksData);
             for (var i = 0; i < weeksData.length; i++) {
                 axios.post('/api/task/' + challengeId, {
                     challengeId: challengeId,
