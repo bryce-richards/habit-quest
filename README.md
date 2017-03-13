@@ -2,33 +2,13 @@
 
 A MySQl / Express / Node / React application that allows users to create goals and break them into more manageable weekly tasks and track their progress.
 
-## Demo
+## Demo (Work In Progress)
 
-[Work In Progress] (https://desolate-depths-34739.herokuapp.com/)
+[Link] (https://desolate-depths-34739.herokuapp.com/)
 
 ![Create a New Challenge] (https://github.com/trungvngo/habit-quest/blob/master/4WeekDemo.png)
 
-### Installation
-
-To install locally...
-
-```
-npm install
-```
-
-Update the `config.json` file to match your local MySQL database.
-
-Run the webpack
-```
-webpack -w
-```
-
-Start the server
-```
-node server.js
-```
-
-### Platforms / Technologies
+## Technologies
 
 * [Node] (https://nodejs.org/en/)
   * [axios] (https://www.npmjs.com/package/axios)
