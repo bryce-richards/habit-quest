@@ -6,6 +6,8 @@ A MySQl / Express / Node / React application that allows users to create goals a
 
 [Work In Progress] (https://desolate-depths-34739.herokuapp.com/)
 
+![Create a New Challenge] (https://github.com/trungvngo/habit-quest/blob/master/4WeekDemo.png)
+
 ### Installation
 
 To install locally...
