@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
-import { Router, Route, Link, browserHistory } from 'react-router';
+import { IndexRoute, Router, Route, Link, browserHistory } from 'react-router';
 
 import Signin from './components/signin.jsx';
 import SignupForm from './components/signup.jsx';
@@ -31,6 +31,7 @@ render(
   <Router history={browserHistory}>
     {/* Logged out routes */}
     <Route path="/" component={App}>
+      <IndexRoute component={Signin} />
       <Route path="/signup" component={SignupForm}/>
       <Route path="/signin" component={Signin}/>
     </Route>
