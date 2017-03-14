@@ -10,7 +10,7 @@ class Signin extends Component {
 				<br />
 				<br />
         <h2 className="text-center dosis">Log in to Get Started!</h2>
-				<form className="drop-shadow col-lg-4 col-lg-offset-4" id="signin-form" action="/signin" method="post">
+				<form className="drop-shadow" id="signin-form" action="/signin" method="post">
 					<div className="form-group">
 						<label className="arsenal">Email:</label>
 						<input type="text" className="form-control" name="email"/><br/>
